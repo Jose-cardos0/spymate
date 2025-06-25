@@ -1,7 +1,16 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
-import { Home, Info, Phone, Sparkles, Menu, X, LogOut } from "lucide-react";
+import {
+  Home,
+  Info,
+  Phone,
+  Sparkles,
+  Menu,
+  X,
+  LogOut,
+  Settings,
+} from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { useAuth } from "../contexts/AuthContext";
 import { toast } from "react-hot-toast";
@@ -164,6 +173,12 @@ function Navbar() {
                 {t("contact")}
               </Link>
             </motion.div>
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <Link to="/app/profile" className={linkClass("/app/profile")}>
+                <Settings size={18} />
+                {t("updateProfile")}
+              </Link>
+            </motion.div>
             <motion.button
               onClick={resetWelcome}
               className="!px-3 !py-2 lg:!px-4 lg:!py-2 rounded-lg font-medium transition-all duration-200 text-green-300 hover:bg-green-600 hover:bg-opacity-20 text-sm lg:text-base hover:scale-105 flex items-center gap-2"
@@ -295,6 +310,22 @@ function Navbar() {
                 <motion.div
                   variants={menuItemVariants}
                   custom={3}
+                  initial="closed"
+                  animate="open"
+                  exit="closed"
+                >
+                  <Link
+                    to="/app/profile"
+                    className={mobileLinkClass("/app/profile")}
+                    onClick={closeMenu}
+                  >
+                    <Settings size={20} />
+                    {t("updateProfile")}
+                  </Link>
+                </motion.div>
+                <motion.div
+                  variants={menuItemVariants}
+                  custom={4}
                   initial="closed"
                   animate="open"
                   exit="closed"

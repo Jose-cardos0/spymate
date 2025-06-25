@@ -1,7 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAuth } from "../contexts/AuthContext";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../config/firebase";
+import UserDataModal from "../components/UserDataModal";
 import {
   MessageCircle,
   Camera,
@@ -17,6 +21,25 @@ import {
 function Home() {
   const { currentUser } = useAuth();
   const { t } = useTranslation();
+  const navigate = useNavigate();
+  const [showUserDataModal, setShowUserDataModal] = useState(false);
+
+  // Verificar se precisa mostrar o modal de dados do usuário
+  useEffect(() => {
+    checkUserProfile();
+  }, [currentUser]);
+
+  const checkUserProfile = async () => {
+    try {
+      const userDoc = await getDoc(doc(db, "userProfiles", currentUser.uid));
+      if (!userDoc.exists()) {
+        // Se não existem dados do usuário, mostrar modal
+        setShowUserDataModal(true);
+      }
+    } catch (error) {
+      console.error("Error checking user profile:", error);
+    }
+  };
 
   const socialPlatforms = [
     {
@@ -94,14 +117,18 @@ function Home() {
   ];
 
   const handleAccess = (platformName) => {
-    toast.success(t("accessing", { platform: platformName }), {
-      duration: 3000,
-      style: {
-        background: "linear-gradient(135deg, #10b981 0%, #059669 100%)",
-        color: "#fff",
-        fontWeight: "600",
-      },
-    });
+    if (platformName === "WhatsApp") {
+      navigate("/app/whatsapp");
+    } else {
+      toast.success(t("accessing", { platform: platformName }), {
+        duration: 3000,
+        style: {
+          background: "linear-gradient(135deg, #10b981 0%, #059669 100%)",
+          color: "#fff",
+          fontWeight: "600",
+        },
+      });
+    }
   };
 
   return (
@@ -297,6 +324,12 @@ function Home() {
           <div className="absolute bottom-8 left-8 w-3 h-3 bg-emerald-500/30 rounded-full animate-pulse delay-500"></div>
         </div>
       </div>
+
+      {/* User Data Modal */}
+      <UserDataModal
+        isOpen={showUserDataModal}
+        onClose={() => setShowUserDataModal(false)}
+      />
 
       <style jsx>{`
         @keyframes slideInUp {

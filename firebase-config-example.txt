@@ -1,0 +1,42 @@
+INSTRUÇÕES PARA CONFIGURAR O FIREBASE - SPYMATE
+
+ERRO ATUAL: Firebase: Error (auth/invalid-api-key)
+CAUSA: Variáveis de ambiente não configuradas
+
+SOLUÇÃO:
+
+1. Crie um arquivo chamado ".env" na raiz do projeto (mesmo nível do package.json)
+
+2. Adicione as seguintes variáveis no arquivo .env:
+
+VITE_FIREBASE_API_KEY=sua-api-key-aqui
+VITE_FIREBASE_AUTH_DOMAIN=seu-projeto.firebaseapp.com
+VITE_FIREBASE_PROJECT_ID=seu-projeto-id
+VITE_FIREBASE_STORAGE_BUCKET=seu-projeto.appspot.com
+VITE_FIREBASE_MESSAGING_SENDER_ID=seu-sender-id
+VITE_FIREBASE_APP_ID=seu-app-id
+
+3. Para encontrar esses valores:
+   - Acesse https://console.firebase.google.com/
+   - Selecione seu projeto Firebase
+   - Clique no ícone de engrenagem (Configurações do projeto)
+   - Role até "Seus apps"
+   - Clique em "Configuração" no app web
+   - Copie os valores do objeto firebaseConfig
+
+4. Exemplo de como deve ficar o arquivo .env:
+
+VITE_FIREBASE_API_KEY=AIzaSyDOCAbC123dEf456GhI789jKl012MnO345
+VITE_FIREBASE_AUTH_DOMAIN=spymate-12345.firebaseapp.com
+VITE_FIREBASE_PROJECT_ID=spymate-12345
+VITE_FIREBASE_STORAGE_BUCKET=spymate-12345.appspot.com
+VITE_FIREBASE_MESSAGING_SENDER_ID=123456789012
+VITE_FIREBASE_APP_ID=1:123456789012:web:abc123def456ghi789
+
+5. Após criar o arquivo .env, reinicie o servidor de desenvolvimento:
+   npm run dev
+
+IMPORTANTE:
+- O arquivo .env não deve ser commitado (já está no .gitignore)
+- Substitua TODOS os valores pelos dados reais do seu projeto
+- Certifique-se de que o Authentication e Firestore estão habilitados no Firebase Console 

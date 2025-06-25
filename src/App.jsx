@@ -54,15 +54,15 @@ function App() {
             toastOptions={{
               duration: 4000,
               style: {
-                background: "rgba(17, 24, 39, 0.9)",
-                color: "#fff",
+                background: "rgba(0, 0, 0, 0.9)",
+                color: "#10b981",
                 backdropFilter: "blur(10px)",
-                border: "1px solid rgba(255, 255, 255, 0.1)",
+                border: "1px solid rgba(16, 185, 129, 0.3)",
               },
               success: {
                 iconTheme: {
                   primary: "#10b981",
-                  secondary: "#fff",
+                  secondary: "#000",
                 },
               },
               error: {

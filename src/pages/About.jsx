@@ -9,51 +9,49 @@ function About() {
   };
 
   return (
-    <div className="bg-gradient-to-br from-purple-50 to-pink-100 min-h-[calc(100vh-4rem)] flex flex-col items-center justify-center p-8">
-      <div className="bg-white rounded-lg shadow-lg p-8 max-w-2xl w-full">
+    <div className="bg-gradient-to-br from-black via-gray-900 to-black min-h-[calc(100vh-4rem)] flex flex-col items-center justify-center p-8">
+      <div className="bg-black/30 backdrop-blur-lg rounded-lg shadow-2xl p-8 max-w-2xl w-full border border-green-400/20">
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-gray-800 mb-4">
+          <h1 className="text-4xl font-bold text-green-400 mb-4">
             Sobre o SpyMate
           </h1>
-          <div className="w-16 h-1 bg-purple-500 mx-auto rounded mb-6"></div>
+          <div className="w-16 h-1 bg-green-500 mx-auto rounded mb-6"></div>
         </div>
 
         <div className="space-y-6">
-          <div className="bg-gray-50 rounded-lg p-6">
-            <h2 className="text-xl font-semibold text-gray-800 mb-3">
+          <div className="bg-gray-900/50 backdrop-blur-sm rounded-lg p-6 border border-green-400/10">
+            <h2 className="text-xl font-semibold text-green-300 mb-3">
               🚀 Tecnologias Utilizadas
             </h2>
             <div className="grid grid-cols-2 gap-4">
-              <div className="bg-white p-3 rounded shadow-sm">
-                <span className="text-blue-600 font-medium">React 19</span>
+              <div className="bg-black/40 p-3 rounded shadow-sm border border-green-400/20">
+                <span className="text-green-400 font-medium">React 19</span>
               </div>
-              <div className="bg-white p-3 rounded shadow-sm">
-                <span className="text-green-600 font-medium">Vite</span>
+              <div className="bg-black/40 p-3 rounded shadow-sm border border-green-400/20">
+                <span className="text-emerald-400 font-medium">Vite</span>
               </div>
-              <div className="bg-white p-3 rounded shadow-sm">
-                <span className="text-purple-600 font-medium">
-                  React Router
-                </span>
+              <div className="bg-black/40 p-3 rounded shadow-sm border border-green-400/20">
+                <span className="text-lime-400 font-medium">React Router</span>
               </div>
-              <div className="bg-white p-3 rounded shadow-sm">
-                <span className="text-cyan-600 font-medium">Tailwind CSS</span>
+              <div className="bg-black/40 p-3 rounded shadow-sm border border-green-400/20">
+                <span className="text-green-500 font-medium">Tailwind CSS</span>
               </div>
-              <div className="bg-white p-3 rounded shadow-sm">
-                <span className="text-orange-600 font-medium">
+              <div className="bg-black/40 p-3 rounded shadow-sm border border-green-400/20">
+                <span className="text-emerald-500 font-medium">
                   React Hot Toast
                 </span>
               </div>
-              <div className="bg-white p-3 rounded shadow-sm">
-                <span className="text-yellow-600 font-medium">Firebase</span>
+              <div className="bg-black/40 p-3 rounded shadow-sm border border-green-400/20">
+                <span className="text-lime-500 font-medium">Firebase</span>
               </div>
             </div>
           </div>
 
-          <div className="bg-gray-50 rounded-lg p-6">
-            <h2 className="text-xl font-semibold text-gray-800 mb-3">
+          <div className="bg-gray-900/50 backdrop-blur-sm rounded-lg p-6 border border-green-400/10">
+            <h2 className="text-xl font-semibold text-green-300 mb-3">
               📝 Descrição
             </h2>
-            <p className="text-gray-600 leading-relaxed">
+            <p className="text-green-200 leading-relaxed">
               SpyMate é uma aplicação moderna desenvolvida with React 19,
               utilizando as melhores práticas de desenvolvimento frontend. A
               aplicação integra Firebase para backend, Tailwind CSS para
@@ -65,7 +63,7 @@ function About() {
           <div className="text-center">
             <button
               onClick={showInfoToast}
-              className="bg-purple-500 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
+              className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-black font-bold py-3 px-6 rounded-lg transition-colors duration-200 shadow-md hover:shadow-green-500/25"
             >
               Mostrar Info 📱
             </button>

@@ -21,9 +21,9 @@ function Navbar() {
   const linkClass = (path) => {
     const baseClass =
       "!px-3 !py-2 lg:!px-4 lg:!py-2 rounded-lg font-medium transition-all duration-200 text-sm lg:text-base flex items-center gap-2";
-    const activeClass = "bg-white text-blue-600 shadow-md transform scale-105";
+    const activeClass = "bg-green-600 text-black shadow-md transform scale-105";
     const inactiveClass =
-      "text-white hover:bg-white hover:bg-opacity-20 hover:scale-105";
+      "text-green-300 hover:bg-green-600 hover:bg-opacity-20 hover:scale-105";
 
     return `${baseClass} ${isActive(path) ? activeClass : inactiveClass}`;
   };
@@ -31,9 +31,9 @@ function Navbar() {
   const mobileLinkClass = (path) => {
     const baseClass =
       "block w-full !px-4 !py-3 !my-1 rounded-lg font-medium transition-all duration-200 text-center text-base flex items-center justify-center gap-2";
-    const activeClass = "bg-white text-blue-600 shadow-lg transform scale-105";
+    const activeClass = "bg-green-600 text-black shadow-lg transform scale-105";
     const inactiveClass =
-      "text-white hover:bg-white hover:bg-opacity-20 hover:scale-105";
+      "text-green-300 hover:bg-green-600 hover:bg-opacity-20 hover:scale-105";
 
     return `${baseClass} ${isActive(path) ? activeClass : inactiveClass}`;
   };
@@ -114,7 +114,7 @@ function Navbar() {
 
   return (
     <motion.nav
-      className="bg-gradient-to-r from-blue-600 to-purple-600 shadow-xl relative z-50 sticky top-0"
+      className="bg-gradient-to-r from-black to-gray-900 shadow-xl relative z-50 sticky top-0 border-b border-green-400/20"
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
@@ -129,16 +129,18 @@ function Navbar() {
           >
             <Link
               to="/app"
-              className="text-white text-lg sm:text-xl font-bold hover:text-gray-200 transition-colors flex items-center"
+              className="text-green-400 text-lg sm:text-xl font-bold hover:text-green-300 transition-colors flex items-center"
               onClick={closeMenu}
             >
-              <motion.img
+              {/* <motion.img
                 className="h-8 sm:h-10 lg:h-12 w-auto"
                 src="https://i.ibb.co/XZLs8BP6/logowhite.png"
                 alt="SpyMate Logo"
+                style={{ filter: "brightness(1.2) hue-rotate(80deg)" }}
                 whileHover={{ rotate: 360 }}
                 transition={{ duration: 0.6 }}
-              />
+              /> */}
+              <p>SPYMATE</p>
             </Link>
           </motion.div>
 
@@ -164,7 +166,7 @@ function Navbar() {
             </motion.div>
             <motion.button
               onClick={resetWelcome}
-              className="!px-3 !py-2 lg:!px-4 lg:!py-2 rounded-lg font-medium transition-all duration-200 text-white hover:bg-white hover:bg-opacity-20 text-sm lg:text-base hover:scale-105 flex items-center gap-2"
+              className="!px-3 !py-2 lg:!px-4 lg:!py-2 rounded-lg font-medium transition-all duration-200 text-green-300 hover:bg-green-600 hover:bg-opacity-20 text-sm lg:text-base hover:scale-105 flex items-center gap-2"
               title="Ver animação de boas-vindas"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -180,7 +182,7 @@ function Navbar() {
             {currentUser && (
               <motion.button
                 onClick={handleLogout}
-                className="!px-3 !py-2 lg:!px-4 lg:!py-2 rounded-lg font-medium transition-all duration-200 text-white hover:bg-red-500 hover:bg-opacity-20 text-sm lg:text-base hover:scale-105 flex items-center gap-2"
+                className="!px-3 !py-2 lg:!px-4 lg:!py-2 rounded-lg font-medium transition-all duration-200 text-green-300 hover:bg-red-500 hover:bg-opacity-20 text-sm lg:text-base hover:scale-105 flex items-center gap-2"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -197,7 +199,7 @@ function Navbar() {
 
             {/* Mobile Menu Button */}
             <motion.button
-              className="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 !p-1 rounded-md hover:bg-white hover:bg-opacity-10 transition-colors"
+              className="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 !p-1 rounded-md hover:bg-green-600 hover:bg-opacity-10 transition-colors"
               onClick={toggleMenu}
               variants={hamburgerVariants}
               initial="closed"
@@ -213,7 +215,7 @@ function Navbar() {
                     exit={{ rotate: 90, opacity: 0 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <X size={20} className="text-white" />
+                    <X size={20} className="text-green-300" />
                   </motion.div>
                 ) : (
                   <motion.div
@@ -223,7 +225,7 @@ function Navbar() {
                     exit={{ rotate: -90, opacity: 0 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <Menu size={20} className="text-white" />
+                    <Menu size={20} className="text-green-300" />
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -241,7 +243,7 @@ function Navbar() {
               animate="open"
               exit="closed"
             >
-              <div className="!px-4 sm:!px-6 !pt-3 !pb-4 space-y-2 bg-transparent bg-opacity-30 rounded-xl !mt-2 !mb-2 backdrop-blur-lg border-opacity-10 shadow-2xl">
+              <div className="!px-4 sm:!px-6 !pt-3 !pb-4 space-y-2 bg-black/30 bg-opacity-30 rounded-xl !mt-2 !mb-2 backdrop-blur-lg border border-green-400/10 shadow-2xl">
                 <motion.div
                   variants={menuItemVariants}
                   custom={0}
@@ -299,7 +301,7 @@ function Navbar() {
                 >
                   <button
                     onClick={resetWelcome}
-                    className="block w-full !px-4 !py-3 !my-1 rounded-lg font-medium transition-all duration-200 text-white hover:bg-white hover:bg-opacity-20 text-center text-base hover:scale-105 flex items-center justify-center gap-2"
+                    className="block w-full !px-4 !py-3 !my-1 rounded-lg font-medium transition-all duration-200 text-green-300 hover:bg-green-600 hover:bg-opacity-20 text-center text-base hover:scale-105 flex items-center justify-center gap-2"
                     title="Ver animação de boas-vindas"
                   >
                     <Sparkles size={20} />
@@ -318,7 +320,7 @@ function Navbar() {
                   >
                     <button
                       onClick={handleLogout}
-                      className="block w-full !px-4 !py-3 !my-1 rounded-lg font-medium transition-all duration-200 text-white hover:bg-red-500 hover:bg-opacity-20 text-center text-base hover:scale-105 flex items-center justify-center gap-2"
+                      className="block w-full !px-4 !py-3 !my-1 rounded-lg font-medium transition-all duration-200 text-green-300 hover:bg-red-500 hover:bg-opacity-20 text-center text-base hover:scale-105 flex items-center justify-center gap-2"
                     >
                       <LogOut size={20} />
                       Sair

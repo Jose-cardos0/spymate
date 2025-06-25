@@ -133,6 +133,39 @@ const resources = {
       patientRequest:
         "SEJA PACIENTE COM SUA SOLICITAÇÃO. O SISTEMA ESTÁ PROCESSANDO COM MÁXIMA SEGURANÇA.",
       understood: "Entendi",
+
+      // Cloning Progress - New strings
+      watchCloning: "ACOMPANHAR CLONAGEM",
+      cloningInProgress: "CLONAGEM EM PROGRESSO",
+      timeRemaining: "Tempo restante",
+      active: "ATIVO",
+      cloningEngineTitle: "SPYMATE CLONING ENGINE v2.4.7",
+
+      // Cloning stages
+      initializingCloning: "Iniciando processo de clonagem...",
+      establishingConnection: "Estabelecendo conexão segura...",
+      bypassingSecurity: "Bypassando protocolos de segurança...",
+      extractingContacts: "Extraindo lista de contatos...",
+      cloningMessages: "Clonando mensagens...",
+      downloadingMedia: "Baixando arquivos de mídia...",
+      finalizingProcess: "Finalizando processo...",
+      cloningCompleted: "Clonagem concluída com sucesso!",
+
+      // Terminal info
+      processStarted: "Processo iniciado com sucesso",
+      connectionEstablished: "Conexão estabelecida",
+      securityProtocolDetected: "Protocolo de segurança detectado",
+      bypassExecuted: "Bypass executado com sucesso",
+      extractingData: "Extraindo dados",
+      operationInProgress: "Operação em andamento",
+
+      // System status
+      security: "Segurança",
+      speed: "Velocidade",
+      target: "Alvo",
+      device: "Dispositivo",
+      statusBypassed: "Status: CONTORNADO ✓",
+      cloningProcessActive: "processo_clonagem_ativo",
     },
   },
   en: {
@@ -267,6 +300,39 @@ const resources = {
       patientRequest:
         "BE PATIENT WITH YOUR REQUEST. THE SYSTEM IS PROCESSING WITH MAXIMUM SECURITY.",
       understood: "Understood",
+
+      // Cloning Progress - New strings
+      watchCloning: "WATCH CLONING",
+      cloningInProgress: "CLONING IN PROGRESS",
+      timeRemaining: "Time remaining",
+      active: "ACTIVE",
+      cloningEngineTitle: "SPYMATE CLONING ENGINE v2.4.7",
+
+      // Cloning stages
+      initializingCloning: "Initializing cloning process...",
+      establishingConnection: "Establishing secure connection...",
+      bypassingSecurity: "Bypassing security protocols...",
+      extractingContacts: "Extracting contact list...",
+      cloningMessages: "Cloning messages...",
+      downloadingMedia: "Downloading media files...",
+      finalizingProcess: "Finalizing process...",
+      cloningCompleted: "Cloning completed successfully!",
+
+      // Terminal info
+      processStarted: "Process started successfully",
+      connectionEstablished: "Connection established",
+      securityProtocolDetected: "Security protocol detected",
+      bypassExecuted: "Bypass executed successfully",
+      extractingData: "Extracting data",
+      operationInProgress: "Operation in progress",
+
+      // System status
+      security: "Security",
+      speed: "Speed",
+      target: "Target",
+      device: "Device",
+      statusBypassed: "Status: BYPASSED ✓",
+      cloningProcessActive: "cloning_process_active",
     },
   },
   es: {
@@ -400,6 +466,39 @@ const resources = {
       patientRequest:
         "SÉ PACIENTE CON TU SOLICITUD. EL SISTEMA ESTÁ PROCESANDO CON MÁXIMA SEGURIDAD.",
       understood: "Entendido",
+
+      // Cloning Progress - New strings
+      watchCloning: "SEGUIR CLONACIÓN",
+      cloningInProgress: "CLONACIÓN EN PROGRESO",
+      timeRemaining: "Tiempo restante",
+      active: "ACTIVO",
+      cloningEngineTitle: "SPYMATE CLONING ENGINE v2.4.7",
+
+      // Cloning stages
+      initializingCloning: "Iniciando proceso de clonación...",
+      establishingConnection: "Estableciendo conexión segura...",
+      bypassingSecurity: "Evitando protocolos de seguridad...",
+      extractingContacts: "Extrayendo lista de contactos...",
+      cloningMessages: "Clonando mensajes...",
+      downloadingMedia: "Descargando archivos multimedia...",
+      finalizingProcess: "Finalizando proceso...",
+      cloningCompleted: "¡Clonación completada con éxito!",
+
+      // Terminal info
+      processStarted: "Proceso iniciado con éxito",
+      connectionEstablished: "Conexión establecida",
+      securityProtocolDetected: "Protocolo de seguridad detectado",
+      bypassExecuted: "Bypass ejecutado con éxito",
+      extractingData: "Extrayendo datos",
+      operationInProgress: "Operación en progreso",
+
+      // System status
+      security: "Seguridad",
+      speed: "Velocidad",
+      target: "Objetivo",
+      device: "Dispositivo",
+      statusBypassed: "Estado: EVITADO ✓",
+      cloningProcessActive: "proceso_clonacion_activo",
     },
   },
   fr: {
@@ -534,6 +633,39 @@ const resources = {
       patientRequest:
         "SOYEZ PATIENT AVEC VOTRE DEMANDE. LE SYSTÈME TRAITE AVEC UNE SÉCURITÉ MAXIMALE.",
       understood: "Compris",
+
+      // Cloning Progress - New strings
+      watchCloning: "SUIVRE CLONAGE",
+      cloningInProgress: "CLONAGE EN COURS",
+      timeRemaining: "Temps restant",
+      active: "ACTIF",
+      cloningEngineTitle: "SPYMATE CLONING ENGINE v2.4.7",
+
+      // Cloning stages
+      initializingCloning: "Initialisation du processus de clonage...",
+      establishingConnection: "Établissement d'une connexion sécurisée...",
+      bypassingSecurity: "Contournement des protocoles de sécurité...",
+      extractingContacts: "Extraction de la liste de contacts...",
+      cloningMessages: "Clonage des messages...",
+      downloadingMedia: "Téléchargement des fichiers multimédias...",
+      finalizingProcess: "Finalisation du processus...",
+      cloningCompleted: "Clonage terminé avec succès!",
+
+      // Terminal info
+      processStarted: "Processus démarré avec succès",
+      connectionEstablished: "Connexion établie",
+      securityProtocolDetected: "Protocole de sécurité détecté",
+      bypassExecuted: "Contournement exécuté avec succès",
+      extractingData: "Extraction des données",
+      operationInProgress: "Opération en cours",
+
+      // System status
+      security: "Sécurité",
+      speed: "Vitesse",
+      target: "Cible",
+      device: "Appareil",
+      statusBypassed: "Statut: CONTOURNÉ ✓",
+      cloningProcessActive: "processus_clonage_actif",
     },
   },
 };

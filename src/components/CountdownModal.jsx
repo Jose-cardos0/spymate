@@ -4,11 +4,13 @@ import { useTranslation } from "react-i18next";
 import { useAuth } from "../contexts/AuthContext";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../config/firebase";
+import { useNavigate } from "react-router-dom";
 import { Clock, AlertCircle, Mail, User } from "lucide-react";
 
 function CountdownModal({ isOpen, onClose }) {
   const { t } = useTranslation();
   const { currentUser } = useAuth();
+  const navigate = useNavigate();
   const [timeLeft, setTimeLeft] = useState(0);
   const [userName, setUserName] = useState("");
 
@@ -73,6 +75,11 @@ function CountdownModal({ isOpen, onClose }) {
   };
 
   const { days, hours, minutes, seconds } = formatCountdown(timeLeft);
+
+  const handleCloseAndRedirect = () => {
+    onClose();
+    navigate("/app");
+  };
 
   return (
     <AnimatePresence>
@@ -199,7 +206,7 @@ function CountdownModal({ isOpen, onClose }) {
 
             {/* Close Button */}
             <button
-              onClick={onClose}
+              onClick={handleCloseAndRedirect}
               className="w-full py-3 bg-gradient-to-r from-green-600 to-emerald-600 text-black font-bold rounded-lg hover:from-green-700 hover:to-emerald-700 transition-all duration-200 shadow-lg hover:shadow-green-500/25 font-mono relative z-10"
             >
               {t("understood")}

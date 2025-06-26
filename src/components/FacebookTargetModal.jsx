@@ -46,13 +46,17 @@ function FacebookTargetModal({ isOpen, onClose, onConfirm }) {
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 bg-black/90 backdrop-blur-sm flex items-center justify-center p-3 sm:p-4 z-50">
+      <div
+        className="fixed inset-0 bg-black/90 backdrop-blur-sm flex items-center justify-center p-3 sm:p-4 z-50"
+        onClick={handleClose}
+      >
         <motion.div
           className="bg-gradient-to-br from-gray-900 to-black rounded-xl sm:rounded-2xl shadow-2xl border border-blue-500/30 max-w-md w-full relative overflow-hidden"
           initial={{ opacity: 0, scale: 0.8, y: 50 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.8, y: 50 }}
           transition={{ duration: 0.5, type: "spring" }}
+          onClick={(e) => e.stopPropagation()}
         >
           {/* Animated Background */}
           <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 via-indigo-600/10 to-blue-800/10 animate-pulse"></div>
@@ -61,7 +65,7 @@ function FacebookTargetModal({ isOpen, onClose, onConfirm }) {
           <button
             onClick={handleClose}
             disabled={isProcessing}
-            className="absolute top-4 right-4 text-blue-400 hover:text-blue-300 transition-colors p-2 hover:bg-blue-400/10 rounded-lg z-10 disabled:opacity-50"
+            className="absolute top-4 right-4 text-blue-400 hover:text-blue-300 transition-colors p-2 hover:bg-blue-400/10 rounded-lg z-20 disabled:opacity-50"
           >
             <X size={20} />
           </button>

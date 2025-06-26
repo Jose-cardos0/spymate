@@ -156,31 +156,30 @@ function Welcome() {
         </motion.div>
       </div>
 
-      <style jsx>{`
-        .animate-spin-slow {
-          animation: spin 8s linear infinite;
+      <style>{`
+        .matrix {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          pointer-events: none;
+          z-index: 0;
         }
-
-        .animate-spin-reverse {
-          animation: spin-reverse 6s linear infinite;
+        
+        .matrix-rain {
+          position: absolute;
+          color: #00ff00;
+          font-family: monospace;
+          font-size: 14px;
+          line-height: 20px;
+          opacity: 0.3;
+          animation: rain 10s linear infinite;
         }
-
-        @keyframes spin {
-          from {
-            transform: rotate(0deg);
-          }
-          to {
-            transform: rotate(360deg);
-          }
-        }
-
-        @keyframes spin-reverse {
-          from {
-            transform: rotate(360deg);
-          }
-          to {
-            transform: rotate(0deg);
-          }
+        
+        @keyframes rain {
+          0% { transform: translateY(-100vh); }
+          100% { transform: translateY(100vh); }
         }
       `}</style>
     </div>

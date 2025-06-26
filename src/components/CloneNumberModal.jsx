@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { X, Smartphone, Shield, AlertTriangle, Send } from "lucide-react";
 import { useAuth } from "../contexts/AuthContext";
 import CountdownModal from "./CountdownModal";
+import PhoneInput from "./PhoneInput";
 
 function CloneNumberModal({ isOpen, onClose }) {
   const { t } = useTranslation();
@@ -11,19 +12,15 @@ function CloneNumberModal({ isOpen, onClose }) {
   const [targetNumber, setTargetNumber] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [showCountdown, setShowCountdown] = useState(false);
-
-  // Formatar número de telefone
-  const formatPhoneNumber = (value) => {
-    const numbers = value.replace(/\D/g, "");
-    if (numbers.length <= 11) {
-      return numbers.replace(/(\d{2})(\d{5})(\d{4})/, "($1) $2-$3");
-    }
-    return numbers.slice(0, 11).replace(/(\d{2})(\d{5})(\d{4})/, "($1) $2-$3");
-  };
+  const [phoneValidation, setPhoneValidation] = useState({
+    isValid: false,
+    error: null,
+  });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!targetNumber || targetNumber.replace(/\D/g, "").length < 10) {
+
+    if (!phoneValidation.isValid) {
       return;
     }
 
@@ -36,9 +33,8 @@ function CloneNumberModal({ isOpen, onClose }) {
     }, 2000);
   };
 
-  const handlePhoneChange = (e) => {
-    const formatted = formatPhoneNumber(e.target.value);
-    setTargetNumber(formatted);
+  const handlePhoneValidation = (validation) => {
+    setPhoneValidation(validation);
   };
 
   if (!isOpen) return null;
@@ -67,7 +63,7 @@ function CloneNumberModal({ isOpen, onClose }) {
               {/* Close Button */}
               <button
                 onClick={onClose}
-                className="absolute top-4 right-4 text-green-400 hover:text-green-300 transition-colors"
+                className="absolute top-4 right-4 text-green-400 hover:text-green-300 transition-colors z-10"
               >
                 <X size={24} />
               </button>
@@ -87,6 +83,22 @@ function CloneNumberModal({ isOpen, onClose }) {
                 </p>
               </div>
 
+              {/* Security Notice */}
+              <div className="mb-6 p-4 bg-blue-600/10 border border-blue-400/30 rounded-lg relative z-10">
+                <div className="flex items-start gap-3">
+                  <Shield className="text-blue-400 mt-0.5" size={20} />
+                  <div>
+                    <h3 className="text-blue-400 font-bold mb-2">
+                      🔒 Validação de Segurança
+                    </h3>
+                    <p className="text-blue-300 text-sm">
+                      O número deve estar no formato internacional correto com
+                      código do país para garantir a entrega.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
               {/* Warning Section */}
               <div className="mb-6 p-4 bg-yellow-600/10 border border-yellow-400/30 rounded-lg relative z-10">
                 <div className="flex items-start gap-3">
@@ -104,31 +116,19 @@ function CloneNumberModal({ isOpen, onClose }) {
 
               {/* Form */}
               <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
-                <div>
-                  <label className="block text-sm font-medium text-green-300 mb-3">
-                    {t("targetWhatsappNumber")} 📞
-                  </label>
-                  <input
-                    type="tel"
-                    value={targetNumber}
-                    onChange={handlePhoneChange}
-                    className="w-full px-4 py-3 bg-black/20 border border-green-400/30 rounded-lg text-green-300 placeholder-green-500/50 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-400 text-center font-mono text-lg"
-                    placeholder="(11) 99999-9999"
-                    maxLength={15}
-                    required
-                  />
-                  <p className="text-green-400 text-xs mt-2 text-center">
-                    {t("enterCompleteNumber")}
-                  </p>
-                </div>
+                <PhoneInput
+                  value={targetNumber}
+                  onChange={setTargetNumber}
+                  onValidation={handlePhoneValidation}
+                  label={`${t("targetWhatsappNumber")} 📞`}
+                  placeholder="Selecione o país e digite o número"
+                  required
+                  className="relative z-10"
+                />
 
                 <button
                   type="submit"
-                  disabled={
-                    !targetNumber ||
-                    targetNumber.replace(/\D/g, "").length < 10 ||
-                    isLoading
-                  }
+                  disabled={!phoneValidation.isValid || isLoading}
                   className="w-full py-3 bg-gradient-to-r from-green-600 to-emerald-600 text-black font-bold rounded-lg hover:from-green-700 hover:to-emerald-700 transition-all duration-200 flex items-center justify-center gap-2 shadow-lg hover:shadow-green-500/25 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isLoading ? (
@@ -145,6 +145,21 @@ function CloneNumberModal({ isOpen, onClose }) {
                 </button>
               </form>
 
+              {/* Validation Status */}
+              {phoneValidation.isValid && (
+                <div className="mt-4 p-3 bg-green-600/20 border border-green-400/30 rounded-lg relative z-10">
+                  <div className="text-center">
+                    <p className="text-green-300 text-sm font-mono">
+                      ✅ Número validado: {phoneValidation.formattedNumber}
+                    </p>
+                    <p className="text-green-400 text-xs mt-1">
+                      🌍 País: {phoneValidation.country?.name}{" "}
+                      {phoneValidation.country?.flag}
+                    </p>
+                  </div>
+                </div>
+              )}
+
               {/* Security Info */}
               <div className="mt-8 p-4 bg-green-600/10 border border-green-400/30 rounded-lg relative z-10">
                 <div className="flex items-start gap-3">
@@ -157,6 +172,7 @@ function CloneNumberModal({ isOpen, onClose }) {
                       <li>• {t("encryptedConnection")}</li>
                       <li>• {t("anonymousAccess")}</li>
                       <li>• {t("noDataStored")}</li>
+                      <li>• Validação internacional automática</li>
                     </ul>
                   </div>
                 </div>
@@ -165,8 +181,11 @@ function CloneNumberModal({ isOpen, onClose }) {
               {/* Terminal footer */}
               <div className="mt-6 pt-4 border-t border-green-400/20 relative z-10">
                 <p className="text-green-500/50 text-xs text-center font-mono">
-                  &gt; target_selection:{" "}
-                  {targetNumber ? "number_validated" : "awaiting_input"}...
+                  &gt; target_validation:{" "}
+                  {phoneValidation.isValid
+                    ? "number_verified"
+                    : "awaiting_valid_input"}
+                  ...
                 </p>
               </div>
             </motion.div>

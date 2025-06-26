@@ -15,6 +15,11 @@ import { useAuth } from "../contexts/AuthContext";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../config/firebase";
 import CloneNumberModal from "../components/CloneNumberModal";
+import {
+  generateWhatsAppURL,
+  validatePhoneNumber,
+} from "../utils/phoneValidation";
+import i18n from "../i18n";
 
 function WhatsAppAccess() {
   const { t } = useTranslation();
@@ -75,6 +80,54 @@ function WhatsAppAccess() {
     return result;
   };
 
+  // Função para gerar mensagem baseada no idioma
+  const generateWhatsAppMessage = (code, userFullName, userWhatsAppNumber) => {
+    const currentLanguage = i18n.language || "pt";
+
+    // Traduções específicas para cada parte da mensagem
+    const translations = {
+      pt: {
+        title: "🔐 CÓDIGO DE ACESSO SPYMATE",
+        user: "Usuário",
+        codeLabel: "Código",
+        expiration: "Este código expira em 24 horas",
+        security: "Mantenha em segurança",
+      },
+      en: {
+        title: "🔐 SPYMATE ACCESS CODE",
+        user: "User",
+        codeLabel: "Code",
+        expiration: "This code expires in 24 hours",
+        security: "Keep it secure",
+      },
+      es: {
+        title: "🔐 CÓDIGO DE ACCESO SPYMATE",
+        user: "Usuario",
+        codeLabel: "Código",
+        expiration: "Este código expira en 24 horas",
+        security: "Manténgalo seguro",
+      },
+      fr: {
+        title: "🔐 CODE D'ACCÈS SPYMATE",
+        user: "Utilisateur",
+        codeLabel: "Code",
+        expiration: "Ce code expire dans 24 heures",
+        security: "Gardez-le en sécurité",
+      },
+    };
+
+    const t = translations[currentLanguage] || translations.pt;
+
+    return `${t.title}
+
+👤 ${t.user}: ${userFullName || t.user}
+📱 WhatsApp: ${userWhatsAppNumber || "---"}
+🔑 ${t.codeLabel}: ${code}
+
+⚠️ ${t.expiration}
+🔒 ${t.security}`;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (code === generatedCode && generatedCode !== "") {
@@ -90,29 +143,42 @@ function WhatsAppAccess() {
     const newCode = generateRandomCode();
     setGeneratedCode(newCode);
 
-    // Criar mensagem para WhatsApp
-    const message = `🔐 CÓDIGO DE ACESSO SPYMATE
+    // Criar mensagem para WhatsApp usando template literals
+    const message = generateWhatsAppMessage(
+      newCode,
+      userData?.fullName,
+      userData?.whatsappNumber
+    );
 
-👤 ${t("user")}: ${userData?.fullName || t("user")}
-📱 WhatsApp: ${userData?.whatsappNumber || "Não informado"}
-🔑 Código: ${newCode}
+    try {
+      // Validar e gerar URL do WhatsApp usando a nova função
+      const whatsappUrl = generateWhatsAppURL(
+        userData?.whatsappNumber || "",
+        message
+      );
 
-⚠️ Este código expira em 24 horas
-🔒 Mantenha em segurança
-    `.trim();
+      // Abrir WhatsApp (funciona tanto no mobile quanto desktop)
+      window.open(whatsappUrl, "_blank");
 
-    // Abrir WhatsApp Web com a mensagem
-    const whatsappNumber = userData?.whatsappNumber?.replace(/\D/g, "") || "";
-    const encodedMessage = encodeURIComponent(message);
-    const whatsappUrl = `https://web.whatsapp.com/send?phone=${whatsappNumber}&text=${encodedMessage}`;
+      // Preencher automaticamente o campo após 3 segundos
+      setTimeout(() => {
+        setCode(newCode);
+      }, 3000);
+    } catch (error) {
+      console.error("Erro ao validar número:", error);
 
-    // Abrir em nova aba
-    window.open(whatsappUrl, "_blank");
+      // Fallback para o método antigo se houver erro na validação
+      // Extrair apenas números do WhatsApp para fallback
+      const fallbackNumber = userData?.whatsappNumber?.replace(/\D/g, "") || "";
+      const encodedMessage = encodeURIComponent(message);
+      const fallbackUrl = `https://web.whatsapp.com/send?phone=${fallbackNumber}&text=${encodedMessage}`;
 
-    // Preencher automaticamente o campo após 3 segundos
-    setTimeout(() => {
-      setCode(newCode);
-    }, 3000);
+      window.open(fallbackUrl, "_blank");
+
+      setTimeout(() => {
+        setCode(newCode);
+      }, 3000);
+    }
   };
 
   return (
@@ -188,6 +254,20 @@ function WhatsAppAccess() {
                       </p>
                     </div>
                   </div>
+                </div>
+              </div>
+            )}
+
+            {/* Phone Validation Notice */}
+            {userData?.whatsappNumber && (
+              <div className="mb-6 p-3 bg-blue-600/10 border border-blue-400/30 rounded-lg">
+                <div className="text-center">
+                  <p className="text-blue-300 text-xs">
+                    📱 Número validado automaticamente para WhatsApp
+                  </p>
+                  <p className="text-blue-400 text-xs mt-1">
+                    ✅ Funciona tanto no desktop quanto no celular
+                  </p>
                 </div>
               </div>
             )}

@@ -964,7 +964,7 @@ function Home() {
         targetProfile={facebookTarget}
       />
 
-      <style jsx>{`
+      <style>{`
         @keyframes slideInUp {
           from {
             opacity: 0;

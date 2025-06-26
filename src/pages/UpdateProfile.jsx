@@ -4,9 +4,19 @@ import { useAuth } from "../contexts/AuthContext";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { db } from "../config/firebase";
 import { toast } from "react-hot-toast";
-import { User, Phone, Mail, Shield, Save, ArrowLeft } from "lucide-react";
+import {
+  User,
+  Phone,
+  Mail,
+  Shield,
+  Save,
+  ArrowLeft,
+  AlertCircle,
+  Check,
+} from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import PhoneInput from "../components/PhoneInput";
 
 function UpdateProfile() {
   const { t } = useTranslation();
@@ -19,6 +29,10 @@ function UpdateProfile() {
     isAdult: "",
     whatsappNumber: "",
     notificationEmail: "",
+  });
+  const [phoneValidation, setPhoneValidation] = useState({
+    isValid: false,
+    error: null,
   });
 
   useEffect(() => {
@@ -36,6 +50,15 @@ function UpdateProfile() {
           whatsappNumber: data.whatsappNumber || "",
           notificationEmail: data.notificationEmail || "",
         });
+
+        // Se já tem um número válido, marcar como válido
+        if (data.whatsappNumber) {
+          setPhoneValidation({
+            isValid: true,
+            formattedNumber: data.whatsappNumber,
+            whatsappId: data.whatsappId,
+          });
+        }
       }
     } catch (error) {
       console.error("Error fetching user data:", error);
@@ -52,35 +75,58 @@ function UpdateProfile() {
     });
   };
 
+  const handlePhoneChange = (value) => {
+    setFormData({
+      ...formData,
+      whatsappNumber: value,
+    });
+  };
+
+  const handlePhoneValidation = (validation) => {
+    setPhoneValidation(validation);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (
       !formData.fullName ||
       !formData.isAdult ||
-      !formData.whatsappNumber ||
+      !phoneValidation.isValid ||
       !formData.notificationEmail
     ) {
-      toast.error(t("fillAllFields"));
+      if (!phoneValidation.isValid) {
+        toast.error(
+          "Por favor, insira um número de WhatsApp válido com código do país"
+        );
+      } else {
+        toast.error(t("fillAllFields"));
+      }
       return;
     }
 
     try {
       setLoading(true);
-      await setDoc(
-        doc(db, "userProfiles", currentUser.uid),
-        {
-          ...formData,
-          userId: currentUser.uid,
-          updatedAt: new Date(),
-        },
-        { merge: true }
-      );
+
+      // Salvar com o número formatado e validado
+      const userData = {
+        ...formData,
+        whatsappNumber:
+          phoneValidation.formattedNumber || formData.whatsappNumber,
+        whatsappId: phoneValidation.whatsappId,
+        country: phoneValidation.country,
+        userId: currentUser.uid,
+        updatedAt: new Date(),
+      };
+
+      await setDoc(doc(db, "userProfiles", currentUser.uid), userData, {
+        merge: true,
+      });
 
       toast.success(t("profileUpdatedSuccessfully"));
       navigate("/app");
     } catch (error) {
-      console.error("Error updating user data:", error);
+      console.error("Error updating profile:", error);
       toast.error(t("errorUpdatingProfile"));
     } finally {
       setLoading(false);
@@ -111,7 +157,11 @@ function UpdateProfile() {
       {/* Back button */}
       <div className="absolute top-4 left-4 z-20">
         <button
-          onClick={() => navigate("/app")}
+          type="button"
+          onClick={() => {
+            // Forçar navegação completa
+            window.location.href = "/app";
+          }}
           className="flex items-center gap-2 px-4 py-2 bg-black/30 backdrop-blur-lg rounded-lg border border-green-400/20 text-green-400 hover:text-green-300 transition-colors"
         >
           <ArrowLeft size={18} />
@@ -167,80 +217,49 @@ function UpdateProfile() {
                 </div>
               </div>
 
-              {/* Maior de idade */}
+              {/* Age Verification */}
               <div>
                 <label className="block text-sm font-medium text-green-300 mb-3">
-                  {t("areYouAdult")} *
+                  {t("ageVerification")} *
                 </label>
-                <div className="flex gap-4">
-                  <label className="flex items-center cursor-pointer">
+                <div className="grid grid-cols-2 gap-3">
+                  <label className="flex items-center p-3 border border-green-400/30 rounded-lg cursor-pointer hover:bg-green-400/10 transition-colors">
                     <input
                       type="radio"
                       name="isAdult"
                       value="yes"
                       checked={formData.isAdult === "yes"}
                       onChange={handleChange}
-                      className="sr-only"
+                      className="mr-3 text-green-500"
+                      required
                     />
-                    <div
-                      className={`w-4 h-4 rounded-full border-2 mr-2 ${
-                        formData.isAdult === "yes"
-                          ? "border-green-400 bg-green-400"
-                          : "border-green-400/50"
-                      }`}
-                    >
-                      {formData.isAdult === "yes" && (
-                        <div className="w-2 h-2 bg-black rounded-full m-0.5"></div>
-                      )}
-                    </div>
                     <span className="text-green-300">{t("yes")}</span>
                   </label>
-                  <label className="flex items-center cursor-pointer">
+                  <label className="flex items-center p-3 border border-green-400/30 rounded-lg cursor-pointer hover:bg-green-400/10 transition-colors">
                     <input
                       type="radio"
                       name="isAdult"
                       value="no"
                       checked={formData.isAdult === "no"}
                       onChange={handleChange}
-                      className="sr-only"
+                      className="mr-3 text-green-500"
+                      required
                     />
-                    <div
-                      className={`w-4 h-4 rounded-full border-2 mr-2 ${
-                        formData.isAdult === "no"
-                          ? "border-green-400 bg-green-400"
-                          : "border-green-400/50"
-                      }`}
-                    >
-                      {formData.isAdult === "no" && (
-                        <div className="w-2 h-2 bg-black rounded-full m-0.5"></div>
-                      )}
-                    </div>
                     <span className="text-green-300">{t("no")}</span>
                   </label>
                 </div>
               </div>
 
-              {/* WhatsApp */}
-              <div>
-                <label className="block text-sm font-medium text-green-300 mb-2">
-                  {t("whatsappNumber")} *
-                </label>
-                <div className="relative">
-                  <Phone
-                    className="absolute left-3 top-1/2 transform -translate-y-1/2 text-green-400"
-                    size={18}
-                  />
-                  <input
-                    type="tel"
-                    name="whatsappNumber"
-                    value={formData.whatsappNumber}
-                    onChange={handleChange}
-                    className="w-full pl-10 pr-4 py-3 bg-black/20 border border-green-400/30 rounded-lg text-green-300 placeholder-green-500/50 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-400"
-                    placeholder="+55 (11) 99999-9999"
-                    required
-                  />
-                </div>
-              </div>
+              {/* WhatsApp Number with International Validation */}
+              <PhoneInput
+                value={formData.whatsappNumber}
+                onChange={handlePhoneChange}
+                onValidation={handlePhoneValidation}
+                label={`${t("whatsappNumber")} *`}
+                placeholder="Selecione o país e digite seu número"
+                required
+                className="relative z-10"
+              />
 
               {/* Email */}
               <div>
@@ -258,16 +277,52 @@ function UpdateProfile() {
                     value={formData.notificationEmail}
                     onChange={handleChange}
                     className="w-full pl-10 pr-4 py-3 bg-black/20 border border-green-400/30 rounded-lg text-green-300 placeholder-green-500/50 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-400"
-                    placeholder="seu@email.com"
+                    placeholder={t("enterEmail")}
                     required
                   />
                 </div>
               </div>
 
+              {/* International Phone Notice */}
+              <div className="p-4 bg-blue-600/10 border border-blue-400/30 rounded-lg">
+                <div className="flex items-start gap-3">
+                  <AlertCircle className="text-blue-400 mt-0.5" size={18} />
+                  <div>
+                    <h3 className="text-blue-400 font-semibold text-sm mb-1">
+                      Validação Internacional Atualizada
+                    </h3>
+                    <p className="text-blue-300 text-xs">
+                      Agora seu número será validado automaticamente no formato
+                      internacional correto, garantindo compatibilidade global.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Validation Status */}
+              {phoneValidation.isValid && (
+                <div className="p-3 bg-green-600/20 border border-green-400/30 rounded-lg">
+                  <div className="flex items-center gap-2">
+                    <Check className="text-green-400" size={16} />
+                    <div>
+                      <p className="text-green-300 text-sm font-mono">
+                        ✅ Número validado: {phoneValidation.formattedNumber}
+                      </p>
+                      {phoneValidation.country && (
+                        <p className="text-green-400 text-xs mt-1">
+                          🌍 País: {phoneValidation.country.name}{" "}
+                          {phoneValidation.country.flag}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              )}
+
               {/* Submit Button */}
               <button
                 type="submit"
-                disabled={loading}
+                disabled={loading || !phoneValidation.isValid}
                 className="w-full py-3 bg-gradient-to-r from-green-600 to-emerald-600 text-black font-bold rounded-lg hover:from-green-700 hover:to-emerald-700 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-green-500/25 font-mono flex items-center justify-center gap-2"
               >
                 <Save size={18} />

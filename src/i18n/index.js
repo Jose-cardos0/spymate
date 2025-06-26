@@ -60,17 +60,19 @@ const resources = {
         "Estes dados serão utilizados exclusivamente para melhor experiência do usuário e carregamento automático de informações para uso da ferramenta. Podem ser atualizados posteriormente.",
       fullName: "Nome Completo",
       enterFullName: "Digite seu nome completo",
-      areYouAdult: "Você é maior de idade?",
+      ageVerification: "Verificação de idade: Você é maior de 18 anos?",
       yes: "Sim",
       no: "Não",
-      whatsappNumber: "Número do WhatsApp",
-      notificationEmail: "E-mail para Notificações",
+      whatsappNumber: "Número WhatsApp",
+      enterEmail: "Digite seu email",
+      notificationEmail: "Email para notificações",
       fillAllFields: "Preencha todos os campos obrigatórios",
       dataSavedSuccessfully: "Dados salvos com sucesso!",
       errorSavingData: "Erro ao salvar dados",
       saveSecureData: "Salvar Dados Seguros",
       saving: "Salvando",
-      dataUpdateLater: "dados_podem_ser_atualizados_posteriormente",
+      dataSecurelyStored: "Seus dados são armazenados com segurança",
+      provideSecureInformation: "Forneça suas informações com segurança",
 
       // Update Profile
       updateProfile: "Atualizar Perfil",
@@ -80,7 +82,6 @@ const resources = {
       errorLoadingData: "Erro ao carregar dados",
       updateData: "Atualizar Dados",
       updating: "Atualizando",
-      dataSecurelyStored: "dados_armazenados_com_segurança",
       loading: "Carregando",
       back: "Voltar",
 
@@ -103,6 +104,11 @@ const resources = {
       accessGranted: "Acesso Liberado!",
       redirectingToClone: "Redirecionando para clonagem...",
       codeWillBeSent: "Código será enviado via WhatsApp",
+
+      // WhatsApp Access Code Message
+      whatsappCodeMessage:
+        "🔐 SPYMATE ACCESS CODE\n\n👤 {user}: {fullName}\n📱 WhatsApp: {whatsappNumber}\n🔑 Code: {code}\n\n⚠️ This code expires in 24 hours\n🔒 Keep it secure",
+      user: "User",
 
       // Clone Number Modal
       selectTargetNumber: "Selecione o Número Alvo",
@@ -137,7 +143,6 @@ const resources = {
       // Cloning Progress - New strings
       watchCloning: "ACOMPANHAR CLONAGEM",
       cloningInProgress: "CLONAGEM EM PROGRESSO",
-      timeRemaining: "Tempo restante",
       active: "ATIVO",
       cloningEngineTitle: "SPYMATE CLONING ENGINE v2.4.7",
 
@@ -188,14 +193,6 @@ const resources = {
       directMessages: "Mensagens Diretas",
       online: "online",
       typing: "digitando...",
-      realTimeMonitoring: "Monitoramento em tempo real",
-      targetLocked: "Alvo bloqueado",
-      analysisInProgress: "Análise em progresso",
-      analyzingMessages: "Analisando mensagens privadas",
-      extractingPhotos: "Extraindo fotos e vídeos",
-      mappingConnections: "Mapeando conexões",
-      viewingPrivateMessages: "Visualizando mensagens privadas",
-      profileAccessGranted: "Acesso ao perfil liberado!",
       messagePreview1: "Oi amor, tudo bem? ❤️",
       messagePreview2: "Saudades de você... 🥺",
       messagePreview3: "Quando vamos nos ver? 😍",
@@ -339,17 +336,19 @@ const resources = {
         "This data will be used exclusively for better user experience and automatic loading of information for tool usage. Can be updated later.",
       fullName: "Full Name",
       enterFullName: "Enter your full name",
-      areYouAdult: "Are you an adult?",
+      ageVerification: "Age Verification: Are you 18 or older?",
       yes: "Yes",
       no: "No",
       whatsappNumber: "WhatsApp Number",
+      enterEmail: "Enter your email",
       notificationEmail: "Notification Email",
       fillAllFields: "Fill all required fields",
       dataSavedSuccessfully: "Data saved successfully!",
       errorSavingData: "Error saving data",
       saveSecureData: "Save Secure Data",
       saving: "Saving",
-      dataUpdateLater: "data_can_be_updated_later",
+      dataSecurelyStored: "data_securely_stored",
+      provideSecureInformation: "Provide your information securely",
 
       // Update Profile
       updateProfile: "Update Profile",
@@ -359,7 +358,6 @@ const resources = {
       errorLoadingData: "Error loading data",
       updateData: "Update Data",
       updating: "Updating",
-      dataSecurelyStored: "data_securely_stored",
       loading: "Loading",
       back: "Back",
 
@@ -382,6 +380,11 @@ const resources = {
       accessGranted: "Access Granted!",
       redirectingToClone: "Redirecting to cloning...",
       codeWillBeSent: "Code will be sent via WhatsApp",
+
+      // WhatsApp Access Code Message
+      whatsappCodeMessage:
+        "🔐 SPYMATE ACCESS CODE\n\n👤 {user}: {fullName}\n📱 WhatsApp: {whatsappNumber}\n🔑 Code: {code}\n\n⚠️ This code expires in 24 hours\n🔒 Keep it secure",
+      user: "User",
 
       // Clone Number Modal
       selectTargetNumber: "Select Target Number",
@@ -611,17 +614,19 @@ const resources = {
         "Estos datos se utilizarán exclusivamente para una mejor experiencia del usuario y carga automática de información para el uso de la herramienta. Pueden actualizarse posteriormente.",
       fullName: "Nombre Completo",
       enterFullName: "Ingresa tu nombre completo",
-      areYouAdult: "¿Eres mayor de edad?",
+      ageVerification: "Verificación de edad: ¿Eres mayor de 18 años?",
       yes: "Sí",
       no: "No",
       whatsappNumber: "Número de WhatsApp",
-      notificationEmail: "Email de Notificaciones",
+      enterEmail: "Ingresa tu correo electrónico",
+      notificationEmail: "Correo electrónico para notificaciones",
       fillAllFields: "Completa todos los campos obligatorios",
       dataSavedSuccessfully: "¡Datos guardados exitosamente!",
       errorSavingData: "Error al guardar datos",
       saveSecureData: "Guardar Datos Seguros",
       saving: "Guardando",
-      dataUpdateLater: "datos_pueden_actualizarse_posteriormente",
+      dataSecurelyStored: "Seus dados são armazenados com segurança",
+      provideSecureInformation: "Forneça suas informações com segurança",
 
       // Update Profile
       updateProfile: "Actualizar Perfil",
@@ -631,7 +636,6 @@ const resources = {
       errorLoadingData: "Error al cargar datos",
       updateData: "Actualizar Datos",
       updating: "Actualizando",
-      dataSecurelyStored: "datos_almacenados_de_forma_segura",
       loading: "Cargando",
       back: "Volver",
 
@@ -654,6 +658,11 @@ const resources = {
       accessGranted: "¡Acceso Concedido!",
       redirectingToClone: "Redirigiendo a clonación...",
       codeWillBeSent: "El código será enviado por WhatsApp",
+
+      // WhatsApp Access Code Message
+      whatsappCodeMessage:
+        "🔐 CÓDIGO DE ACCESO SPYMATE\n\n👤 {user}: {fullName}\n📱 WhatsApp: {whatsappNumber}\n🔑 Código: {code}\n\n⚠️ Este código expira en 24 horas\n🔒 Manténgalo seguro",
+      user: "Usuario",
 
       // Clone Number Modal
       selectTargetNumber: "Selecciona el Número Objetivo",
@@ -776,20 +785,20 @@ const resources = {
 
       // Facebook Access - New strings
       facebookCloned: "Facebook Clonado",
-      selectFacebookTarget: "Selecionar Alvo do Facebook",
-      enterFacebookProfileUrl: "Digite o link do perfil da vítima",
-      facebookProfileUrl: "Link do Perfil Facebook",
-      enterFacebookUrl: "Digite o link completo do perfil",
-      startFacebookAnalysis: "Iniciar Análise do Facebook",
-      facebookAnalysisTitle: "ANÁLISE DO FACEBOOK",
+      selectFacebookTarget: "Select Facebook Target",
+      enterFacebookProfileUrl: "Enter the victim's profile link",
+      facebookProfileUrl: "Facebook Profile Link",
+      enterFacebookUrl: "Enter the complete profile link",
+      startFacebookAnalysis: "Start Facebook Analysis",
+      facebookAnalysisTitle: "FACEBOOK ANALYSIS",
       facebookAnalysisMessage:
-        "ESTAMOS ANALISANDO O PERFIL DO FACEBOOK SOLICITADO. ESTE PROCESSO PODE LEVAR DE 3 A 7 DIAS. NOSSA IA ESTÁ MAPEANDO TODAS AS CONEXÕES, CONVERSAS DO MESSENGER E ATIVIDADES DA CONTA.",
+        "WE ARE ANALYZING THE REQUESTED FACEBOOK PROFILE. THIS PROCESS MAY TAKE 3 TO 7 DAYS. OUR AI IS MAPPING ALL CONNECTIONS, CONVERSATIONS AND ACCOUNT ACTIVITIES.",
       facebookAnalysisWarning:
-        "O processo de análise do Facebook é irreversível e pode levar vários dias para ser concluído.",
-      initializingFacebookAnalysis: "Inicializando análise do Facebook...",
-      extractingFacebookData: "Extraindo dados do Facebook...",
-      analyzingMessengerChats: "Analisando conversas do Messenger...",
-      mappingFacebookConnections: "Mapeando conexões do Facebook...",
+        "The Facebook analysis process is irreversible and may take several days to complete.",
+      initializingFacebookAnalysis: "Initializing Facebook analysis...",
+      extractingFacebookData: "Extracting Facebook data...",
+      analyzingMessengerChats: "Analyzing Messenger conversations...",
+      mappingFacebookConnections: "Mapping Facebook connections...",
 
       // Facebook contacts and messages
       facebookContact1: "Mariana Costa",
@@ -799,24 +808,24 @@ const resources = {
       facebookContact5: "Larissa Oliveira",
       facebookContact6: "Ricardo Lima",
 
-      facebookMessage1: "Oi querido, como foi seu dia? 💙",
-      facebookMessage2: "Saudades suas... quando vamos nos ver? 😘",
-      facebookMessage3: "Você viu minha foto nova? 📸",
-      facebookMessage4: "Estou pensando em você agora ❤️",
-      facebookMessage5: "Boa noite, meu amor 🌙",
-      facebookMessage6: "Que tal sairmos no fim de semana? 🥰",
+      facebookMessage1: "Hi darling, how was your day? 💙",
+      facebookMessage2: "I miss you... when are we going to meet? 😘",
+      facebookMessage3: "Did you see my new photo? 📸",
+      facebookMessage4: "I'm thinking about you now ❤️",
+      facebookMessage5: "Good night, my love 🌙",
+      facebookMessage6: "What about going out at the end of the weekend? 🥰",
 
       // Facebook replies
-      facebookReply1: "Oi amor! Meu dia foi ótimo pensando em você 💙",
-      facebookReply2: "Também estou com saudades... vamos marcar algo 😘",
-      facebookReply3: "Vi sim! Você está linda como sempre 😍",
-      facebookReply4: "E eu sempre pensando em você, meu bem ❤️",
-      facebookReply5: "Boa noite, princesa. Sonhe comigo 🌙",
-      facebookReply6: "Claro! Mal posso esperar para te ver 🥰",
-      facebookReply7: "Você ilumina minha vida 🌟",
-      facebookReply8: "Cada momento com você é especial 💕",
-      facebookReply9: "Você é meu mundo inteiro 🌍",
-      facebookReply10: "Te amo mais a cada dia 💖",
+      facebookReply1: "Hi love! My day was great thinking about you 💙",
+      facebookReply2: "I'm also missing you... let's meet up 😘",
+      facebookReply3: "I saw it! You're still as beautiful as always 😍",
+      facebookReply4: "And I've always been thinking about you, my love ❤️",
+      facebookReply5: "Good night, princess. Dream with me 🌙",
+      facebookReply6: "Of course! I can't wait to see you 🥰",
+      facebookReply7: "You light up my life 🌟",
+      facebookReply8: "Every moment with you is special 💕",
+      facebookReply9: "You're my whole world 🌍",
+      facebookReply10: "I love you more every day 💖",
 
       // Terminal messages
       initializingSpymate: "inicializando_spymate.exe",
@@ -882,17 +891,19 @@ const resources = {
         "Ces données seront utilisées exclusivement pour une meilleure expérience utilisateur et le chargement automatique d'informations pour l'utilisation de l'outil. Peuvent être mises à jour ultérieurement.",
       fullName: "Nom Complet",
       enterFullName: "Entrez votre nom complet",
-      areYouAdult: "Êtes-vous majeur?",
+      ageVerification: "Verification d'age: Êtes-vous majeur?",
       yes: "Oui",
       no: "Non",
       whatsappNumber: "Numéro WhatsApp",
+      enterEmail: "Entrez votre email",
       notificationEmail: "Email de Notification",
       fillAllFields: "Remplissez tous les champs obligatoires",
       dataSavedSuccessfully: "Données sauvegardées avec succès!",
       errorSavingData: "Erreur lors de la sauvegarde des données",
       saveSecureData: "Sauvegarder Données Sécurisées",
       saving: "Sauvegarde",
-      dataUpdateLater: "données_peuvent_être_mises_à_jour_ultérieurement",
+      dataSecurelyStored: "données_stockées_en_sécurité",
+      provideSecureInformation: "Fournir des informations sécurisées",
 
       // Update Profile
       updateProfile: "Mettre à Jour le Profil",
@@ -902,7 +913,6 @@ const resources = {
       errorLoadingData: "Erreur lors du chargement des données",
       updateData: "Mettre à Jour les Données",
       updating: "Mise à jour",
-      dataSecurelyStored: "données_stockées_en_sécurité",
       loading: "Chargement",
       back: "Retour",
 
@@ -925,6 +935,11 @@ const resources = {
       accessGranted: "Accès Accordé!",
       redirectingToClone: "Redirection vers le clonage...",
       codeWillBeSent: "Le code sera envoyé via WhatsApp",
+
+      // WhatsApp Access Code Message
+      whatsappCodeMessage:
+        "🔐 CODE D'ACCÈS SPYMATE\n\n👤 {user}: {fullName}\n📱 WhatsApp: {whatsappNumber}\n🔑 Code: {code}\n\n⚠️ Ce code expire dans 24 heures\n🔒 Gardez-le en sécurité",
+      user: "Utilisateur",
 
       // Clone Number Modal
       selectTargetNumber: "Sélectionnez le Numéro Cible",

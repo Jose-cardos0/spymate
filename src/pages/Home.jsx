@@ -19,12 +19,12 @@ import {
   Facebook,
   Twitter,
   Youtube,
-  Circle,
-  Film,
-  Castle,
-  Package,
+  MapPin,
+  Phone,
+  MessageSquareX,
   Clock,
   Eye,
+  Unlock,
 } from "lucide-react";
 
 function Home() {
@@ -288,6 +288,7 @@ function Home() {
       glowColor: "shadow-gray-500/50",
       borderColor: "border-gray-400/20",
       bgPattern: "bg-gradient-to-br from-gray-900/80 to-black/90",
+      isPaid: true,
     },
     {
       name: "YouTube",
@@ -296,38 +297,35 @@ function Home() {
       glowColor: "shadow-red-500/50",
       borderColor: "border-red-400/20",
       bgPattern: "bg-gradient-to-br from-gray-900/80 to-black/90",
+      isPaid: true,
     },
     {
-      name: "Reddit",
-      icon: Circle,
+      name: "Localização",
+      icon: MapPin,
       color: "from-orange-500 to-red-600",
       glowColor: "shadow-orange-500/50",
       borderColor: "border-orange-400/20",
       bgPattern: "bg-gradient-to-br from-gray-900/80 to-black/90",
+      isPaid: true,
     },
     {
-      name: "Netflix",
-      icon: Film,
+      name: "Ligações",
+      icon: Phone,
       color: "from-red-600 to-red-800",
       glowColor: "shadow-red-600/50",
       borderColor: "border-red-500/20",
       bgPattern: "bg-gradient-to-br from-gray-900/80 to-black/90",
+      isPaid: true,
     },
     {
-      name: "Disney+",
-      icon: Castle,
+      name: "Conversas Apagadas",
+      icon: MessageSquareX,
       color: "from-blue-600 to-purple-700",
       glowColor: "shadow-blue-600/50",
       borderColor: "border-blue-500/20",
       bgPattern: "bg-gradient-to-br from-gray-900/80 to-black/90",
-    },
-    {
-      name: "Amazon Prime",
-      icon: Package,
-      color: "from-blue-400 to-cyan-600",
-      glowColor: "shadow-cyan-500/50",
-      borderColor: "border-cyan-400/20",
-      bgPattern: "bg-gradient-to-br from-gray-900/80 to-black/90",
+      isPaid: true,
+      isBlocked: true,
     },
   ];
 
@@ -358,6 +356,21 @@ function Home() {
         },
       });
     }
+  };
+
+  const handleUnlock = (platformName) => {
+    // Link para página de pagamento - substitua pela URL real
+    const paymentUrl = "https://pay.hotmart.com/example-spymate-premium";
+    window.open(paymentUrl, "_blank");
+
+    toast.info(`Redirecionando para desbloqueio de ${platformName}...`, {
+      duration: 4000,
+      style: {
+        background: "linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)",
+        color: "#fff",
+        fontWeight: "600",
+      },
+    });
   };
 
   return (
@@ -732,6 +745,24 @@ function Home() {
                   animation: "slideInUp 0.8s ease-out forwards",
                 }}
               >
+                {/* Badge para funcionalidades bloqueadas */}
+                {platform.isBlocked && (
+                  <div className="absolute top-4 right-4 bg-red-600/20 border border-red-400/50 rounded-full px-3 py-1">
+                    <span className="text-red-400 text-xs font-mono font-bold">
+                      BLOQUEADO
+                    </span>
+                  </div>
+                )}
+
+                {/* Badge para funcionalidades pagas */}
+                {platform.isPaid && !platform.isBlocked && (
+                  <div className="absolute top-4 right-4 bg-yellow-600/20 border border-yellow-400/50 rounded-full px-3 py-1">
+                    <span className="text-yellow-400 text-xs font-mono font-bold">
+                      PREMIUM
+                    </span>
+                  </div>
+                )}
+
                 {/* Animated Border */}
                 <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-pulse"></div>
 
@@ -767,20 +798,49 @@ function Home() {
                   <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-transparent via-green-400 to-transparent group-hover:w-full transition-all duration-500"></div>
                 </h3>
 
-                {/* Access Button */}
-                <button
-                  onClick={() => handleAccess(platform.name)}
-                  className={`w-full py-4 px-6 bg-gradient-to-r from-gray-800 to-black text-green-400 font-bold text-lg rounded-2xl transition-all duration-500 transform group-hover:scale-105 shadow-2xl hover:shadow-3xl relative overflow-hidden border border-green-400/30 font-mono`}
-                >
-                  {/* Button Glow Effect */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-green-400/10 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
+                {/* Buttons */}
+                <div className="space-y-3">
+                  {/* Access Button - apenas para funcionalidades gratuitas */}
+                  {!platform.isPaid && (
+                    <button
+                      onClick={() => handleAccess(platform.name)}
+                      className={`w-full py-4 px-6 bg-gradient-to-r from-gray-800 to-black text-green-400 font-bold text-lg rounded-2xl transition-all duration-500 transform group-hover:scale-105 shadow-2xl hover:shadow-3xl relative overflow-hidden border border-green-400/30 font-mono`}
+                    >
+                      {/* Button Glow Effect */}
+                      <div className="absolute inset-0 bg-gradient-to-r from-green-400/10 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
 
-                  {/* Button Text */}
-                  <span className="relative z-10 tracking-wider">[ACESSO]</span>
+                      {/* Button Text */}
+                      <span className="relative z-10 tracking-wider">
+                        [ACESSO]
+                      </span>
 
-                  {/* Animated Underline */}
-                  <div className="absolute bottom-0 left-0 w-0 h-1 bg-green-400/50 group-hover:w-full transition-all duration-500"></div>
-                </button>
+                      {/* Animated Underline */}
+                      <div className="absolute bottom-0 left-0 w-0 h-1 bg-green-400/50 group-hover:w-full transition-all duration-500"></div>
+                    </button>
+                  )}
+
+                  {/* Unlock Button - para funcionalidades pagas */}
+                  {platform.isPaid && (
+                    <button
+                      onClick={() => handleUnlock(platform.name)}
+                      className={`w-full py-4 px-6 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold text-lg rounded-2xl transition-all duration-500 transform group-hover:scale-105 shadow-2xl hover:shadow-blue-500/50 relative overflow-hidden border border-blue-400/30 font-mono`}
+                    >
+                      {/* Button Glow Effect */}
+                      <div className="absolute inset-0 bg-gradient-to-r from-blue-400/10 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
+
+                      {/* Button Content */}
+                      <div className="relative z-10 flex items-center justify-center gap-2">
+                        <Unlock size={20} />
+                        <span className="tracking-wider">
+                          {platform.isBlocked ? "[DESBLOQUEAR]" : "[PREMIUM]"}
+                        </span>
+                      </div>
+
+                      {/* Animated Underline */}
+                      <div className="absolute bottom-0 left-0 w-0 h-1 bg-blue-400/50 group-hover:w-full transition-all duration-500"></div>
+                    </button>
+                  )}
+                </div>
 
                 {/* Card Reflection */}
                 <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>

@@ -67,7 +67,7 @@ function Welcome() {
 
             {/* Logo image */}
             <img
-              className="h-70 sm:h-40 md:h-48 lg:h-56 w-auto drop-shadow-2xl relative z-10 rounded-full"
+              className="h-32 sm:h-40 md:h-48 lg:h-56 w-auto drop-shadow-2xl relative z-10 rounded-full"
               src="https://i.ibb.co/PsbPYWs0/logo1.png"
               alt="SpyMate Logo"
               style={{
@@ -100,14 +100,14 @@ function Welcome() {
           }}
         >
           <h1
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold 
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold 
           mb-4 bg-gradient-to-r from-green-400 via-emerald-100 to-lime-400 bg-clip-text text-transparent"
           >
             {t("welcome")}
           </h1>
           <p
             className="
-           text-green-400 font-mono text-sm opacity-60"
+           text-green-400 font-mono text-xs sm:text-sm opacity-60"
           >
             Press_START_to_initiate_experience.exe
           </p>
@@ -116,7 +116,7 @@ function Welcome() {
         {/* Botão START */}
         <motion.button
           onClick={handleStart}
-          className="px-12 py-4 bg-gradient-to-r from-green-600 to-emerald-600 text-black font-bold text-xl rounded-full hover:from-green-700 hover:to-emerald-700 transition-all duration-300 shadow-2xl animate-pulse hover:animate-none hover:scale-105 border border-green-400/30"
+          className="px-8 sm:px-10 md:px-12 py-3 sm:py-4 bg-gradient-to-r from-green-600 to-emerald-600 text-black font-bold text-lg sm:text-xl rounded-full hover:from-green-700 hover:to-emerald-700 transition-all duration-300 shadow-2xl animate-pulse hover:animate-none hover:scale-105 border border-green-400/30"
           initial={{
             opacity: 0,
             scale: 0.8,
@@ -150,8 +150,8 @@ function Welcome() {
           transition={{ duration: 2, delay: 5 }}
         >
           <div className="animate-pulse">
-            <span className="text-green-500">$</span>{" "}
-            initializing_spymate.exe...
+            <span className="text-green-500">$</span> {t("initializingSpymate")}
+            ...
           </div>
         </motion.div>
       </div>

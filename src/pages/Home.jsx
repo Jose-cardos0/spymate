@@ -10,6 +10,9 @@ import CloningProgressModal from "../components/CloningProgressModal";
 import InstagramTargetModal from "../components/InstagramTargetModal";
 import InstagramCountdownModal from "../components/InstagramCountdownModal";
 import InstagramCloningModal from "../components/InstagramCloningModal";
+import FacebookTargetModal from "../components/FacebookTargetModal";
+import FacebookCountdownModal from "../components/FacebookCountdownModal";
+import FacebookCloningModal from "../components/FacebookCloningModal";
 import {
   MessageCircle,
   Camera,
@@ -43,11 +46,21 @@ function Home() {
     useState(false);
   const [instagramTimeLeft, setInstagramTimeLeft] = useState(0);
 
+  // Facebook states
+  const [showFacebookTargetModal, setShowFacebookTargetModal] = useState(false);
+  const [showFacebookCountdown, setShowFacebookCountdown] = useState(false);
+  const [showFacebookCloning, setShowFacebookCloning] = useState(false);
+  const [facebookTarget, setFacebookTarget] = useState("");
+  const [facebookProfileUrl, setFacebookProfileUrl] = useState("");
+  const [facebookCountdownActive, setFacebookCountdownActive] = useState(false);
+  const [facebookTimeLeft, setFacebookTimeLeft] = useState(0);
+
   // Verificar se precisa mostrar o modal de dados do usuário
   useEffect(() => {
     checkUserProfile();
     checkCountdownStatus();
     checkInstagramCountdownStatus();
+    checkFacebookCountdownStatus();
   }, [currentUser]);
 
   // Timer para countdown
@@ -89,6 +102,30 @@ function Home() {
       return () => clearInterval(timer);
     }
   }, [instagramCountdownActive, instagramTimeLeft]);
+
+  // Timer para Facebook countdown
+  useEffect(() => {
+    if (facebookCountdownActive && facebookTimeLeft > 0) {
+      const timer = setInterval(() => {
+        setFacebookTimeLeft((prev) => {
+          if (prev <= 1) {
+            setFacebookCountdownActive(false);
+            localStorage.removeItem(
+              `spymate_facebook_countdown_${currentUser.uid}`
+            );
+            localStorage.removeItem(
+              `spymate_facebook_target_${currentUser.uid}`
+            );
+            localStorage.removeItem(`spymate_facebook_url_${currentUser.uid}`);
+            return 0;
+          }
+          return prev - 1;
+        });
+      }, 1000);
+
+      return () => clearInterval(timer);
+    }
+  }, [facebookCountdownActive, facebookTimeLeft]);
 
   const checkUserProfile = async () => {
     try {
@@ -137,6 +174,45 @@ function Home() {
     }
   };
 
+  const checkFacebookCountdownStatus = () => {
+    const storageKey = `spymate_facebook_countdown_${currentUser.uid}`;
+    const targetKey = `spymate_facebook_target_${currentUser.uid}`;
+    const urlKey = `spymate_facebook_url_${currentUser.uid}`;
+    const savedEndTime = localStorage.getItem(storageKey);
+    const savedTarget = localStorage.getItem(targetKey);
+    const savedUrl = localStorage.getItem(urlKey);
+
+    if (savedEndTime && savedTarget && savedUrl) {
+      const endTime = parseInt(savedEndTime);
+      const now = Date.now();
+      const remaining = Math.max(0, endTime - now);
+
+      if (remaining > 0) {
+        setFacebookCountdownActive(true);
+        setFacebookTimeLeft(Math.floor(remaining / 1000));
+        setFacebookTarget(savedTarget);
+        setFacebookProfileUrl(savedUrl);
+      }
+    }
+  };
+
+  const formatCountdown = (seconds) => {
+    const days = Math.floor(seconds / (24 * 60 * 60));
+    const hours = Math.floor((seconds % (24 * 60 * 60)) / (60 * 60));
+    const minutes = Math.floor((seconds % (60 * 60)) / 60);
+    const secs = seconds % 60;
+
+    if (days > 0) {
+      return `${days}d ${hours}h ${minutes}m`;
+    } else if (hours > 0) {
+      return `${hours}h ${minutes}m ${secs}s`;
+    } else if (minutes > 0) {
+      return `${minutes}m ${secs}s`;
+    } else {
+      return `${secs}s`;
+    }
+  };
+
   const handleInstagramTargetConfirm = (username) => {
     setInstagramTarget(username);
 
@@ -156,21 +232,25 @@ function Home() {
     setShowInstagramCountdown(true);
   };
 
-  const formatCountdown = (seconds) => {
-    const days = Math.floor(seconds / (24 * 60 * 60));
-    const hours = Math.floor((seconds % (24 * 60 * 60)) / (60 * 60));
-    const minutes = Math.floor((seconds % (60 * 60)) / 60);
-    const secs = seconds % 60;
+  const handleFacebookTargetConfirm = (profileName, profileUrl) => {
+    setFacebookTarget(profileName);
+    setFacebookProfileUrl(profileUrl);
 
-    if (days > 0) {
-      return `${days}d ${hours}h ${minutes}m`;
-    } else if (hours > 0) {
-      return `${hours}h ${minutes}m ${secs}s`;
-    } else if (minutes > 0) {
-      return `${minutes}m ${secs}s`;
-    } else {
-      return `${secs}s`;
-    }
+    // Start 7-day countdown
+    const endTime = Date.now() + 7 * 24 * 60 * 60 * 1000;
+    localStorage.setItem(
+      `spymate_facebook_countdown_${currentUser.uid}`,
+      endTime.toString()
+    );
+    localStorage.setItem(
+      `spymate_facebook_target_${currentUser.uid}`,
+      profileName
+    );
+    localStorage.setItem(`spymate_facebook_url_${currentUser.uid}`, profileUrl);
+
+    setFacebookCountdownActive(true);
+    setFacebookTimeLeft(7 * 24 * 60 * 60);
+    setShowFacebookCountdown(true);
   };
 
   const socialPlatforms = [
@@ -199,6 +279,7 @@ function Home() {
       glowColor: "shadow-blue-500/50",
       borderColor: "border-blue-400/20",
       bgPattern: "bg-gradient-to-br from-gray-900/80 to-black/90",
+      isFacebook: true, // Marca o Facebook como especial
     },
     {
       name: "X (Twitter)",
@@ -261,6 +342,12 @@ function Home() {
       } else {
         setShowInstagramTargetModal(true);
       }
+    } else if (platformName === "Facebook") {
+      if (facebookCountdownActive) {
+        setShowFacebookCloning(true);
+      } else {
+        setShowFacebookTargetModal(true);
+      }
     } else {
       toast.success(t("accessing", { platform: platformName }), {
         duration: 3000,
@@ -274,7 +361,7 @@ function Home() {
   };
 
   return (
-    <div className="min-h-[calc(100vh-4rem)] bg-gradient-to-br from-black via-gray-900 to-black p-6 relative overflow-hidden">
+    <div className="min-h-[calc(100vh-4rem)] bg-gradient-to-br from-black via-gray-900 to-black p-3 sm:p-4 md:p-6 relative overflow-hidden">
       {/* Matrix-style background effect */}
       <div className="absolute inset-0 opacity-20">
         <div className="absolute top-0 left-1/6 w-px h-full bg-gradient-to-b from-green-400 to-transparent animate-pulse"></div>
@@ -293,16 +380,16 @@ function Home() {
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header Section */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-8 md:mb-16">
           <h1
-            className="text-2xl md:text-6xl font-bold font-mono bg-gradient-to-r
-           from-green-400 via-lime-200 to-emerald-200 bg-clip-text text-transparent mb-6"
+            className="text-xl sm:text-2xl md:text-4xl lg:text-6xl font-bold font-mono bg-gradient-to-r
+           from-green-400 via-lime-200 to-emerald-200 bg-clip-text text-transparent mb-4 md:mb-6"
             style={{ fontFamily: "Courier New, monospace" }}
           >
             {t("welcomeUser", {
               name: currentUser?.displayName || t("defaultUser"),
             })}
-            <div className="py-8 flex justify-center items-center mx-auto">
+            <div className="py-4 md:py-8 flex justify-center items-center mx-auto">
               <div className="relative">
                 {/* Animated gradient border */}
                 <div className="absolute inset-0 rounded-full bg-gradient-to-r from-green-300 via-emerald-400 via-lime-300 via-green-500 via-emerald-600 via-green-300 to-green-300 p-1 animate-spin-slow">
@@ -318,7 +405,7 @@ function Home() {
                 <img
                   src="https://i.ibb.co/PsbPYWs0/logo1.png"
                   alt="SpyMate Logo"
-                  className="md:w-96 w-96 drop-shadow-2xl relative z-10 rounded-full"
+                  className="w-32 h-32 sm:w-48 sm:h-48 md:w-64 md:h-64 lg:w-96 lg:h-96 drop-shadow-2xl relative z-10 rounded-full"
                   style={{
                     filter: "brightness(1.2) contrast(1.1) hue-rotate(80deg)",
                   }}
@@ -329,13 +416,13 @@ function Home() {
               </div>
             </div>
           </h1>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8 font-mono">
+          <p className="text-sm sm:text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-4 md:mb-8 font-mono px-4">
             {t("homeDescription")}
           </p>
-          <div className="w-32 h-1 bg-gradient-to-r from-green-500 via-emerald-500 to-lime-500 mx-auto rounded-full animate-pulse"></div>
+          <div className="w-16 sm:w-24 md:w-32 h-1 bg-gradient-to-r from-green-500 via-emerald-500 to-lime-500 mx-auto rounded-full animate-pulse"></div>
 
           {/* Matrix-style terminal text */}
-          <div className="mt-8 font-mono text-green-400 text-sm opacity-60">
+          <div className="mt-4 md:mt-8 font-mono text-green-400 text-xs sm:text-sm opacity-60">
             <span className="animate-pulse">$</span>{" "}
             accessing_social_networks...
           </div>
@@ -473,35 +560,21 @@ function Home() {
                     </span>
                   </div>
 
-                  {/* Animated Border */}
-                  <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-transparent via-pink-400/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-pulse"></div>
-
-                  {/* Glowing Orb Background */}
-                  <div
-                    className={`absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-br ${platform.color} rounded-full blur-2xl opacity-50 group-hover:opacity-80 transition-opacity duration-500 animate-pulse`}
-                  ></div>
-
                   {/* Platform Icon Container */}
                   <div className="relative text-center mb-6">
                     <div
-                      className={`w-24 h-24 mx-auto rounded-2xl bg-gradient-to-br ${platform.color} flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:rotate-6 shadow-2xl ${platform.glowColor} relative overflow-hidden`}
+                      className={`w-24 h-24 mx-auto rounded-2xl bg-gradient-to-br ${platform.color} flex items-center justify-center transition-all duration-500 group-hover:scale-110 shadow-2xl ${platform.glowColor}`}
                     >
-                      {/* Icon Glow Effect */}
-                      <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-2xl"></div>
                       <IconComponent
                         size={36}
                         className="text-white relative z-10 drop-shadow-lg"
                       />
-
-                      {/* Animated Ring */}
-                      <div className="absolute inset-0 rounded-2xl border-2 border-white/30 animate-ping group-hover:animate-none"></div>
                     </div>
                   </div>
 
                   {/* Platform Name */}
                   <h3 className="text-2xl font-bold text-gray-200 text-center mb-4 group-hover:text-white transition-colors relative font-mono">
                     {platform.name}
-                    <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-transparent via-pink-400 to-transparent group-hover:w-full transition-all duration-500"></div>
                   </h3>
 
                   {/* Target Info */}
@@ -539,39 +612,112 @@ function Home() {
 
                   {/* Buttons */}
                   <div className="space-y-3">
-                    {/* Access Button */}
                     <button
                       onClick={() => handleAccess(platform.name)}
-                      className={`w-full py-3 px-6 bg-gradient-to-r from-gray-800 to-black text-pink-400 font-bold text-sm rounded-2xl transition-all duration-500 transform group-hover:scale-105 shadow-2xl hover:shadow-3xl relative overflow-hidden border border-pink-400/30 font-mono`}
+                      className="w-full py-3 px-6 bg-gradient-to-r from-gray-800 to-black text-pink-400 font-bold text-sm rounded-2xl border border-pink-400/30 font-mono"
                     >
-                      {/* Button Glow Effect */}
-                      <div className="absolute inset-0 bg-gradient-to-r from-pink-400/10 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
-
-                      {/* Button Text */}
-                      <span className="relative z-10 tracking-wider">
-                        [{t("access")}]
-                      </span>
-
-                      {/* Animated Underline */}
-                      <div className="absolute bottom-0 left-0 w-0 h-1 bg-pink-400/50 group-hover:w-full transition-all duration-500"></div>
+                      [{t("access")}]
                     </button>
-
-                    {/* Watch Cloning Button */}
                     <button
                       onClick={() => setShowInstagramCloning(true)}
-                      className="w-full py-3 px-6 bg-gradient-to-r from-pink-600 to-purple-600 text-white font-bold text-sm rounded-2xl transition-all duration-500 transform hover:scale-105 shadow-2xl hover:shadow-pink-500/50 relative overflow-hidden font-mono"
+                      className="w-full py-3 px-6 bg-gradient-to-r from-pink-600 to-purple-600 text-white font-bold text-sm rounded-2xl font-mono"
                     >
                       <div className="flex items-center justify-center gap-2">
                         <Eye size={16} />
-                        <span className="tracking-wider">
-                          {t("watchCloning")}
-                        </span>
+                        <span>{t("watchCloning")}</span>
                       </div>
                     </button>
                   </div>
+                </div>
+              );
+            }
 
-                  {/* Card Reflection */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+            // Renderização especial para Facebook com countdown ativo
+            if (platform.isFacebook && facebookCountdownActive) {
+              return (
+                <div
+                  key={platform.name}
+                  className={`group relative overflow-hidden rounded-3xl ${platform.bgPattern} backdrop-blur-xl border ${platform.borderColor} hover:${platform.glowColor} transition-all duration-500 transform hover:-translate-y-3 hover:scale-105 p-8`}
+                  style={{
+                    animationDelay: `${index * 150}ms`,
+                    animation: "slideInUp 0.8s ease-out forwards",
+                  }}
+                >
+                  {/* Status Badge */}
+                  <div className="absolute top-4 right-4 bg-blue-600/20 border border-blue-400/50 rounded-full px-3 py-1">
+                    <span className="text-blue-400 text-xs font-mono font-bold">
+                      {t("active")}
+                    </span>
+                  </div>
+
+                  {/* Platform Icon Container */}
+                  <div className="relative text-center mb-6">
+                    <div
+                      className={`w-24 h-24 mx-auto rounded-2xl bg-gradient-to-br ${platform.color} flex items-center justify-center transition-all duration-500 group-hover:scale-110 shadow-2xl ${platform.glowColor}`}
+                    >
+                      <IconComponent
+                        size={36}
+                        className="text-white relative z-10 drop-shadow-lg"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Platform Name */}
+                  <h3 className="text-2xl font-bold text-gray-200 text-center mb-4 group-hover:text-white transition-colors relative font-mono">
+                    {platform.name}
+                  </h3>
+
+                  {/* Target Info */}
+                  <div className="bg-blue-600/20 border border-blue-400/30 rounded-lg p-4 mb-4">
+                    <div className="text-center">
+                      <div className="text-lg font-bold text-white font-mono mb-1">
+                        {facebookTarget}
+                      </div>
+                      <div className="text-xs text-blue-300 uppercase">
+                        {t("targetLocked")}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Countdown Display */}
+                  <div className="bg-blue-600/20 border border-blue-400/30 rounded-lg p-4 mb-4">
+                    <div className="flex items-center justify-center gap-2 mb-2">
+                      <Clock
+                        className="text-blue-400 animate-pulse"
+                        size={16}
+                      />
+                      <span className="text-blue-300 font-mono text-sm font-bold">
+                        {t("analysisInProgress")}
+                      </span>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-2xl font-bold text-blue-400 font-mono mb-1">
+                        {formatCountdown(facebookTimeLeft)}
+                      </div>
+                      <div className="text-xs text-blue-300 uppercase">
+                        {t("timeRemaining")}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Buttons */}
+                  <div className="space-y-3">
+                    <button
+                      onClick={() => handleAccess(platform.name)}
+                      className="w-full py-3 px-6 bg-gradient-to-r from-gray-800 to-black text-blue-400 font-bold text-sm rounded-2xl border border-blue-400/30 font-mono"
+                    >
+                      [{t("access")}]
+                    </button>
+                    <button
+                      onClick={() => setShowFacebookCloning(true)}
+                      className="w-full py-3 px-6 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold text-sm rounded-2xl font-mono"
+                    >
+                      <div className="flex items-center justify-center gap-2">
+                        <Eye size={16} />
+                        <span>{t("watchCloning")}</span>
+                      </div>
+                    </button>
+                  </div>
                 </div>
               );
             }
@@ -644,30 +790,30 @@ function Home() {
         </div>
 
         {/* Stats Section - Redesigned */}
-        <div className="bg-gradient-to-r from-black/80 to-gray-900/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-green-400/20 p-10 mb-12 relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-r from-green-500/5 to-emerald-500/5 rounded-3xl"></div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center relative z-10">
-            <div className="group p-6 rounded-2xl bg-gradient-to-br from-gray-900/50 to-black/50 border border-green-400/20 hover:border-green-400/40 transition-all duration-300">
-              <div className="text-5xl font-bold bg-gradient-to-r from-green-400 to-lime-400 bg-clip-text text-transparent mb-3 group-hover:scale-110 transition-transform font-mono">
+        <div className="bg-gradient-to-r from-black/80 to-gray-900/80 backdrop-blur-xl rounded-2xl md:rounded-3xl shadow-2xl border border-green-400/20 p-4 sm:p-6 md:p-10 mb-8 md:mb-12 relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-r from-green-500/5 to-emerald-500/5 rounded-2xl md:rounded-3xl"></div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 text-center relative z-10">
+            <div className="group p-3 sm:p-4 md:p-6 rounded-xl md:rounded-2xl bg-gradient-to-br from-gray-900/50 to-black/50 border border-green-400/20 hover:border-green-400/40 transition-all duration-300">
+              <div className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-green-400 to-lime-400 bg-clip-text text-transparent mb-2 md:mb-3 group-hover:scale-110 transition-transform font-mono">
                 09
               </div>
-              <div className="text-gray-300 font-medium font-mono text-sm">
+              <div className="text-gray-300 font-medium font-mono text-xs sm:text-sm">
                 {t("platformsAvailable")}
               </div>
             </div>
-            <div className="group p-6 rounded-2xl bg-gradient-to-br from-gray-900/50 to-black/50 border border-green-400/20 hover:border-green-400/40 transition-all duration-300">
-              <div className="text-5xl font-bold bg-gradient-to-r from-green-400 to-lime-400 bg-clip-text text-transparent mb-3 group-hover:scale-110 transition-transform font-mono">
+            <div className="group p-3 sm:p-4 md:p-6 rounded-xl md:rounded-2xl bg-gradient-to-br from-gray-900/50 to-black/50 border border-green-400/20 hover:border-green-400/40 transition-all duration-300">
+              <div className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-green-400 to-lime-400 bg-clip-text text-transparent mb-2 md:mb-3 group-hover:scale-110 transition-transform font-mono">
                 100%
               </div>
-              <div className="text-gray-300 font-medium font-mono text-sm">
+              <div className="text-gray-300 font-medium font-mono text-xs sm:text-sm">
                 {t("securityGuaranteed")}
               </div>
             </div>
-            <div className="group p-6 rounded-2xl bg-gradient-to-br from-gray-900/50 to-black/50 border border-green-400/20 hover:border-green-400/40 transition-all duration-300">
-              <div className="text-5xl font-bold bg-gradient-to-r from-green-400 to-lime-400 bg-clip-text text-transparent mb-3 group-hover:scale-110 transition-transform font-mono">
+            <div className="group p-3 sm:p-4 md:p-6 rounded-xl md:rounded-2xl bg-gradient-to-br from-gray-900/50 to-black/50 border border-green-400/20 hover:border-green-400/40 transition-all duration-300">
+              <div className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-green-400 to-lime-400 bg-clip-text text-transparent mb-2 md:mb-3 group-hover:scale-110 transition-transform font-mono">
                 24/7
               </div>
-              <div className="text-gray-300 font-medium font-mono text-sm">
+              <div className="text-gray-300 font-medium font-mono text-xs sm:text-sm">
                 {t("availability")}
               </div>
             </div>
@@ -675,27 +821,27 @@ function Home() {
         </div>
 
         {/* Info Card - Redesigned */}
-        <div className="relative bg-gradient-to-r from-black/90 to-gray-900/90 backdrop-blur-xl rounded-3xl shadow-2xl border border-green-400/20 p-12 text-center overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-r from-green-600/5 to-emerald-600/5 rounded-3xl"></div>
+        <div className="relative bg-gradient-to-r from-black/90 to-gray-900/90 backdrop-blur-xl rounded-2xl md:rounded-3xl shadow-2xl border border-green-400/20 p-6 sm:p-8 md:p-12 text-center overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-r from-green-600/5 to-emerald-600/5 rounded-2xl md:rounded-3xl"></div>
           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-green-500 via-emerald-500 to-lime-500"></div>
 
-          <h2 className="text-3xl font-bold bg-gradient-to-r from-green-400 to-lime-200 bg-clip-text text-transparent mb-6 relative z-10 font-mono">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold bg-gradient-to-r from-green-400 to-lime-200 bg-clip-text text-transparent mb-4 md:mb-6 relative z-10 font-mono">
             {t("secureAccessTitle")}
           </h2>
-          <p className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed relative z-10 font-mono">
+          <p className="text-sm sm:text-lg md:text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed relative z-10 font-mono px-2">
             {t("secureAccessDescription")}
           </p>
 
           {/* Terminal-style footer */}
-          <div className="mt-8 pt-4 border-t border-green-400/20">
+          <div className="mt-6 md:mt-8 pt-4 border-t border-green-400/20">
             <p className="text-green-500/50 text-xs text-center font-mono">
               &gt; system_online: all_protocols_active...
             </p>
           </div>
 
           {/* Decorative Elements */}
-          <div className="absolute top-8 right-8 w-4 h-4 bg-green-500/30 rounded-full animate-pulse"></div>
-          <div className="absolute bottom-8 left-8 w-3 h-3 bg-emerald-500/30 rounded-full animate-pulse delay-500"></div>
+          <div className="absolute top-4 md:top-8 right-4 md:right-8 w-3 md:w-4 h-3 md:h-4 bg-green-500/30 rounded-full animate-pulse"></div>
+          <div className="absolute bottom-4 md:bottom-8 left-4 md:left-8 w-2 md:w-3 h-2 md:h-3 bg-emerald-500/30 rounded-full animate-pulse delay-500"></div>
         </div>
       </div>
 
@@ -732,6 +878,30 @@ function Home() {
         isOpen={showInstagramCloning}
         onClose={() => setShowInstagramCloning(false)}
         targetUsername={instagramTarget}
+      />
+
+      {/* Facebook Target Modal */}
+      <FacebookTargetModal
+        isOpen={showFacebookTargetModal}
+        onClose={() => setShowFacebookTargetModal(false)}
+        onConfirm={handleFacebookTargetConfirm}
+      />
+
+      {/* Facebook Countdown Modal */}
+      <FacebookCountdownModal
+        isOpen={showFacebookCountdown}
+        onClose={() => setShowFacebookCountdown(false)}
+        targetProfile={facebookTarget}
+        profileUrl={facebookProfileUrl}
+        userEmail={currentUser?.email}
+        userName={currentUser?.displayName}
+      />
+
+      {/* Facebook Cloning Modal */}
+      <FacebookCloningModal
+        isOpen={showFacebookCloning}
+        onClose={() => setShowFacebookCloning(false)}
+        targetProfile={facebookTarget}
       />
 
       <style jsx>{`

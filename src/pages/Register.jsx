@@ -94,7 +94,7 @@ function Register() {
               <h2 className="text-3xl font-bold text-green-400 mb-2">
                 {t("register")}
               </h2>
-              <p className="text-green-300">Create your account</p>
+              <p className="text-green-300">{t("createYourAccount")}</p>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-6">

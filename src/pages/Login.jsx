@@ -78,7 +78,7 @@ function Login() {
               </h2>
               <div className="flex items-center justify-center">
                 <p className="text-green-300 flex items-center gap-2 font-semibold">
-                  Welcome Back{" "}
+                  {t("welcomeBack")}{" "}
                   <SearchCheck size={20} className="text-green-400" />
                 </p>
               </div>

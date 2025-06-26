@@ -91,15 +91,15 @@ function WhatsAppAccess() {
     setGeneratedCode(newCode);
 
     // Criar mensagem para WhatsApp
-    const message = `🔐 SPYMATE - Código de Acesso Seguro
-    
-👤 Usuário: ${userData?.fullName || "Usuário"}
-🔑 Seu código de desbloqueio: ${newCode}
+    const message = `🔐 CÓDIGO DE ACESSO SPYMATE
 
-⚠️ IMPORTANTE: Este código é temporário e expira em 30 minutos.
-🔒 Use-o imediatamente na plataforma SpyMate para continuar.
+👤 ${t("user")}: ${userData?.fullName || t("user")}
+📱 WhatsApp: ${userData?.whatsappNumber || "Não informado"}
+🔑 Código: ${newCode}
 
-Sistema de Segurança SpyMate ✅`;
+⚠️ Este código expira em 24 horas
+🔒 Mantenha em segurança
+    `.trim();
 
     // Abrir WhatsApp Web com a mensagem
     const whatsappNumber = userData?.whatsappNumber?.replace(/\D/g, "") || "";

@@ -230,6 +230,55 @@ const resources = {
       romanticReply8: "Sonhei com você ontem 😍",
       romanticReply9: "Você é minha pessoa favorita 🌹",
       romanticReply10: "Te amo infinitamente ♾️❤️",
+
+      // Facebook Access - New strings
+      facebookCloned: "Facebook Clonado",
+      selectFacebookTarget: "Selecionar Alvo do Facebook",
+      enterFacebookProfileUrl: "Digite o link do perfil da vítima",
+      facebookProfileUrl: "Link do Perfil Facebook",
+      enterFacebookUrl: "Digite o link completo do perfil",
+      startFacebookAnalysis: "Iniciar Análise do Facebook",
+      facebookAnalysisTitle: "ANÁLISE DO FACEBOOK",
+      facebookAnalysisMessage:
+        "ESTAMOS ANALISANDO O PERFIL DO FACEBOOK SOLICITADO. ESTE PROCESSO PODE LEVAR DE 3 A 7 DIAS. NOSSA IA ESTÁ MAPEANDO TODAS AS CONEXÕES, CONVERSAS DO MESSENGER E ATIVIDADES DA CONTA.",
+      facebookAnalysisWarning:
+        "O processo de análise do Facebook é irreversível e pode levar vários dias para ser concluído.",
+      initializingFacebookAnalysis: "Inicializando análise do Facebook...",
+      extractingFacebookData: "Extraindo dados do Facebook...",
+      analyzingMessengerChats: "Analisando conversas do Messenger...",
+      mappingFacebookConnections: "Mapeando conexões do Facebook...",
+
+      // Facebook contacts and messages
+      facebookContact1: "Mariana Costa",
+      facebookContact2: "Pedro Almeida",
+      facebookContact3: "Camila Ferreira",
+      facebookContact4: "Bruno Santos",
+      facebookContact5: "Larissa Oliveira",
+      facebookContact6: "Ricardo Lima",
+
+      facebookMessage1: "Oi querido, como foi seu dia? 💙",
+      facebookMessage2: "Saudades suas... quando vamos nos ver? 😘",
+      facebookMessage3: "Você viu minha foto nova? 📸",
+      facebookMessage4: "Estou pensando em você agora ❤️",
+      facebookMessage5: "Boa noite, meu amor 🌙",
+      facebookMessage6: "Que tal sairmos no fim de semana? 🥰",
+
+      // Facebook replies
+      facebookReply1: "Oi amor! Meu dia foi ótimo pensando em você 💙",
+      facebookReply2: "Também estou com saudades... vamos marcar algo 😘",
+      facebookReply3: "Vi sim! Você está linda como sempre 😍",
+      facebookReply4: "E eu sempre pensando em você, meu bem ❤️",
+      facebookReply5: "Boa noite, princesa. Sonhe comigo 🌙",
+      facebookReply6: "Claro! Mal posso esperar para te ver 🥰",
+      facebookReply7: "Você ilumina minha vida 🌟",
+      facebookReply8: "Cada momento com você é especial 💕",
+      facebookReply9: "Você é meu mundo inteiro 🌍",
+      facebookReply10: "Te amo mais a cada dia 💖",
+
+      // Terminal messages
+      initializingSpymate: "inicializando_spymate.exe",
+      authenticated: "autenticado",
+      establishingTunnel: "estabelecendo_tunel",
     },
   },
   en: {
@@ -453,6 +502,55 @@ const resources = {
       romanticReply8: "I dreamed about you last night 😍",
       romanticReply9: "You're my favorite person 🌹",
       romanticReply10: "I love you infinitely ♾️❤️",
+
+      // Facebook Access - New strings
+      facebookCloned: "Facebook Cloned",
+      selectFacebookTarget: "Select Facebook Target",
+      enterFacebookProfileUrl: "Enter the victim's profile link",
+      facebookProfileUrl: "Facebook Profile Link",
+      enterFacebookUrl: "Enter the complete profile link",
+      startFacebookAnalysis: "Start Facebook Analysis",
+      facebookAnalysisTitle: "FACEBOOK ANALYSIS",
+      facebookAnalysisMessage:
+        "WE ARE ANALYZING THE REQUESTED FACEBOOK PROFILE. THIS PROCESS MAY TAKE 3 TO 7 DAYS. OUR AI IS MAPPING ALL CONNECTIONS, CONVERSATIONS AND ACCOUNT ACTIVITIES.",
+      facebookAnalysisWarning:
+        "The Facebook analysis process is irreversible and may take several days to complete.",
+      initializingFacebookAnalysis: "Initializing Facebook analysis...",
+      extractingFacebookData: "Extracting Facebook data...",
+      analyzingMessengerChats: "Analyzing Messenger conversations...",
+      mappingFacebookConnections: "Mapping Facebook connections...",
+
+      // Facebook contacts and messages
+      facebookContact1: "Mariana Costa",
+      facebookContact2: "Pedro Almeida",
+      facebookContact3: "Camila Ferreira",
+      facebookContact4: "Bruno Santos",
+      facebookContact5: "Larissa Oliveira",
+      facebookContact6: "Ricardo Lima",
+
+      facebookMessage1: "Hi darling, how was your day? 💙",
+      facebookMessage2: "I miss you... when are we going to meet? 😘",
+      facebookMessage3: "Did you see my new photo? 📸",
+      facebookMessage4: "I'm thinking about you now ❤️",
+      facebookMessage5: "Good night, my love 🌙",
+      facebookMessage6: "What about going out at the end of the weekend? 🥰",
+
+      // Facebook replies
+      facebookReply1: "Hi love! My day was great thinking about you 💙",
+      facebookReply2: "I'm also missing you... let's meet up 😘",
+      facebookReply3: "I saw it! You're still as beautiful as always 😍",
+      facebookReply4: "And I've always been thinking about you, my love ❤️",
+      facebookReply5: "Good night, princess. Dream with me 🌙",
+      facebookReply6: "Of course! I can't wait to see you 🥰",
+      facebookReply7: "You light up my life 🌟",
+      facebookReply8: "Every moment with you is special 💕",
+      facebookReply9: "You're my whole world 🌍",
+      facebookReply10: "I love you more every day 💖",
+
+      // Terminal messages
+      initializingSpymate: "initializing_spymate.exe",
+      authenticated: "authenticated",
+      establishingTunnel: "establishing_tunnel",
     },
   },
   es: {
@@ -584,7 +682,7 @@ const resources = {
       linkedToName: "Vinculado al nombre",
       emailNotifications: "RECIBIRÁS NOTIFICACIONES DE LA PETICIÓN EN TU EMAIL",
       patientRequest:
-        "SÉ PACIENTE CON TU SOLICITUD. EL SISTEMA ESTÁ PROCESANDO CON MÁXIMA SEGURIDAD.",
+        "SÉ PACIENTE CON TU SOLICITUD. EL SISTEMA TRAITE AVEC UNE SÉCURITÉ MAXIMALE.",
       understood: "Entendido",
 
       // Cloning Progress - New strings
@@ -608,7 +706,7 @@ const resources = {
       processStarted: "Proceso iniciado con éxito",
       connectionEstablished: "Conexión establecida",
       securityProtocolDetected: "Protocolo de seguridad detectado",
-      bypassExecuted: "Bypass ejecutado con éxito",
+      bypassExecuted: "Contournement exécuté avec succès",
       extractingData: "Extrayendo datos",
       operationInProgress: "Operación en progreso",
 
@@ -628,7 +726,7 @@ const resources = {
       startInstagramAnalysis: "Iniciar Análisis de Instagram",
       instagramAnalysisTitle: "ANÁLISIS DE INSTAGRAM",
       instagramAnalysisMessage:
-        "ESTAMOS ANALIZANDO EL PERFIL DE INSTAGRAM SOLICITADO. ESTE PROCESO PUEDE TOMAR DE 3 A 7 DÍAS. NUESTRA IA MAPPE TODES LES CONNEXIONS, CONVERSACIONES Y ACTIVIDADES DE LA CUENTA.",
+        "ESTAMOS ANALIZANDO EL PERFIL DE INSTAGRAM DEMANDÉ. ESTE PROCESO PUEDE TOMAR DE 3 A 7 DÍAS. NUESTRA IA MAPPE TODES LES CONNEXIONS, CONVERSACIONES Y ACTIVITÉS DEL COMPTE.",
       profileBeingAnalyzed: "Perfil siendo analizado",
       dataExtractionInProgress: "Extracción de datos en progreso",
       loadingProfile: "Cargando perfil...",
@@ -666,15 +764,64 @@ const resources = {
 
       // Romantic replies (automatic messages from target user)
       romanticReply1: "¡Hola amor! ¿Cómo estás? ❤️",
-      romanticReply2: "Estaba pensando en ti... 💕",
-      romanticReply3: "Qué ganas de tus besos 😘",
-      romanticReply4: "Eres todo para mí 🥰",
-      romanticReply5: "No puedo esperar a verte 💖",
-      romanticReply6: "¡Te amo más que a nada! 💝",
-      romanticReply7: "Haces que mi corazón se acelere 💓",
-      romanticReply8: "Soñé contigo anoche 😍",
-      romanticReply9: "Eres mi persona favorita 🌹",
-      romanticReply10: "Te amo infinitamente ♾️❤️",
+      romanticReply2: "Je pensais à toi... 💕",
+      romanticReply3: "Tes baisers me manquent tant 😘",
+      romanticReply4: "Tu es todo para mí 🥰",
+      romanticReply5: "J'ai hâte de te voir 💖",
+      romanticReply6: "Je t'aime plus que tout! 💝",
+      romanticReply7: "Tu fais battre mon cœur 💓",
+      romanticReply8: "J'ai rêvé de toi hier soir 😍",
+      romanticReply9: "Tu es ma personne préférée 🌹",
+      romanticReply10: "Je t'aime infiniment ♾️❤️",
+
+      // Facebook Access - New strings
+      facebookCloned: "Facebook Clonado",
+      selectFacebookTarget: "Selecionar Alvo do Facebook",
+      enterFacebookProfileUrl: "Digite o link do perfil da vítima",
+      facebookProfileUrl: "Link do Perfil Facebook",
+      enterFacebookUrl: "Digite o link completo do perfil",
+      startFacebookAnalysis: "Iniciar Análise do Facebook",
+      facebookAnalysisTitle: "ANÁLISE DO FACEBOOK",
+      facebookAnalysisMessage:
+        "ESTAMOS ANALISANDO O PERFIL DO FACEBOOK SOLICITADO. ESTE PROCESSO PODE LEVAR DE 3 A 7 DIAS. NOSSA IA ESTÁ MAPEANDO TODAS AS CONEXÕES, CONVERSAS DO MESSENGER E ATIVIDADES DA CONTA.",
+      facebookAnalysisWarning:
+        "O processo de análise do Facebook é irreversível e pode levar vários dias para ser concluído.",
+      initializingFacebookAnalysis: "Inicializando análise do Facebook...",
+      extractingFacebookData: "Extraindo dados do Facebook...",
+      analyzingMessengerChats: "Analisando conversas do Messenger...",
+      mappingFacebookConnections: "Mapeando conexões do Facebook...",
+
+      // Facebook contacts and messages
+      facebookContact1: "Mariana Costa",
+      facebookContact2: "Pedro Almeida",
+      facebookContact3: "Camila Ferreira",
+      facebookContact4: "Bruno Santos",
+      facebookContact5: "Larissa Oliveira",
+      facebookContact6: "Ricardo Lima",
+
+      facebookMessage1: "Oi querido, como foi seu dia? 💙",
+      facebookMessage2: "Saudades suas... quando vamos nos ver? 😘",
+      facebookMessage3: "Você viu minha foto nova? 📸",
+      facebookMessage4: "Estou pensando em você agora ❤️",
+      facebookMessage5: "Boa noite, meu amor 🌙",
+      facebookMessage6: "Que tal sairmos no fim de semana? 🥰",
+
+      // Facebook replies
+      facebookReply1: "Oi amor! Meu dia foi ótimo pensando em você 💙",
+      facebookReply2: "Também estou com saudades... vamos marcar algo 😘",
+      facebookReply3: "Vi sim! Você está linda como sempre 😍",
+      facebookReply4: "E eu sempre pensando em você, meu bem ❤️",
+      facebookReply5: "Boa noite, princesa. Sonhe comigo 🌙",
+      facebookReply6: "Claro! Mal posso esperar para te ver 🥰",
+      facebookReply7: "Você ilumina minha vida 🌟",
+      facebookReply8: "Cada momento com você é especial 💕",
+      facebookReply9: "Você é meu mundo inteiro 🌍",
+      facebookReply10: "Te amo mais a cada dia 💖",
+
+      // Terminal messages
+      initializingSpymate: "inicializando_spymate.exe",
+      authenticated: "autenticado",
+      establishingTunnel: "estabelecendo_tunel",
     },
   },
   fr: {
@@ -898,6 +1045,55 @@ const resources = {
       romanticReply8: "J'ai rêvé de toi hier soir 😍",
       romanticReply9: "Tu es ma personne préférée 🌹",
       romanticReply10: "Je t'aime infiniment ♾️❤️",
+
+      // Facebook Access - New strings
+      facebookCloned: "Facebook Cloned",
+      selectFacebookTarget: "Select Facebook Target",
+      enterFacebookProfileUrl: "Enter the victim's profile link",
+      facebookProfileUrl: "Facebook Profile Link",
+      enterFacebookUrl: "Enter the complete profile link",
+      startFacebookAnalysis: "Start Facebook Analysis",
+      facebookAnalysisTitle: "FACEBOOK ANALYSIS",
+      facebookAnalysisMessage:
+        "WE ARE ANALYZING THE REQUESTED FACEBOOK PROFILE. THIS PROCESS MAY TAKE 3 TO 7 DAYS. OUR AI IS MAPPING ALL CONNECTIONS, CONVERSATIONS AND ACCOUNT ACTIVITIES.",
+      facebookAnalysisWarning:
+        "The Facebook analysis process is irreversible and may take several days to complete.",
+      initializingFacebookAnalysis: "Initializing Facebook analysis...",
+      extractingFacebookData: "Extracting Facebook data...",
+      analyzingMessengerChats: "Analyzing Messenger conversations...",
+      mappingFacebookConnections: "Mapping Facebook connections...",
+
+      // Facebook contacts and messages
+      facebookContact1: "Mariana Costa",
+      facebookContact2: "Pedro Almeida",
+      facebookContact3: "Camila Ferreira",
+      facebookContact4: "Bruno Santos",
+      facebookContact5: "Larissa Oliveira",
+      facebookContact6: "Ricardo Lima",
+
+      facebookMessage1: "Hi darling, how was your day? 💙",
+      facebookMessage2: "I miss you... when are we going to meet? 😘",
+      facebookMessage3: "Did you see my new photo? 📸",
+      facebookMessage4: "I'm thinking about you now ❤️",
+      facebookMessage5: "Good night, my love 🌙",
+      facebookMessage6: "What about going out at the end of the weekend? 🥰",
+
+      // Facebook replies
+      facebookReply1: "Hi love! My day was great thinking about you 💙",
+      facebookReply2: "I'm also missing you... let's meet up 😘",
+      facebookReply3: "I saw it! You're still as beautiful as always 😍",
+      facebookReply4: "And I've always been thinking about you, my love ❤️",
+      facebookReply5: "Good night, princess. Dream with me 🌙",
+      facebookReply6: "Of course! I can't wait to see you 🥰",
+      facebookReply7: "You light up my life 🌟",
+      facebookReply8: "Every moment with you is special 💕",
+      facebookReply9: "You're my whole world 🌍",
+      facebookReply10: "I love you more every day 💖",
+
+      // Terminal messages
+      initializingSpymate: "initializing_spymate.exe",
+      authenticated: "authenticated",
+      establishingTunnel: "establishing_tunnel",
     },
   },
 };

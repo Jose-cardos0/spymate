@@ -35,12 +35,16 @@ function Contact() {
   };
 
   return (
-    <div className="bg-gradient-to-br from-black via-gray-900 to-black min-h-[calc(100vh-4rem)] flex flex-col items-center justify-center p-8">
-      <div className="bg-black/30 backdrop-blur-lg rounded-lg shadow-2xl p-8 max-w-md w-full border border-green-400/20">
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-green-400 mb-4">Contato</h1>
-          <p className="text-green-300">Entre em contato conosco</p>
-          <div className="w-16 h-1 bg-green-500 mx-auto rounded mt-4"></div>
+    <div className="bg-gradient-to-br from-black via-gray-900 to-black min-h-[calc(100vh-4rem)] flex flex-col items-center justify-center p-4 sm:p-6 md:p-8">
+      <div className="bg-black/30 backdrop-blur-lg rounded-lg shadow-2xl p-4 sm:p-6 md:p-8 max-w-md w-full border border-green-400/20">
+        <div className="text-center mb-6 md:mb-8">
+          <h1 className="text-2xl sm:text-3xl font-bold text-green-400 mb-4">
+            Contato
+          </h1>
+          <p className="text-green-300 text-sm sm:text-base">
+            Entre em contato conosco
+          </p>
+          <div className="w-12 sm:w-16 h-1 bg-green-500 mx-auto rounded mt-4"></div>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">

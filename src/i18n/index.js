@@ -166,6 +166,70 @@ const resources = {
       device: "Dispositivo",
       statusBypassed: "Status: CONTORNADO ✓",
       cloningProcessActive: "processo_clonagem_ativo",
+
+      // Instagram Access - New strings
+      instagramCloned: "Instagram Clonado",
+      enterInstagramUsername: "Digite o @ da vítima no Instagram",
+      instagramUsername: "Usuário do Instagram (@)",
+      enterUsername: "Ex: @vitima_insta",
+      startInstagramAnalysis: "Iniciar Análise do Instagram",
+      instagramAnalysisTitle: "ANÁLISE DO INSTAGRAM",
+      instagramAnalysisMessage:
+        "ESTAMOS ANALISANDO O PERFIL DO INSTAGRAM SOLICITADO. ESTE PROCESSO PODE LEVAR DE 3 A 7 DIAS. NOSSA IA ESTÁ MAPEANDO TODAS AS CONEXÕES, CONVERSAS E ATIVIDADES DA CONTA.",
+      profileBeingAnalyzed: "Perfil sendo analisado",
+      dataExtractionInProgress: "Extração de dados em andamento",
+      loadingProfile: "Carregando perfil...",
+      loadingMessages: "Carregando mensagens...",
+      loadingContacts: "Carregando contatos...",
+      profileAnalyzed: "Perfil analisado com sucesso!",
+      accessInstagramProfile: "Acessar Perfil",
+
+      // Instagram Interface
+      directMessages: "Mensagens Diretas",
+      online: "online",
+      typing: "digitando...",
+      realTimeMonitoring: "Monitoramento em tempo real",
+      targetLocked: "Alvo bloqueado",
+      analysisInProgress: "Análise em progresso",
+      analyzingMessages: "Analisando mensagens privadas",
+      extractingPhotos: "Extraindo fotos e vídeos",
+      mappingConnections: "Mapeando conexões",
+      viewingPrivateMessages: "Visualizando mensagens privadas",
+      profileAccessGranted: "Acesso ao perfil liberado!",
+      messagePreview1: "Oi amor, tudo bem? ❤️",
+      messagePreview2: "Saudades de você... 🥺",
+      messagePreview3: "Quando vamos nos ver? 😍",
+      messagePreview4: "Você é incrível! 💕",
+      messagePreview5: "Boa noite, meu bem 🌙",
+      messagePreview6: "Pensando em você... 💭",
+
+      // Contact names (fake)
+      contactName1: "Amanda Silva",
+      contactName2: "Lucas Santos",
+      contactName3: "Carla Oliveira",
+      contactName4: "Rafael Costa",
+      contactName5: "Juliana Lima",
+      contactName6: "Gabriel Rocha",
+
+      // Instagram status messages
+      extractingPhotos: "Extraindo fotos e stories...",
+      analyzingMessages: "Analisando mensagens privadas...",
+      mappingConnections: "Mapeando conexões sociais...",
+      profileAccessGranted: "Acesso ao perfil liberado!",
+      viewingPrivateMessages: "Visualizando mensagens privadas",
+      realTimeMonitoring: "Monitoramento em tempo real ativo",
+
+      // Romantic replies (automatic messages from target user)
+      romanticReply1: "Oi amor! Como você está? ❤️",
+      romanticReply2: "Estava pensando em você... 💕",
+      romanticReply3: "Que saudades dos seus beijos 😘",
+      romanticReply4: "Você é tudo pra mim 🥰",
+      romanticReply5: "Mal posso esperar para te ver 💖",
+      romanticReply6: "Amo você mais que tudo! 💝",
+      romanticReply7: "Você faz meu coração disparar 💓",
+      romanticReply8: "Sonhei com você ontem 😍",
+      romanticReply9: "Você é minha pessoa favorita 🌹",
+      romanticReply10: "Te amo infinitamente ♾️❤️",
     },
   },
   en: {
@@ -333,6 +397,62 @@ const resources = {
       device: "Device",
       statusBypassed: "Status: BYPASSED ✓",
       cloningProcessActive: "cloning_process_active",
+
+      // Instagram Access - New strings
+      instagramCloned: "Instagram Cloned",
+      enterInstagramUsername: "Enter victim's Instagram @",
+      instagramUsername: "Instagram Username (@)",
+      enterUsername: "Ex: @victim_insta",
+      startInstagramAnalysis: "Start Instagram Analysis",
+      instagramAnalysisTitle: "INSTAGRAM ANALYSIS",
+      instagramAnalysisMessage:
+        "WE ARE ANALYZING THE REQUESTED INSTAGRAM PROFILE. THIS PROCESS MAY TAKE 3 TO 7 DAYS. OUR AI IS MAPPING ALL CONNECTIONS, CONVERSATIONS AND ACCOUNT ACTIVITIES.",
+      profileBeingAnalyzed: "Profile being analyzed",
+      dataExtractionInProgress: "Data extraction in progress",
+      loadingProfile: "Loading profile...",
+      loadingMessages: "Loading messages...",
+      loadingContacts: "Loading contacts...",
+      profileAnalyzed: "Profile analyzed successfully!",
+      accessInstagramProfile: "Access Profile",
+
+      // Instagram Interface
+      directMessages: "Direct Messages",
+      online: "online",
+      typing: "typing...",
+      messagePreview1: "Hi love, how are you? ❤️",
+      messagePreview2: "I miss you... 🥺",
+      messagePreview3: "When will we meet? 😍",
+      messagePreview4: "You're amazing! 💕",
+      messagePreview5: "Good night, my dear 🌙",
+      messagePreview6: "Thinking of you... 💭",
+
+      // Contact names (fake)
+      contactName1: "Amanda Silva",
+      contactName2: "Lucas Santos",
+      contactName3: "Carla Oliveira",
+      contactName4: "Rafael Costa",
+      contactName5: "Juliana Lima",
+      contactName6: "Gabriel Rocha",
+
+      // Instagram status messages
+      extractingPhotos: "Extracting photos and stories...",
+      analyzingMessages: "Analyzing private messages...",
+      mappingConnections: "Mapping social connections...",
+      profileAccessGranted: "Profile access granted!",
+      viewingPrivateMessages: "Viewing private messages",
+      realTimeMonitoring: "Real-time monitoring active",
+
+      // Romantic replies (automatic messages from target user)
+      romanticReply1: "Hi love! How are you? ❤️",
+      romanticReply2: "I was thinking about you... 💕",
+      romanticReply3: "I miss your kisses so much 😘",
+      romanticReply4: "You're everything to me 🥰",
+      romanticReply5: "Can't wait to see you 💖",
+      romanticReply6: "I love you more than anything! 💝",
+      romanticReply7: "You make my heart race 💓",
+      romanticReply8: "I dreamed about you last night 😍",
+      romanticReply9: "You're my favorite person 🌹",
+      romanticReply10: "I love you infinitely ♾️❤️",
     },
   },
   es: {
@@ -499,6 +619,62 @@ const resources = {
       device: "Dispositivo",
       statusBypassed: "Estado: EVITADO ✓",
       cloningProcessActive: "proceso_clonacion_activo",
+
+      // Instagram Access - New strings
+      instagramCloned: "Instagram Clonado",
+      enterInstagramUsername: "Ingresa el @ de la víctima en Instagram",
+      instagramUsername: "Usuario de Instagram (@)",
+      enterUsername: "Ej: @victima_insta",
+      startInstagramAnalysis: "Iniciar Análisis de Instagram",
+      instagramAnalysisTitle: "ANÁLISIS DE INSTAGRAM",
+      instagramAnalysisMessage:
+        "ESTAMOS ANALIZANDO EL PERFIL DE INSTAGRAM SOLICITADO. ESTE PROCESO PUEDE TOMAR DE 3 A 7 DÍAS. NUESTRA IA MAPPE TODES LES CONNEXIONS, CONVERSACIONES Y ACTIVIDADES DE LA CUENTA.",
+      profileBeingAnalyzed: "Perfil siendo analizado",
+      dataExtractionInProgress: "Extracción de datos en progreso",
+      loadingProfile: "Cargando perfil...",
+      loadingMessages: "Cargando mensajes...",
+      loadingContacts: "Cargando contactos...",
+      profileAnalyzed: "¡Perfil analizado con éxito!",
+      accessInstagramProfile: "Acceder al Perfil",
+
+      // Instagram Interface
+      directMessages: "Mensajes Directos",
+      online: "en línea",
+      typing: "escribiendo...",
+      messagePreview1: "Hola amor, ¿cómo estás? ❤️",
+      messagePreview2: "Te extraño... 🥺",
+      messagePreview3: "¿Cuándo nos vamos a ver? 😍",
+      messagePreview4: "¡Eres increíble! 💕",
+      messagePreview5: "Buenas noches, mi amor 🌙",
+      messagePreview6: "Pensando en ti... 💭",
+
+      // Contact names (fake)
+      contactName1: "Amanda Silva",
+      contactName2: "Lucas Santos",
+      contactName3: "Carla Oliveira",
+      contactName4: "Rafael Costa",
+      contactName5: "Juliana Lima",
+      contactName6: "Gabriel Rocha",
+
+      // Instagram status messages
+      extractingPhotos: "Extrayendo fotos y stories...",
+      analyzingMessages: "Analizando mensajes privados...",
+      mappingConnections: "Mapeando conexiones sociales...",
+      profileAccessGranted: "¡Acceso al perfil concedido!",
+      viewingPrivateMessages: "Visualizando mensajes privados",
+      realTimeMonitoring: "Monitoreo en tiempo real activo",
+
+      // Romantic replies (automatic messages from target user)
+      romanticReply1: "¡Hola amor! ¿Cómo estás? ❤️",
+      romanticReply2: "Estaba pensando en ti... 💕",
+      romanticReply3: "Qué ganas de tus besos 😘",
+      romanticReply4: "Eres todo para mí 🥰",
+      romanticReply5: "No puedo esperar a verte 💖",
+      romanticReply6: "¡Te amo más que a nada! 💝",
+      romanticReply7: "Haces que mi corazón se acelere 💓",
+      romanticReply8: "Soñé contigo anoche 😍",
+      romanticReply9: "Eres mi persona favorita 🌹",
+      romanticReply10: "Te amo infinitamente ♾️❤️",
     },
   },
   fr: {
@@ -666,6 +842,62 @@ const resources = {
       device: "Appareil",
       statusBypassed: "Statut: CONTOURNÉ ✓",
       cloningProcessActive: "processus_clonage_actif",
+
+      // Instagram Access - New strings
+      instagramCloned: "Instagram Cloné",
+      enterInstagramUsername: "Entrez le @ de la victime sur Instagram",
+      instagramUsername: "Nom d'utilisateur Instagram (@)",
+      enterUsername: "Ex: @victime_insta",
+      startInstagramAnalysis: "Démarrer l'Analyse Instagram",
+      instagramAnalysisTitle: "ANALYSE INSTAGRAM",
+      instagramAnalysisMessage:
+        "NOUS ANALYSONS LE PROFIL INSTAGRAM DEMANDÉ. CE PROCESSUS PEUT PRENDRE DE 3 À 7 JOURS. NOTRE IA MAPPE TOUTES LES CONNEXIONS, CONVERSATIONS ET ACTIVITÉS DU COMPTE.",
+      profileBeingAnalyzed: "Profil en cours d'analyse",
+      dataExtractionInProgress: "Extraction de données en cours",
+      loadingProfile: "Chargement du profil...",
+      loadingMessages: "Chargement des messages...",
+      loadingContacts: "Chargement des contacts...",
+      profileAnalyzed: "Profil analysé avec succès!",
+      accessInstagramProfile: "Accéder au Profil",
+
+      // Instagram Interface
+      directMessages: "Messages Directs",
+      online: "en ligne",
+      typing: "en train d'écrire...",
+      messagePreview1: "Salut mon amour, ça va? ❤️",
+      messagePreview2: "Tu me manques... 🥺",
+      messagePreview3: "Quand va-t-on se voir? 😍",
+      messagePreview4: "Tu es incroyable! 💕",
+      messagePreview5: "Bonne nuit, mon chéri 🌙",
+      messagePreview6: "Je pense à toi... 💭",
+
+      // Contact names (fake)
+      contactName1: "Amanda Silva",
+      contactName2: "Lucas Santos",
+      contactName3: "Carla Oliveira",
+      contactName4: "Rafael Costa",
+      contactName5: "Juliana Lima",
+      contactName6: "Gabriel Rocha",
+
+      // Instagram status messages
+      extractingPhotos: "Extraction des photos et stories...",
+      analyzingMessages: "Analyse des messages privés...",
+      mappingConnections: "Mappage des connexions sociales...",
+      profileAccessGranted: "Accès au profil accordé!",
+      viewingPrivateMessages: "Visualisation des messages privés",
+      realTimeMonitoring: "Surveillance en temps réel active",
+
+      // Romantic replies (automatic messages from target user)
+      romanticReply1: "Salut mon amour! Comment ça va? ❤️",
+      romanticReply2: "Je pensais à toi... 💕",
+      romanticReply3: "Tes baisers me manquent tant 😘",
+      romanticReply4: "Tu es tout pour moi 🥰",
+      romanticReply5: "J'ai hâte de te voir 💖",
+      romanticReply6: "Je t'aime plus que tout! 💝",
+      romanticReply7: "Tu fais battre mon cœur 💓",
+      romanticReply8: "J'ai rêvé de toi hier soir 😍",
+      romanticReply9: "Tu es ma personne préférée 🌹",
+      romanticReply10: "Je t'aime infiniment ♾️❤️",
     },
   },
 };

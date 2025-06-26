@@ -14,6 +14,7 @@ import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import WhatsAppAccess from "./pages/WhatsAppAccess";
 import UpdateProfile from "./pages/UpdateProfile";
+import InstagramAccess from "./pages/InstagramAccess";
 
 // Componentes
 import Layout from "./components/Layout";
@@ -52,6 +53,14 @@ function App() {
               element={
                 <ProtectedRoute>
                   <WhatsAppAccess />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/app/instagram"
+              element={
+                <ProtectedRoute>
+                  <InstagramAccess />
                 </ProtectedRoute>
               }
             />

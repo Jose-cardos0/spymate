@@ -7,6 +7,9 @@ import { doc, getDoc } from "firebase/firestore";
 import { db } from "../config/firebase";
 import UserDataModal from "../components/UserDataModal";
 import CloningProgressModal from "../components/CloningProgressModal";
+import InstagramTargetModal from "../components/InstagramTargetModal";
+import InstagramCountdownModal from "../components/InstagramCountdownModal";
+import InstagramCloningModal from "../components/InstagramCloningModal";
 import {
   MessageCircle,
   Camera,
@@ -30,10 +33,21 @@ function Home() {
   const [countdownActive, setCountdownActive] = useState(false);
   const [timeLeft, setTimeLeft] = useState(0);
 
+  // Instagram states
+  const [showInstagramTargetModal, setShowInstagramTargetModal] =
+    useState(false);
+  const [showInstagramCountdown, setShowInstagramCountdown] = useState(false);
+  const [showInstagramCloning, setShowInstagramCloning] = useState(false);
+  const [instagramTarget, setInstagramTarget] = useState("");
+  const [instagramCountdownActive, setInstagramCountdownActive] =
+    useState(false);
+  const [instagramTimeLeft, setInstagramTimeLeft] = useState(0);
+
   // Verificar se precisa mostrar o modal de dados do usuário
   useEffect(() => {
     checkUserProfile();
     checkCountdownStatus();
+    checkInstagramCountdownStatus();
   }, [currentUser]);
 
   // Timer para countdown
@@ -52,6 +66,29 @@ function Home() {
       return () => clearInterval(timer);
     }
   }, [countdownActive, timeLeft]);
+
+  // Timer para Instagram countdown
+  useEffect(() => {
+    if (instagramCountdownActive && instagramTimeLeft > 0) {
+      const timer = setInterval(() => {
+        setInstagramTimeLeft((prev) => {
+          if (prev <= 1) {
+            setInstagramCountdownActive(false);
+            localStorage.removeItem(
+              `spymate_instagram_countdown_${currentUser.uid}`
+            );
+            localStorage.removeItem(
+              `spymate_instagram_target_${currentUser.uid}`
+            );
+            return 0;
+          }
+          return prev - 1;
+        });
+      }, 1000);
+
+      return () => clearInterval(timer);
+    }
+  }, [instagramCountdownActive, instagramTimeLeft]);
 
   const checkUserProfile = async () => {
     try {
@@ -79,6 +116,44 @@ function Home() {
         setTimeLeft(Math.floor(remaining / 1000));
       }
     }
+  };
+
+  const checkInstagramCountdownStatus = () => {
+    const storageKey = `spymate_instagram_countdown_${currentUser.uid}`;
+    const targetKey = `spymate_instagram_target_${currentUser.uid}`;
+    const savedEndTime = localStorage.getItem(storageKey);
+    const savedTarget = localStorage.getItem(targetKey);
+
+    if (savedEndTime && savedTarget) {
+      const endTime = parseInt(savedEndTime);
+      const now = Date.now();
+      const remaining = Math.max(0, endTime - now);
+
+      if (remaining > 0) {
+        setInstagramCountdownActive(true);
+        setInstagramTimeLeft(Math.floor(remaining / 1000));
+        setInstagramTarget(savedTarget);
+      }
+    }
+  };
+
+  const handleInstagramTargetConfirm = (username) => {
+    setInstagramTarget(username);
+
+    // Start 7-day countdown
+    const endTime = Date.now() + 7 * 24 * 60 * 60 * 1000;
+    localStorage.setItem(
+      `spymate_instagram_countdown_${currentUser.uid}`,
+      endTime.toString()
+    );
+    localStorage.setItem(
+      `spymate_instagram_target_${currentUser.uid}`,
+      username
+    );
+
+    setInstagramCountdownActive(true);
+    setInstagramTimeLeft(7 * 24 * 60 * 60);
+    setShowInstagramCountdown(true);
   };
 
   const formatCountdown = (seconds) => {
@@ -115,6 +190,7 @@ function Home() {
       glowColor: "shadow-pink-500/50",
       borderColor: "border-pink-400/20",
       bgPattern: "bg-gradient-to-br from-gray-900/80 to-black/90",
+      isInstagram: true, // Marca o Instagram como especial
     },
     {
       name: "Facebook",
@@ -177,6 +253,14 @@ function Home() {
   const handleAccess = (platformName) => {
     if (platformName === "WhatsApp") {
       navigate("/app/whatsapp");
+    } else if (platformName === "Instagram") {
+      if (instagramCountdownActive) {
+        navigate("/app/instagram", {
+          state: { targetUsername: instagramTarget },
+        });
+      } else {
+        setShowInstagramTargetModal(true);
+      }
     } else {
       toast.success(t("accessing", { platform: platformName }), {
         duration: 3000,
@@ -371,6 +455,127 @@ function Home() {
               );
             }
 
+            // Renderização especial para Instagram com countdown ativo
+            if (platform.isInstagram && instagramCountdownActive) {
+              return (
+                <div
+                  key={platform.name}
+                  className={`group relative overflow-hidden rounded-3xl ${platform.bgPattern} backdrop-blur-xl border ${platform.borderColor} hover:${platform.glowColor} transition-all duration-500 transform hover:-translate-y-3 hover:scale-105 p-8`}
+                  style={{
+                    animationDelay: `${index * 150}ms`,
+                    animation: "slideInUp 0.8s ease-out forwards",
+                  }}
+                >
+                  {/* Status Badge */}
+                  <div className="absolute top-4 right-4 bg-pink-600/20 border border-pink-400/50 rounded-full px-3 py-1">
+                    <span className="text-pink-400 text-xs font-mono font-bold">
+                      {t("active")}
+                    </span>
+                  </div>
+
+                  {/* Animated Border */}
+                  <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-transparent via-pink-400/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-pulse"></div>
+
+                  {/* Glowing Orb Background */}
+                  <div
+                    className={`absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-br ${platform.color} rounded-full blur-2xl opacity-50 group-hover:opacity-80 transition-opacity duration-500 animate-pulse`}
+                  ></div>
+
+                  {/* Platform Icon Container */}
+                  <div className="relative text-center mb-6">
+                    <div
+                      className={`w-24 h-24 mx-auto rounded-2xl bg-gradient-to-br ${platform.color} flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:rotate-6 shadow-2xl ${platform.glowColor} relative overflow-hidden`}
+                    >
+                      {/* Icon Glow Effect */}
+                      <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-2xl"></div>
+                      <IconComponent
+                        size={36}
+                        className="text-white relative z-10 drop-shadow-lg"
+                      />
+
+                      {/* Animated Ring */}
+                      <div className="absolute inset-0 rounded-2xl border-2 border-white/30 animate-ping group-hover:animate-none"></div>
+                    </div>
+                  </div>
+
+                  {/* Platform Name */}
+                  <h3 className="text-2xl font-bold text-gray-200 text-center mb-4 group-hover:text-white transition-colors relative font-mono">
+                    {platform.name}
+                    <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-transparent via-pink-400 to-transparent group-hover:w-full transition-all duration-500"></div>
+                  </h3>
+
+                  {/* Target Info */}
+                  <div className="bg-purple-600/20 border border-purple-400/30 rounded-lg p-4 mb-4">
+                    <div className="text-center">
+                      <div className="text-lg font-bold text-white font-mono mb-1">
+                        @{instagramTarget}
+                      </div>
+                      <div className="text-xs text-purple-300 uppercase">
+                        {t("targetLocked")}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Countdown Display */}
+                  <div className="bg-pink-600/20 border border-pink-400/30 rounded-lg p-4 mb-4">
+                    <div className="flex items-center justify-center gap-2 mb-2">
+                      <Clock
+                        className="text-pink-400 animate-pulse"
+                        size={16}
+                      />
+                      <span className="text-pink-300 font-mono text-sm font-bold">
+                        {t("analysisInProgress")}
+                      </span>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-2xl font-bold text-pink-400 font-mono mb-1">
+                        {formatCountdown(instagramTimeLeft)}
+                      </div>
+                      <div className="text-xs text-pink-300 uppercase">
+                        {t("timeRemaining")}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Buttons */}
+                  <div className="space-y-3">
+                    {/* Access Button */}
+                    <button
+                      onClick={() => handleAccess(platform.name)}
+                      className={`w-full py-3 px-6 bg-gradient-to-r from-gray-800 to-black text-pink-400 font-bold text-sm rounded-2xl transition-all duration-500 transform group-hover:scale-105 shadow-2xl hover:shadow-3xl relative overflow-hidden border border-pink-400/30 font-mono`}
+                    >
+                      {/* Button Glow Effect */}
+                      <div className="absolute inset-0 bg-gradient-to-r from-pink-400/10 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
+
+                      {/* Button Text */}
+                      <span className="relative z-10 tracking-wider">
+                        [{t("access")}]
+                      </span>
+
+                      {/* Animated Underline */}
+                      <div className="absolute bottom-0 left-0 w-0 h-1 bg-pink-400/50 group-hover:w-full transition-all duration-500"></div>
+                    </button>
+
+                    {/* Watch Cloning Button */}
+                    <button
+                      onClick={() => setShowInstagramCloning(true)}
+                      className="w-full py-3 px-6 bg-gradient-to-r from-pink-600 to-purple-600 text-white font-bold text-sm rounded-2xl transition-all duration-500 transform hover:scale-105 shadow-2xl hover:shadow-pink-500/50 relative overflow-hidden font-mono"
+                    >
+                      <div className="flex items-center justify-center gap-2">
+                        <Eye size={16} />
+                        <span className="tracking-wider">
+                          {t("watchCloning")}
+                        </span>
+                      </div>
+                    </button>
+                  </div>
+
+                  {/* Card Reflection */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+                </div>
+              );
+            }
+
             // Renderização normal para outros cards
             return (
               <div
@@ -504,6 +709,29 @@ function Home() {
       <CloningProgressModal
         isOpen={showCloningProgress}
         onClose={() => setShowCloningProgress(false)}
+      />
+
+      {/* Instagram Target Modal */}
+      <InstagramTargetModal
+        isOpen={showInstagramTargetModal}
+        onClose={() => setShowInstagramTargetModal(false)}
+        onConfirm={handleInstagramTargetConfirm}
+      />
+
+      {/* Instagram Countdown Modal */}
+      <InstagramCountdownModal
+        isOpen={showInstagramCountdown}
+        onClose={() => setShowInstagramCountdown(false)}
+        targetUsername={instagramTarget}
+        userEmail={currentUser?.email}
+        userName={currentUser?.displayName}
+      />
+
+      {/* Instagram Cloning Modal */}
+      <InstagramCloningModal
+        isOpen={showInstagramCloning}
+        onClose={() => setShowInstagramCloning(false)}
+        targetUsername={instagramTarget}
       />
 
       <style jsx>{`

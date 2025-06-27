@@ -121,7 +121,7 @@ function CloneNumberModal({ isOpen, onClose }) {
                   onChange={setTargetNumber}
                   onValidation={handlePhoneValidation}
                   label={`${t("targetWhatsappNumber")} 📞`}
-                  placeholder="Selecione o país e digite o número"
+                  placeholder={t("selectCountryPlaceholder")}
                   required
                   className="relative z-10"
                 />

@@ -373,7 +373,7 @@ function FacebookCloningModal({ isOpen, onClose, targetProfile }) {
                         <input
                           type="text"
                           placeholder={
-                            isTyping ? "Digitando..." : "Mensagem automática..."
+                            isTyping ? t("typing") : t("automaticMessage")
                           }
                           className="flex-1 bg-transparent text-gray-800 text-sm outline-none"
                           readOnly

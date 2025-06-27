@@ -363,7 +363,7 @@ function Home() {
     const paymentUrl = "https://pay.hotmart.com/example-spymate-premium";
     window.open(paymentUrl, "_blank");
 
-    toast.info(`Redirecionando para desbloqueio de ${platformName}...`, {
+    toast.info(`${t("redirectingToUnlock")} ${platformName}...`, {
       duration: 4000,
       style: {
         background: "linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)",
@@ -437,7 +437,7 @@ function Home() {
           {/* Matrix-style terminal text */}
           <div className="mt-4 md:mt-8 font-mono text-green-400 text-xs sm:text-sm opacity-60">
             <span className="animate-pulse">$</span>{" "}
-            accessing_social_networks...
+            {t("accessingSocialNetworks")}
           </div>
         </div>
 
@@ -749,7 +749,7 @@ function Home() {
                 {platform.isBlocked && (
                   <div className="absolute top-4 right-4 bg-red-600/20 border border-red-400/50 rounded-full px-3 py-1">
                     <span className="text-red-400 text-xs font-mono font-bold">
-                      BLOQUEADO
+                      {t("blocked")}
                     </span>
                   </div>
                 )}
@@ -758,7 +758,7 @@ function Home() {
                 {platform.isPaid && !platform.isBlocked && (
                   <div className="absolute top-4 right-4 bg-yellow-600/20 border border-yellow-400/50 rounded-full px-3 py-1">
                     <span className="text-yellow-400 text-xs font-mono font-bold">
-                      PREMIUM
+                      {t("premium")}
                     </span>
                   </div>
                 )}
@@ -832,7 +832,9 @@ function Home() {
                       <div className="relative z-10 flex items-center justify-center gap-2">
                         <Unlock size={20} />
                         <span className="tracking-wider">
-                          {platform.isBlocked ? "[DESBLOQUEAR]" : "[PREMIUM]"}
+                          {platform.isBlocked
+                            ? t("unlock")
+                            : t("premiumButton")}
                         </span>
                       </div>
 

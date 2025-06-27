@@ -20,7 +20,7 @@ function Login() {
     e.preventDefault();
 
     if (!email || !password) {
-      toast.error("Preencha todos os campos");
+      toast.error(t("fillAllFields"));
       return;
     }
 
@@ -31,7 +31,7 @@ function Login() {
       navigate("/app");
     } catch (error) {
       console.error(error);
-      toast.error("Erro ao fazer login. Verifique suas credenciais.");
+      toast.error(t("loginError"));
     } finally {
       setLoading(false);
     }
@@ -101,7 +101,7 @@ function Login() {
                     onChange={(e) => setEmail(e.target.value)}
                     className="w-full pl-10 pr-4 py-3
                      bg-black/20 border border-green-400/30 rounded-lg text-green-300 placeholder-green-500/50 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-400"
-                    placeholder="seu@email.com"
+                    placeholder={t("yourEmail")}
                     required
                   />
                 </div>
@@ -123,7 +123,7 @@ function Login() {
                     onChange={(e) => setPassword(e.target.value)}
                     className="w-full pl-10 pr-12 py-3 bg-black/20 border
                      border-green-400/30 rounded-lg text-green-300 placeholder-green-500/50 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-400"
-                    placeholder="••••••••"
+                    placeholder={t("passwordPlaceholder")}
                     required
                   />
                   <button
@@ -142,7 +142,7 @@ function Login() {
                 disabled={loading}
                 className="w-full py-3 bg-gradient-to-r from-green-600 to-emerald-600 text-black font-semibold rounded-lg hover:from-green-700 hover:to-emerald-700 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-green-500/25"
               >
-                {loading ? "Entrando..." : t("signIn")}
+                {loading ? t("signingIn") : t("signIn")}
               </button>
             </form>
 
@@ -162,7 +162,7 @@ function Login() {
             {/* Terminal-style footer */}
             <div className="mt-8 pt-4 border-t border-green-400/20">
               <p className="text-green-500/50 text-xs text-center font-mono">
-                &gt; access_granted: authenticating...
+                {t("accessGrantedAuthenticating")}
               </p>
             </div>
           </div>

@@ -353,7 +353,7 @@ function InstagramCloningModal({ isOpen, onClose, targetUsername }) {
                         <input
                           type="text"
                           placeholder={
-                            isTyping ? "Digitando..." : "Mensagem automática..."
+                            isTyping ? t("typing") : t("automaticMessage")
                           }
                           className="flex-1 bg-transparent text-white text-sm outline-none"
                           readOnly

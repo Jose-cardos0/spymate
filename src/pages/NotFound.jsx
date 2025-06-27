@@ -1,9 +1,12 @@
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import toast from "react-hot-toast";
 
 function NotFound() {
+  const { t } = useTranslation();
+
   const showToast = () => {
-    toast.error("Página não encontrada! 😢", {
+    toast.error(t("pageNotFoundToast"), {
       duration: 3000,
     });
   };
@@ -15,11 +18,9 @@ function NotFound() {
           <div className="text-9xl mb-4">🔍</div>
           <h1 className="text-6xl font-bold text-green-400 mb-4">404</h1>
           <h2 className="text-2xl font-semibold text-green-300 mb-4">
-            Página Não Encontrada
+            {t("pageNotFound")}
           </h2>
-          <p className="text-green-200 mb-8">
-            Oops! A página que você está procurando não existe ou foi movida.
-          </p>
+          <p className="text-green-200 mb-8">{t("pageNotFoundDescription")}</p>
         </div>
 
         <div className="space-y-4">
@@ -27,25 +28,25 @@ function NotFound() {
             to="/"
             className="block w-full bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-black font-bold py-3 px-4 rounded-lg transition-colors duration-200 shadow-md hover:shadow-green-500/25"
           >
-            🏠 Voltar para Home
+            {t("backToHome")}
           </Link>
 
           <button
             onClick={showToast}
             className="w-full bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-bold py-3 px-4 rounded-lg transition-colors duration-200 shadow-md hover:shadow-red-500/25"
           >
-            😢 Mostrar Toast de Erro
+            {t("showErrorToast")}
           </button>
         </div>
 
         <div className="mt-8 pt-6 border-t border-green-400/20">
           <p className="text-sm text-green-300">
-            Se você acredita que isso é um erro, entre em{" "}
+            {t("errorContactUs")}{" "}
             <Link
               to="/contact"
               className="text-green-400 hover:text-green-300 underline"
             >
-              contato conosco
+              {t("contactUsLink")}
             </Link>
           </p>
         </div>

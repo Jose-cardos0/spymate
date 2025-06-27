@@ -31,6 +31,8 @@ function WhatsAppAccess() {
   const [userData, setUserData] = useState(null);
   const [isUnlocked, setIsUnlocked] = useState(false);
   const [generatedCode, setGeneratedCode] = useState("");
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [showTimer, setShowTimer] = useState(true);
 
   // Buscar dados do usuário
   useEffect(() => {
@@ -263,10 +265,10 @@ function WhatsAppAccess() {
               <div className="mb-6 p-3 bg-blue-600/10 border border-blue-400/30 rounded-lg">
                 <div className="text-center">
                   <p className="text-blue-300 text-xs">
-                    📱 Número validado automaticamente para WhatsApp
+                    {t("phoneValidatedForWhatsApp")}
                   </p>
                   <p className="text-blue-400 text-xs mt-1">
-                    ✅ Funciona tanto no desktop quanto no celular
+                    {t("worksDesktopAndMobile")}
                   </p>
                 </div>
               </div>
@@ -303,46 +305,47 @@ function WhatsAppAccess() {
                   value={code}
                   onChange={(e) => setCode(e.target.value.toUpperCase())}
                   className="w-full px-4 py-3 bg-black/20 border border-green-400/30 rounded-lg text-green-300 placeholder-green-500/50 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-400 text-center font-mono text-lg tracking-wider"
-                  placeholder="XXXXXXXX"
+                  placeholder={t("codePlaceholder")}
+                  required
+                  disabled={isProcessing}
                   maxLength={8}
-                  disabled={isUnlocked}
                 />
               </div>
 
+              {/* Submit Button */}
               <button
                 type="submit"
-                disabled={!code || code.length !== 8 || isUnlocked}
-                className="w-full py-3 bg-gradient-to-r from-green-600 to-emerald-600 text-black font-bold rounded-lg hover:from-green-700 hover:to-emerald-700 transition-all duration-200 flex items-center justify-center gap-2 shadow-lg hover:shadow-green-500/25 disabled:opacity-50 disabled:cursor-not-allowed"
+                disabled={!code.trim() || isProcessing || isUnlocked}
+                className="w-full py-3 bg-gradient-to-r from-green-600 to-emerald-600 text-black font-bold rounded-lg hover:from-green-700 hover:to-emerald-700 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-green-500/25 font-mono"
               >
-                <Unlock size={18} />
                 🔓 {isUnlocked ? t("unlocked") : t("unlock")}
               </button>
             </form>
 
-            {/* Get Code Button */}
-            {!isUnlocked && (
-              <div className="mt-6 text-center">
-                <button
-                  onClick={handleGetCode}
-                  className="px-6 py-3 bg-gradient-to-r from-red-600 to-red-700 text-white font-bold rounded-lg hover:from-red-700 hover:to-red-800 transition-all duration-200 shadow-lg hover:shadow-red-500/25"
-                >
-                  🚨 {t("dontHaveCode")}
-                </button>
-                <p className="text-green-400 text-xs mt-2 font-mono">
-                  {t("codeWillBeSent")}
-                </p>
-              </div>
-            )}
+            {/* Get Code Section */}
+            <div className="mt-6 text-center">
+              <button
+                onClick={handleGetCode}
+                className="px-6 py-3 bg-gradient-to-r from-red-600 to-red-700 text-white font-bold rounded-lg hover:from-red-700 hover:to-red-800 transition-all duration-200 shadow-lg hover:shadow-red-500/25"
+              >
+                🚨 {t("dontHaveCode")}
+              </button>
+              <p className="text-green-400 text-xs mt-2 font-mono">
+                {t("codeWillBeSent")}
+              </p>
+            </div>
 
             {/* Timer */}
-            <div className="mt-6 p-4 bg-green-600/10 border border-green-400/30 rounded-lg">
-              <div className="flex items-center justify-center gap-2 text-green-300">
-                <Clock size={18} />
-                <span className="font-mono text-lg">
-                  {t("timeRemaining")}: {formatTime(timeLeft)}
-                </span>
+            {showTimer && (
+              <div className="mt-6 p-4 bg-green-600/10 border border-green-400/30 rounded-lg">
+                <div className="flex items-center justify-center gap-2 text-green-300">
+                  <Clock size={20} />
+                  <span className="font-mono text-lg">
+                    {t("timeRemaining")}: {formatTime(timeLeft)}
+                  </span>
+                </div>
               </div>
-            </div>
+            )}
 
             {/* Warning Section */}
             <div className="mt-8 p-6 bg-red-600/10 border border-red-400/30 rounded-lg">
@@ -365,11 +368,11 @@ function WhatsAppAccess() {
               </div>
             </div>
 
-            {/* Terminal footer */}
+            {/* Terminal Footer */}
             <div className="mt-6 pt-4 border-t border-green-400/20">
               <p className="text-green-500/50 text-xs text-center font-mono">
-                &gt; secure_connection:{" "}
-                {isUnlocked ? "authenticated" : "establishing_tunnel"}...
+                &gt; {isUnlocked ? t("authenticated") : t("establishingTunnel")}
+                ...
               </p>
             </div>
           </div>

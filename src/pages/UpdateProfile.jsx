@@ -96,9 +96,7 @@ function UpdateProfile() {
       !formData.notificationEmail
     ) {
       if (!phoneValidation.isValid) {
-        toast.error(
-          "Por favor, insira um número de WhatsApp válido com código do país"
-        );
+        toast.error(t("phoneValidationError"));
       } else {
         toast.error(t("fillAllFields"));
       }
@@ -256,7 +254,7 @@ function UpdateProfile() {
                 onChange={handlePhoneChange}
                 onValidation={handlePhoneValidation}
                 label={`${t("whatsappNumber")} *`}
-                placeholder="Selecione o país e digite seu número"
+                placeholder={t("selectCountryPlaceholder")}
                 required
                 className="relative z-10"
               />
@@ -289,11 +287,10 @@ function UpdateProfile() {
                   <AlertCircle className="text-blue-400 mt-0.5" size={18} />
                   <div>
                     <h3 className="text-blue-400 font-semibold text-sm mb-1">
-                      Validação Internacional Atualizada
+                      {t("internationalValidationTitle")}
                     </h3>
                     <p className="text-blue-300 text-xs">
-                      Agora seu número será validado automaticamente no formato
-                      internacional correto, garantindo compatibilidade global.
+                      {t("internationalValidationDescription")}
                     </p>
                   </div>
                 </div>

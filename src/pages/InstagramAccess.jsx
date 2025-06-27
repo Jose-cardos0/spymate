@@ -185,7 +185,7 @@ function InstagramAccess() {
     if (blurLevel > 60) return "Analisando...";
     if (blurLevel > 40) return "Processando...";
     if (blurLevel > 20) return "Quase pronto...";
-    return "Carregado!";
+    return t("loaded");
   };
 
   return (
@@ -423,7 +423,7 @@ function InstagramAccess() {
                       <div className="bg-gray-800 rounded-full px-3 sm:px-4 py-1.5 sm:py-2 flex items-center gap-2">
                         <input
                           type="text"
-                          placeholder="Mensagem..."
+                          placeholder={t("messagePlaceholder")}
                           className="flex-1 bg-transparent text-white text-xs sm:text-sm outline-none"
                           readOnly
                         />

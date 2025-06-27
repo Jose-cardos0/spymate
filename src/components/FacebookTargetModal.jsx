@@ -124,7 +124,7 @@ function FacebookTargetModal({ isOpen, onClose, onConfirm }) {
                   />
                 </div>
                 <p className="text-blue-400/60 text-xs mt-2">
-                  Ex: https://facebook.com/joao.silva ou
+                  {t("facebookExampleUrl")}
                   facebook.com/profile.php?id=123456789
                 </p>
               </div>
@@ -183,7 +183,7 @@ function FacebookTargetModal({ isOpen, onClose, onConfirm }) {
             {/* Terminal Footer */}
             <div className="mt-6 pt-4 border-t border-blue-400/20">
               <p className="text-blue-500/50 text-xs text-center font-mono">
-                &gt; facebook_analyzer_v3.2.1: ready...
+                {t("facebookAnalyzerReady")}
               </p>
             </div>
           </div>

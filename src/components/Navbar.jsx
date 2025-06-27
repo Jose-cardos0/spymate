@@ -58,7 +58,7 @@ function Navbar() {
       toast.success(t("logoutSuccess"));
       navigate("/");
     } catch (error) {
-      toast.error("Erro ao fazer logout");
+      toast.error(t("logoutError"));
     }
     setIsMenuOpen(false);
   };
@@ -161,12 +161,12 @@ function Navbar() {
                 {t("home")}
               </Link>
             </motion.div>
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            {/* <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Link to="/app/about" className={linkClass("/app/about")}>
                 <Info size={18} />
                 {t("about")}
               </Link>
-            </motion.div>
+            </motion.div> */}
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Link to="/app/contact" className={linkClass("/app/contact")}>
                 <Phone size={18} />
@@ -275,7 +275,7 @@ function Navbar() {
                     {t("home")}
                   </Link>
                 </motion.div>
-                <motion.div
+                {/* <motion.div
                   variants={menuItemVariants}
                   custom={1}
                   initial="closed"
@@ -290,7 +290,7 @@ function Navbar() {
                     <Info size={20} />
                     {t("about")}
                   </Link>
-                </motion.div>
+                </motion.div> */}
                 <motion.div
                   variants={menuItemVariants}
                   custom={2}

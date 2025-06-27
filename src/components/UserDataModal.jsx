@@ -51,9 +51,7 @@ function UserDataModal({ isOpen, onClose }) {
       !formData.notificationEmail
     ) {
       if (!phoneValidation.isValid) {
-        toast.error(
-          "Por favor, insira um número de WhatsApp válido com código do país"
-        );
+        toast.error(t("phoneValidationError"));
       } else {
         toast.error(t("fillAllFields"));
       }
@@ -179,7 +177,7 @@ function UserDataModal({ isOpen, onClose }) {
                 onChange={handlePhoneChange}
                 onValidation={handlePhoneValidation}
                 label={`${t("whatsappNumber")} *`}
-                placeholder="Selecione o país e digite seu número"
+                placeholder={t("selectCountryPlaceholder")}
                 required
                 className="relative z-10"
               />

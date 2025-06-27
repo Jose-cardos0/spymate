@@ -68,7 +68,7 @@ const javaCodeSnippets = [
     clone.synchronizeData();
     clone.enableRealTimeMonitoring();
     
-    logger.info("Clonagem concluída com sucesso!");
+    logger.info(t("cloningCompletedSuccess"));
     notificationService.sendSuccess();
 }`,
 ];

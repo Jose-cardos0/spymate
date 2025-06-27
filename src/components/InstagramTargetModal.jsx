@@ -13,7 +13,7 @@ function InstagramTargetModal({ isOpen, onClose, onConfirm }) {
     e.preventDefault();
 
     if (!username.trim()) {
-      toast.error("Digite um nome de usuário válido");
+      toast.error(t("fillAllFields"));
       return;
     }
 
@@ -21,7 +21,7 @@ function InstagramTargetModal({ isOpen, onClose, onConfirm }) {
     const cleanUsername = username.replace("@", "");
 
     if (cleanUsername.length < 3) {
-      toast.error("Nome de usuário muito curto");
+      toast.error(t("usernameTooShort"));
       return;
     }
 
@@ -129,7 +129,7 @@ function InstagramTargetModal({ isOpen, onClose, onConfirm }) {
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     className="w-full pl-8 pr-4 py-3 bg-black/30 border border-green-400/30 rounded-lg text-green-300 placeholder-green-500/50 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-400 font-mono"
-                    placeholder="vitima_insta"
+                    placeholder={t("instagramPlaceholder")}
                     disabled={isProcessing}
                     required
                   />

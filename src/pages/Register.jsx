@@ -22,17 +22,17 @@ function Register() {
     e.preventDefault();
 
     if (!name || !email || !password || !confirmPassword) {
-      toast.error("Preencha todos os campos");
+      toast.error(t("fillAllFields"));
       return;
     }
 
     if (password !== confirmPassword) {
-      toast.error("As senhas não coincidem");
+      toast.error(t("passwordsDontMatch"));
       return;
     }
 
     if (password.length < 6) {
-      toast.error("A senha deve ter pelo menos 6 caracteres");
+      toast.error(t("passwordTooShort"));
       return;
     }
 
@@ -44,11 +44,11 @@ function Register() {
     } catch (error) {
       console.error(error);
       if (error.code === "auth/email-already-in-use") {
-        toast.error("Este email já está em uso");
+        toast.error(t("emailAlreadyInUse"));
       } else if (error.code === "auth/weak-password") {
-        toast.error("A senha é muito fraca");
+        toast.error(t("passwordTooWeak"));
       } else {
-        toast.error("Erro ao criar conta. Tente novamente.");
+        toast.error(t("registerError"));
       }
     } finally {
       setLoading(false);
@@ -114,7 +114,7 @@ function Register() {
                     onChange={(e) => setName(e.target.value)}
                     className="w-full pl-10 pr-4 py-3 bg-black/20 border
                      border-green-400/30 rounded-lg text-green-300 placeholder-green-500/50 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-400"
-                    placeholder="Seu nome"
+                    placeholder={t("yourName")}
                     required
                   />
                 </div>
@@ -136,7 +136,7 @@ function Register() {
                     onChange={(e) => setEmail(e.target.value)}
                     className="w-full pl-10 pr-4 py-3 bg-black/20 border
                      border-green-400/30 rounded-lg text-green-300 placeholder-green-500/50 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-400"
-                    placeholder="seu@email.com"
+                    placeholder={t("yourEmail")}
                     required
                   />
                 </div>
@@ -158,7 +158,7 @@ function Register() {
                     onChange={(e) => setPassword(e.target.value)}
                     className="w-full pl-10 pr-12 py-3 bg-black/20
                      border border-green-400/30 rounded-lg text-green-300 placeholder-green-500/50 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-400"
-                    placeholder="••••••••"
+                    placeholder={t("passwordPlaceholder")}
                     required
                   />
                   <button
@@ -187,7 +187,7 @@ function Register() {
                     onChange={(e) => setConfirmPassword(e.target.value)}
                     className="w-full pl-10 pr-12 py-3 bg-black/20 border border-green-400/30 
                     rounded-lg text-green-300 placeholder-green-500/50 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-400"
-                    placeholder="••••••••"
+                    placeholder={t("passwordPlaceholder")}
                     required
                   />
                   <button
@@ -211,7 +211,7 @@ function Register() {
                 disabled={loading}
                 className="w-full py-3 bg-gradient-to-r from-green-600 to-emerald-600 text-black font-semibold rounded-lg hover:from-green-700 hover:to-emerald-700 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-green-500/25"
               >
-                {loading ? "Criando conta..." : t("signUp")}
+                {loading ? t("creatingAccount") : t("signUp")}
               </button>
             </form>
 

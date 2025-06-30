@@ -13,12 +13,13 @@ import InstagramCloningModal from "../components/InstagramCloningModal";
 import FacebookTargetModal from "../components/FacebookTargetModal";
 import FacebookCountdownModal from "../components/FacebookCountdownModal";
 import FacebookCloningModal from "../components/FacebookCloningModal";
+import WhatsAppFloat from "../components/WhatsAppFloat";
 import {
   MessageCircle,
   Camera,
   Facebook,
-  Twitter,
-  Youtube,
+  Heart,
+  MessageSquare,
   MapPin,
   Phone,
   MessageSquareX,
@@ -282,20 +283,20 @@ function Home() {
       isFacebook: true, // Marca o Facebook como especial
     },
     {
-      name: "X (Twitter)",
-      icon: Twitter,
-      color: "from-gray-700 to-black",
-      glowColor: "shadow-gray-500/50",
-      borderColor: "border-gray-400/20",
+      name: "Tinder",
+      icon: Heart,
+      color: "from-pink-500 to-red-500",
+      glowColor: "shadow-pink-500/50",
+      borderColor: "border-pink-400/20",
       bgPattern: "bg-gradient-to-br from-gray-900/80 to-black/90",
       isPaid: true,
     },
     {
-      name: "YouTube",
-      icon: Youtube,
-      color: "from-red-500 to-red-700",
-      glowColor: "shadow-red-500/50",
-      borderColor: "border-red-400/20",
+      name: "SMS",
+      icon: MessageSquare,
+      color: "from-blue-500 to-indigo-600",
+      glowColor: "shadow-blue-500/50",
+      borderColor: "border-blue-400/20",
       bgPattern: "bg-gradient-to-br from-gray-900/80 to-black/90",
       isPaid: true,
     },
@@ -965,6 +966,9 @@ function Home() {
         onClose={() => setShowFacebookCloning(false)}
         targetProfile={facebookTarget}
       />
+
+      {/* WhatsApp Float */}
+      <WhatsAppFloat />
 
       <style>{`
         @keyframes slideInUp {

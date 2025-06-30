@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import toast from "react-hot-toast";
+import WhatsAppFloat from "../components/WhatsAppFloat";
 
 function Contact() {
   const { t } = useTranslation();
@@ -120,6 +121,9 @@ function Contact() {
           </div>
         </div>
       </div>
+
+      {/* WhatsApp Float */}
+      <WhatsAppFloat />
     </div>
   );
 }

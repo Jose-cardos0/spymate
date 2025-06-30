@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import { AuthProvider } from "./contexts/AuthContext";
+import { useAutoLanguageDetection } from "./hooks/useAutoLanguageDetection";
 import "./i18n";
 // import "./App.css"; // Comentado para debug do particles.js
 
@@ -21,6 +22,9 @@ import Layout from "./components/Layout";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
+  // Ativar detecção automática de idioma
+  useAutoLanguageDetection();
+
   return (
     <AuthProvider>
       <Router>

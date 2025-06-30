@@ -1,0 +1,691 @@
+================================================================================
+                    GUIA COMPLETO DE DEPLOY - SPYMATE NO HOSTINGER
+================================================================================
+
+📱 PROJETO: SpyMate - Deploy em Hosting Compartilhado Hostinger
+🌐 HOSPEDAGEM: Hostinger (Shared Hosting)
+🔧 TECNOLOGIA: React.js + Vite (Build Estático)
+📅 VERSÃO: 1.0
+
+================================================================================
+                                    ÍNDICE
+================================================================================
+
+1. PRÉ-REQUISITOS
+2. PREPARAÇÃO DO PROJETO PARA PRODUÇÃO
+3. BUILD DO PROJETO
+4. CONFIGURAÇÃO DO .HTACCESS
+5. UPLOAD PARA O HOSTINGER
+6. CONFIGURAÇÃO NO PAINEL HOSTINGER
+7. CONFIGURAÇÃO DE DOMÍNIO E SUBDOMÍNIO
+8. TESTE E VERIFICAÇÃO
+9. CONFIGURAÇÕES DE PERFORMANCE
+10. TROUBLESHOOTING COMUM
+11. MANUTENÇÃO E ATUALIZAÇÕES
+12. MONITORAMENTO E ANALYTICS
+
+================================================================================
+                                1. PRÉ-REQUISITOS
+================================================================================
+
+ANTES DE COMEÇAR:
+
+✅ Conta ativa no Hostinger
+✅ Domínio configurado (ou subdomínio)
+✅ Projeto SpyMate funcionando localmente
+✅ Node.js instalado (para fazer o build)
+✅ Cliente FTP (FileZilla, WinSCP) ou acesso ao File Manager
+✅ Firebase configurado e funcionando
+
+INFORMAÇÕES NECESSÁRIAS:
+- Dados FTP do Hostinger (Host, Usuário, Senha)
+- Nome do domínio/subdomínio
+- Configurações do Firebase (production)
+
+================================================================================
+                        2. PREPARAÇÃO DO PROJETO PARA PRODUÇÃO
+================================================================================
+
+PASSO 1: CONFIGURAR VARIÁVEIS DE AMBIENTE
+
+1. Criar arquivo .env.production na raiz do projeto:
+
+```env
+# .env.production
+VITE_FIREBASE_API_KEY=SUA_API_KEY_PRODUCAO
+VITE_FIREBASE_AUTH_DOMAIN=seu-projeto.firebaseapp.com
+VITE_FIREBASE_PROJECT_ID=seu-projeto-id
+VITE_FIREBASE_STORAGE_BUCKET=seu-projeto.appspot.com
+VITE_FIREBASE_MESSAGING_SENDER_ID=123456789
+VITE_FIREBASE_APP_ID=1:123456789:web:abcdef123456
+VITE_APP_ENV=production
+VITE_APP_URL=https://seudominio.com
+```
+
+PASSO 2: ATUALIZAR CONFIGURAÇÃO DO FIREBASE
+
+Editar src/config/firebase.js para usar variáveis de ambiente:
+
+```javascript
+import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
+
+const firebaseConfig = {
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID
+};
+
+const app = initializeApp(firebaseConfig);
+export const auth = getAuth(app);
+export const db = getFirestore(app);
+export default app;
+```
+
+PASSO 3: VERIFICAR CONFIGURAÇÕES DO FIREBASE
+
+No Firebase Console:
+1. Ir em Authentication > Settings > Authorized domains
+2. Adicionar seu domínio: seudominio.com
+3. Ir em Firestore > Rules e verificar se estão corretas
+
+PASSO 4: ATUALIZAR VITE.CONFIG.JS
+
+```javascript
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+export default defineConfig({
+  plugins: [react()],
+  base: '/', // Importante para o Hostinger
+  build: {
+    outDir: 'dist',
+    sourcemap: false, // Desabilitar para produção
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom'],
+          firebase: ['firebase/app', 'firebase/auth', 'firebase/firestore']
+        }
+      }
+    }
+  }
+})
+```
+
+================================================================================
+                              3. BUILD DO PROJETO
+================================================================================
+
+EXECUTAR BUILD DE PRODUÇÃO:
+
+1. **Limpar dependências**:
+```bash
+npm cache clean --force
+rm -rf node_modules
+npm install
+```
+
+2. **Verificar se não há erros**:
+```bash
+npm run dev
+# Testar localmente uma última vez
+```
+
+3. **Criar build de produção**:
+```bash
+npm run build
+```
+
+4. **Testar build localmente** (opcional):
+```bash
+npm run preview
+```
+
+5. **Verificar pasta dist/**:
+```
+dist/
+├── index.html
+├── assets/
+│   ├── index-[hash].js
+│   ├── index-[hash].css
+│   └── outros assets...
+└── vite.svg
+```
+
+IMPORTANTE: A pasta 'dist' contém todos os arquivos que serão enviados para o servidor!
+
+================================================================================
+                         4. CONFIGURAÇÃO DO .HTACCESS
+================================================================================
+
+CRIAR ARQUIVO .htaccess na pasta dist/:
+
+```apache
+# .htaccess - Configuração para React Router no Hostinger
+
+# Habilitar rewrite engine
+RewriteEngine On
+
+# Definir diretório base (ajustar se necessário)
+# RewriteBase /
+
+# CORS Headers para Firebase
+<IfModule mod_headers.c>
+    Header always set Access-Control-Allow-Origin "*"
+    Header always set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
+    Header always set Access-Control-Allow-Headers "Content-Type, Authorization, X-Requested-With"
+</IfModule>
+
+# Configuração para React Router (SPA)
+# Redirecionar todas as rotas para index.html, exceto arquivos existentes
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-l
+RewriteRule ^.*$ /index.html [L,QSA]
+
+# Cache Control para assets estáticos
+<IfModule mod_expires.c>
+    ExpiresActive On
+    
+    # CSS e JS com hash podem ter cache longo
+    ExpiresByType text/css "access plus 1 year"
+    ExpiresByType application/javascript "access plus 1 year"
+    ExpiresByType application/x-javascript "access plus 1 year"
+    
+    # Imagens
+    ExpiresByType image/png "access plus 1 month"
+    ExpiresByType image/jpg "access plus 1 month"
+    ExpiresByType image/jpeg "access plus 1 month"
+    ExpiresByType image/gif "access plus 1 month"
+    ExpiresByType image/svg+xml "access plus 1 month"
+    ExpiresByType image/webp "access plus 1 month"
+    
+    # Fonts
+    ExpiresByType font/woff "access plus 1 year"
+    ExpiresByType font/woff2 "access plus 1 year"
+    ExpiresByType font/ttf "access plus 1 year"
+    ExpiresByType font/otf "access plus 1 year"
+    
+    # HTML (não fazer cache do index.html)
+    ExpiresByType text/html "access plus 0 seconds"
+</IfModule>
+
+# Compressão GZIP
+<IfModule mod_deflate.c>
+    # Comprimir texto, html, javascript, css, xml
+    AddOutputFilterByType DEFLATE text/plain
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/xml
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE application/xml
+    AddOutputFilterByType DEFLATE application/xhtml+xml
+    AddOutputFilterByType DEFLATE application/rss+xml
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/x-javascript
+    AddOutputFilterByType DEFLATE application/json
+</IfModule>
+
+# Segurança - Headers de segurança
+<IfModule mod_headers.c>
+    # Prevenir clickjacking
+    Header always append X-Frame-Options SAMEORIGIN
+    
+    # XSS Protection
+    Header set X-XSS-Protection "1; mode=block"
+    
+    # Content Type Options
+    Header set X-Content-Type-Options nosniff
+    
+    # Referrer Policy
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# Bloquear acesso a arquivos sensíveis
+<FilesMatch "\.(env|json|md|txt|log)$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# Redirecionamento HTTPS (descomentar se usar SSL)
+# RewriteCond %{HTTPS} off
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Remover extensões .html das URLs (opcional)
+# RewriteCond %{REQUEST_FILENAME} !-f
+# RewriteCond %{REQUEST_FILENAME} !-d
+# RewriteRule ^([^.]+)$ $1.html [NC,L]
+
+# Configurações específicas para o Hostinger
+# Aumentar limites se necessário
+php_value max_execution_time 300
+php_value memory_limit 256M
+php_value upload_max_filesize 50M
+php_value post_max_size 50M
+```
+
+IMPORTANTE: Salvar o arquivo como ".htaccess" (com ponto no início)!
+
+================================================================================
+                           5. UPLOAD PARA O HOSTINGER
+================================================================================
+
+MÉTODO 1: USANDO FILE MANAGER (Recomendado)
+
+1. **Acessar Painel Hostinger**:
+   - Login em hostinger.com
+   - Ir para "Hosting" > "Gerenciar"
+
+2. **Abrir File Manager**:
+   - No painel, clicar em "File Manager"
+   - Navegar até a pasta "public_html"
+
+3. **Limpar pasta public_html** (se necessário):
+   - Selecionar todos os arquivos antigos
+   - Deletar (manter backup se necessário)
+
+4. **Upload dos arquivos**:
+   - Selecionar todos os arquivos da pasta "dist/"
+   - Fazer upload via "Upload Files"
+   - OU comprimir dist/ em .zip e fazer upload + extract
+
+5. **Verificar estrutura**:
+```
+public_html/
+├── index.html
+├── .htaccess
+├── assets/
+│   ├── index-[hash].js
+│   ├── index-[hash].css
+│   └── outros arquivos...
+└── vite.svg
+```
+
+MÉTODO 2: USANDO FTP
+
+1. **Configurar cliente FTP**:
+   - Host: ftp.seudominio.com (ou IP fornecido)
+   - Usuário: seu_usuario_ftp
+   - Senha: sua_senha_ftp
+   - Porta: 21 (padrão)
+
+2. **Conectar e navegar**:
+   - Conectar ao servidor
+   - Navegar até /public_html/
+
+3. **Upload**:
+   - Transferir todos os arquivos de dist/ para public_html/
+   - Certificar que .htaccess foi enviado
+
+================================================================================
+                        6. CONFIGURAÇÃO NO PAINEL HOSTINGER
+================================================================================
+
+CONFIGURAÇÕES IMPORTANTES:
+
+1. **PHP Version**:
+   - Ir em "PHP Configuration"
+   - Selecionar PHP 8.1 ou superior (se disponível)
+
+2. **SSL Certificate**:
+   - Ir em "SSL"
+   - Ativar "SSL Certificate" (gratuito)
+   - Forçar HTTPS se desejado
+
+3. **Database** (não necessário para SpyMate):
+   - SpyMate usa Firebase, não precisa de banco MySQL
+
+4. **Email Accounts** (opcional):
+   - Configurar emails para domínio se necessário
+
+5. **Subdomain** (se usar):
+   - Ir em "Subdomains"
+   - Criar subdomínio (ex: app.seudominio.com)
+   - Apontar para public_html/
+
+================================================================================
+                       7. CONFIGURAÇÃO DE DOMÍNIO E SUBDOMÍNIO
+================================================================================
+
+OPÇÃO 1: DOMÍNIO PRINCIPAL
+
+Se usar domínio principal (seudominio.com):
+- Upload direto para public_html/
+- Acessar: https://seudominio.com
+
+OPÇÃO 2: SUBDOMÍNIO
+
+1. **Criar Subdomínio**:
+   - Painel Hostinger > Subdomains
+   - Nome: app (resultará em app.seudominio.com)
+   - Document Root: public_html/app
+
+2. **Upload**:
+   - Fazer upload para public_html/app/
+   - Acessar: https://app.seudominio.com
+
+OPÇÃO 3: PASTA NO DOMÍNIO PRINCIPAL
+
+1. **Criar pasta**:
+   - Dentro de public_html/, criar pasta "spymate"
+   - Upload para public_html/spymate/
+
+2. **Atualizar .htaccess**:
+```apache
+RewriteEngine On
+RewriteBase /spymate/
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^.*$ /spymate/index.html [L,QSA]
+```
+
+3. **Atualizar vite.config.js**:
+```javascript
+export default defineConfig({
+  // ...
+  base: '/spymate/',
+  // ...
+})
+```
+
+4. **Rebuild e reupload**:
+   - npm run build
+   - Upload novamente
+
+================================================================================
+                            8. TESTE E VERIFICAÇÃO
+================================================================================
+
+CHECKLIST DE TESTES:
+
+1. **Teste Básico**:
+   ✅ Site carrega: https://seudominio.com
+   ✅ CSS e JS carregam corretamente
+   ✅ Não há erros 404 no console
+
+2. **Teste de Rotas**:
+   ✅ Página inicial: /
+   ✅ Login: /login
+   ✅ Registro: /register
+   ✅ Home: /app
+   ✅ WhatsApp: /app/whatsapp
+   ✅ Instagram: /app/instagram
+   ✅ Perfil: /app/profile
+   ✅ Contato: /contact
+   ✅ Sobre: /about
+   ✅ 404: /pagina-inexistente
+
+3. **Teste Firebase**:
+   ✅ Registro de usuário funciona
+   ✅ Login funciona
+   ✅ Firestore salva dados
+   ✅ Logout funciona
+
+4. **Teste Responsivo**:
+   ✅ Desktop
+   ✅ Tablet
+   ✅ Mobile
+
+5. **Teste Performance**:
+   ✅ Velocidade de carregamento
+   ✅ Compressão GZIP ativa
+   ✅ Cache funcionando
+
+FERRAMENTAS DE TESTE:
+
+- Google PageSpeed Insights
+- GTmetrix
+- WebPageTest
+- Browser Developer Tools
+
+================================================================================
+                        9. CONFIGURAÇÕES DE PERFORMANCE
+================================================================================
+
+OTIMIZAÇÕES ADICIONAIS:
+
+1. **CDN (Opcional)**:
+   - Ativar Cloudflare no Hostinger
+   - Configurar cache rules
+   - Ativar minificação
+
+2. **Compressão de Imagens**:
+   - Usar WebP quando possível
+   - Otimizar SVGs
+   - Lazy loading se necessário
+
+3. **Preload Critical Resources**:
+```html
+<!-- Adicionar no index.html se necessário -->
+<link rel="preload" href="/assets/index-[hash].css" as="style">
+<link rel="preload" href="/assets/index-[hash].js" as="script">
+```
+
+4. **Service Worker** (Avançado):
+   - Implementar PWA se desejado
+   - Cache offline
+
+5. **Monitoring**:
+   - Google Analytics
+   - Google Search Console
+   - Firebase Analytics
+
+================================================================================
+                          10. TROUBLESHOOTING COMUM
+================================================================================
+
+PROBLEMAS FREQUENTES E SOLUÇÕES:
+
+**1. ERRO 404 EM ROTAS**
+Problema: Rotas do React retornam 404
+Solução:
+- Verificar se .htaccess existe e está correto
+- Verificar RewriteEngine On
+- Testar .htaccess em validador online
+
+**2. ARQUIVOS CSS/JS NÃO CARREGAM**
+Problema: Recursos não encontrados
+Solução:
+- Verificar caminhos no build
+- Verificar se base: '/' no vite.config.js
+- Limpar cache do navegador
+
+**3. FIREBASE NÃO CONECTA**
+Problema: Erros de CORS ou conexão
+Solução:
+- Verificar domínio autorizado no Firebase
+- Verificar variáveis de ambiente
+- Verificar configuração de produção
+
+**4. ERRO 500 INTERNAL SERVER ERROR**
+Problema: Servidor retorna erro 500
+Solução:
+- Verificar sintaxe do .htaccess
+- Verificar versão PHP
+- Verificar logs de erro no painel
+
+**5. SITE MUITO LENTO**
+Problema: Carregamento lento
+Solução:
+- Ativar compressão GZIP
+- Otimizar imagens
+- Usar CDN
+- Verificar tamanho dos chunks
+
+**6. PROBLEMAS DE CACHE**
+Problema: Atualizações não aparecem
+Solução:
+- Limpar cache do navegador
+- Versionar assets
+- Configurar headers de cache
+
+**7. MIXED CONTENT (HTTP/HTTPS)**
+Problema: Recursos HTTP em site HTTPS
+Solução:
+- Forçar HTTPS no .htaccess
+- Verificar todas as URLs
+- Usar protocol-relative URLs
+
+**8. PROBLEMAS COM WHATSAPP INTEGRATION**
+Problema: Links do WhatsApp não funcionam
+Solução:
+- Testar em mobile e desktop
+- Verificar encoding das mensagens
+- Verificar detecção de user agent
+
+================================================================================
+                        11. MANUTENÇÃO E ATUALIZAÇÕES
+================================================================================
+
+PROCESSO DE ATUALIZAÇÃO:
+
+1. **Backup**:
+   - Fazer backup dos arquivos atuais
+   - Backup do banco Firestore (se necessário)
+
+2. **Desenvolvimento Local**:
+   - Fazer alterações
+   - Testar localmente
+
+3. **Build Nova Versão**:
+   ```bash
+   npm run build
+   ```
+
+4. **Upload**:
+   - Substituir arquivos antigos
+   - Manter .htaccess se não alterado
+
+5. **Teste**:
+   - Verificar se tudo funciona
+   - Limpar cache se necessário
+
+AUTOMAÇÃO (Avançado):
+
+1. **GitHub Actions**:
+```yaml
+# .github/workflows/deploy.yml
+name: Deploy to Hostinger
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup Node
+      uses: actions/setup-node@v2
+      with:
+        node-version: '18'
+    - name: Install dependencies
+      run: npm install
+    - name: Build
+      run: npm run build
+    - name: Deploy via FTP
+      uses: SamKirkland/FTP-Deploy-Action@4.0.0
+      with:
+        server: your-ftp-server
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        local-dir: ./dist/
+        server-dir: /public_html/
+```
+
+MONITORAMENTO:
+
+1. **Logs de Erro**:
+   - Verificar regularmente logs no painel
+   - Configurar alertas se disponível
+
+2. **Performance**:
+   - Monitorar velocidade
+   - Verificar uptime
+
+3. **Segurança**:
+   - Manter SSL ativo
+   - Verificar vulnerabilidades
+
+================================================================================
+                        12. MONITORAMENTO E ANALYTICS
+================================================================================
+
+CONFIGURAR ANALYTICS:
+
+1. **Google Analytics 4**:
+```javascript
+// Adicionar no index.html
+<script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'GA_MEASUREMENT_ID');
+</script>
+```
+
+2. **Firebase Analytics**:
+```javascript
+import { getAnalytics } from "firebase/analytics";
+const analytics = getAnalytics(app);
+```
+
+3. **Search Console**:
+   - Adicionar propriedade no Google Search Console
+   - Verificar domínio
+   - Submeter sitemap (se aplicável)
+
+MÉTRICAS IMPORTANTES:
+
+- Página views
+- Bounce rate
+- Tempo na página
+- Conversões (registros)
+- Erros 404
+- Velocidade de carregamento
+
+ALERTAS:
+
+- Downtime
+- Erros 500
+- Picos de tráfego
+- Problemas de performance
+
+================================================================================
+                                  CONCLUSÃO
+================================================================================
+
+Este guia cobre todos os aspectos necessários para fazer deploy do SpyMate no
+Hostinger com sucesso. Os pontos mais importantes são:
+
+✅ Build correto do projeto
+✅ Configuração adequada do .htaccess para React Router
+✅ Configuração correta do Firebase para produção
+✅ Upload dos arquivos para local correto
+✅ Teste completo de todas as funcionalidades
+
+LEMBRETES IMPORTANTES:
+
+🔥 SEMPRE fazer backup antes de atualizações
+🔥 Testar em ambiente local antes do deploy
+🔥 Verificar domínios autorizados no Firebase
+🔥 Monitorar performance e erros
+🔥 Manter SSL ativo para segurança
+
+O SpyMate agora estará rodando perfeitamente no Hostinger com todas as
+funcionalidades preservadas, incluindo roteamento do React Router e integração
+completa com Firebase!
+
+================================================================================
+📧 SUPORTE: Para problemas específicos do Hostinger, consulte o suporte oficial
+            ou a documentação técnica da plataforma.
+
+📅 ÚLTIMA ATUALIZAÇÃO: Dezembro 2024
+🔢 VERSÃO DO GUIA: 1.0
+================================================================================ 

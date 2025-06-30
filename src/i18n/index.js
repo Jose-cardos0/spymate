@@ -363,6 +363,15 @@ const resources = {
       invalidCountryCode: "Código de país inválido",
       countryCodeTooShort: "Código muito curto (mínimo 1 dígito)",
       countryCodeTooLong: "Código muito longo (máximo 4 dígitos)",
+
+      // Language Detection
+      autoLanguageDetection: "Detecção Automática",
+      automaticDetection: "Detecção Automática",
+      manualSelection: "Seleção Manual",
+      detectedAutomatically: "Detectado automaticamente",
+      selectedManually: "Selecionado manualmente",
+      resetToAutomatic: "Voltar para detecção automática",
+      languageDetectedFrom: "Idioma detectado do navegador",
     },
   },
   en: {
@@ -719,6 +728,25 @@ const resources = {
 
       // Instagram Access
       loaded: "Loaded!",
+
+      // Phone Input - Manual Country Code
+      otherCountry: "Autre Pays",
+      manualCountryCode: "Código Manual",
+      enterCountryCode: "Digite o código do país",
+      countryCodePlaceholder: "Ex: 351 (Portugal)",
+      customCountrySelected: "Código personalizado: +",
+      invalidCountryCode: "Código de país inválido",
+      countryCodeTooShort: "Código muito curto (mínimo 1 dígito)",
+      countryCodeTooLong: "Código muito longo (máximo 4 dígitos)",
+
+      // Language Detection
+      autoLanguageDetection: "Auto Detection",
+      automaticDetection: "Automatic Detection",
+      manualSelection: "Manual Selection",
+      detectedAutomatically: "Detected automatically",
+      selectedManually: "Selected manually",
+      resetToAutomatic: "Reset to automatic detection",
+      languageDetectedFrom: "Language detected from browser",
     },
   },
   es: {
@@ -776,7 +804,7 @@ const resources = {
       dataSecurityMessage: "Tus datos están 100% seguros con nosotros",
       dataProtection: "🔒 Protección de Datos",
       dataUsageExplanation:
-        "Estos datos se utilizarán exclusivamente para una mejor experiencia del usuario y carga automática de información para el uso de la herramienta. Pueden actualizarse posteriormente.",
+        "Estos datos se utilizarán exclusivamente para una mejor experiencia del usuario y carga automática de información para l'utilización de la herramienta. Pueden actualizarse posteriormente.",
       fullName: "Nombre Completo",
       enterFullName: "Ingresa tu nombre completo",
       ageVerification: "Verificación de edad: ¿Eres mayor de 18 años?",
@@ -842,13 +870,13 @@ const resources = {
       securityProtocol: "Protocolo de Sécurité",
       encryptedConnection: "Connexion encriptada",
       anonymousAccess: "Accès anonyme",
-      noDataStored: "Ningún dato almacenado",
+      noDataStored: "Aucune donnée stockée",
 
       // Countdown Modal
       analysisInProgress: "ANÁLISIS EN PROGRESO",
       codeRequestProcessing: "Procesamiento de Solicitud de Código",
       days: "DÍAS",
-      hours: "HORAS",
+      hours: "HEURES",
       minutes: "MINS",
       seconds: "SECS",
       analysisMessage:
@@ -902,7 +930,7 @@ const resources = {
       instagramAnalysisMessage:
         "ESTAMOS ANALIZANDO EL PERFIL DE INSTAGRAM DEMANDÉ. ESTE PROCESO PUEDE TOMAR DE 3 A 7 DÍAS. NOSSA IA MAPPE TODES LES CONNEXIONS, CONVERSACIONES Y ACTIVITÉS DEL COMPTE.",
       profileBeingAnalyzed: "Perfil en cours d'analyse",
-      dataExtractionInProgress: "Extracción de datos en progreso",
+      dataExtractionInProgress: "Extracción de données en cours",
       loadingProfile: "Cargando perfil...",
       loadingMessages: "Cargando mensajes...",
       loadingContacts: "Cargando contactos...",
@@ -913,11 +941,11 @@ const resources = {
       directMessages: "Mensajes Directos",
       online: "en línea",
       typing: "escribiendo...",
-      messagePreview1: "Hola amor, ¿cómo estás? ❤️",
-      messagePreview2: "Te extraño... 🥺",
-      messagePreview3: "¿Cuándo nos vamos a ver? 😍",
-      messagePreview4: "¡Eres increíble! 💕",
-      messagePreview5: "Buenas noches, mi amor 🌙",
+      messagePreview1: "Hola amor, ça va? ❤️",
+      messagePreview2: "Tu me manques... 🥺",
+      messagePreview3: "Quand va-t-on se voir? 😍",
+      messagePreview4: "Tu es incroyable! 💕",
+      messagePreview5: "Bonne nuit, mon chéri 🌙",
       messagePreview6: "Je pensais à toi... 💭",
 
       // Contact names (fake)
@@ -929,12 +957,12 @@ const resources = {
       contactName6: "Gabriel Rocha",
 
       // Instagram status messages
-      extractingPhotos: "Extrayendo fotos y stories...",
-      analyzingMessages: "Analizando mensajes privados...",
+      extractingPhotos: "Extraction des photos et stories...",
+      analyzingMessages: "Analyse des messages privés...",
       mappingConnections: "Mappage des connexions sociales...",
       profileAccessGranted: "Accès au profil accordé!",
       viewingPrivateMessages: "Visualisation des messages privés",
-      realTimeMonitoring: "Monitoreo en temps réel active",
+      realTimeMonitoring: "Surveillance en temps réel active",
 
       // Romantic replies (automatic messages from target user)
       romanticReply1: "Salut mon amour! Comment ça va? ❤️",
@@ -1022,7 +1050,7 @@ const resources = {
       pageNotFoundToast: "¡Página no encontrada! 😢",
       pageNotFound: "Página No Encontrada",
       pageNotFoundDescription:
-        "¡Ups! La página que buscas no existe o ha sido movida.",
+        "Oups! La página que buscas no existe o ha sido movida.",
       backToHome: "🏠 Volver al Inicio",
       showErrorToast: "😢 Mostrar Toast de Error",
       errorContactUs: "Si crees que esto es un error, por favor",
@@ -1038,16 +1066,16 @@ const resources = {
 
       // Update Profile
       phoneValidationError:
-        "Por favor, ingresa un número de WhatsApp válido con código de país",
-      selectCountryPlaceholder: "Selecciona el país y escribe tu número",
-      internationalValidationTitle: "Validación Internacional Actualizada",
+        "Por favor, ingresa un número de WhatsApp válido con código pays",
+      selectCountryPlaceholder: "Selecciona el pays et entrez votre numéro",
+      internationalValidationTitle: "Validation Internationale Mise à Jour",
       internationalValidationDescription:
-        "Tu número ahora será validado automáticamente en el formato internacional correcto, garantissant une compatibilité globale.",
+        "Votre numéro sera maintenant automatiquement validé au format international correct, garantissant une compatibilité globale.",
 
       // WhatsApp Access
       codePlaceholder: "XXXXXXXX",
       notInformed: "---",
-      systemOnline: "&gt; sistema_en_línea: todos_protocoles_activos...",
+      systemOnline: "&gt; système_en_ligne: tous_protocoles_actifs...",
       phoneValidatedForWhatsApp:
         "📱 Numéro validé automatiquement pour WhatsApp",
       worksDesktopAndMobile: "✅ Fonctionne sur ordinateur et mobile",
@@ -1064,7 +1092,7 @@ const resources = {
       messagePlaceholder: "Message...",
 
       // Terminal Messages
-      accessGrantedAuthenticating: "&gt; acceso_concedido: authentification...",
+      accessGrantedAuthenticating: "&gt; accès_accordé: authentification...",
 
       // About Page
       aboutSpyMateInfo: "Informations sur SpyMate! 📱",
@@ -1084,6 +1112,15 @@ const resources = {
       invalidCountryCode: "Código de país inválido",
       countryCodeTooShort: "Código muito curto (mínimo 1 dígito)",
       countryCodeTooLong: "Código muito longo (máximo 4 dígitos)",
+
+      // Language Detection
+      autoLanguageDetection: "Détection Automatique",
+      automaticDetection: "Détection Automatique",
+      manualSelection: "Sélection Manuelle",
+      detectedAutomatically: "Détecté automatiquement",
+      selectedManually: "Sélectionné manuellement",
+      resetToAutomatic: "Retour à la détection automatique",
+      languageDetectedFrom: "Langue détectée du navigateur",
     },
   },
   fr: {
@@ -1141,7 +1178,7 @@ const resources = {
       dataSecurityMessage: "Vos données sont 100% sécurisées avec nous",
       dataProtection: "🔒 Protection des Données",
       dataUsageExplanation:
-        "Ces données seront utilisées exclusivement pour une meilleure expérience utilisateur et le chargement automatique d'informations pour l'utilisation de l'outil. Peuvent être mises à jour ultérieurement.",
+        "Ces données seront utilisés exclusivement pour une meilleure expérience utilisateur et le chargement automatique d'informations pour l'utilisation de l'outil. Peuvent être mises à jour ultérieurement.",
       fullName: "Nom Complet",
       enterFullName: "Entrez votre nom complet",
       ageVerification: "Verification d'age: Êtes-vous majeur?",
@@ -1263,12 +1300,12 @@ const resources = {
       enterInstagramUsername: "Entrez le @ de la victime sur Instagram",
       instagramUsername: "Nom d'utilisateur Instagram (@)",
       enterUsername: "Ex: @victime_insta",
-      startInstagramAnalysis: "Démarrer l'Analyse Instagram",
-      instagramAnalysisTitle: "ANALYSE INSTAGRAM",
+      startInstagramAnalysis: "Iniciar Análisis de Instagram",
+      instagramAnalysisTitle: "ANÁLISIS DE INSTAGRAM",
       instagramAnalysisMessage:
-        "NOUS ANALYSONS LE PROFIL INSTAGRAM DEMANDÉ. CE PROCESSUS PEUT PRENDRE DE 3 À 7 DÍAS. NOTRE IA MAPPE TODES LES CONNEXIONS, CONVERSATIONS ET ACTIVITÉS DU COMPTE.",
-      profileBeingAnalyzed: "Profil en cours d'analyse",
-      dataExtractionInProgress: "Extraction de données en cours",
+        "ESTAMOS ANALIZANDO EL PERFIL DE INSTAGRAM DEMANDÉ. ESTE PROCESO PUEDE TOMAR DE 3 A 7 DÍAS. NOSSA IA MAPPE TODES LES CONNEXIONS, CONVERSACIONES Y ACTIVITÉS DEL COMPTE.",
+      profileBeingAnalyzed: "Perfil en cours d'analyse",
+      dataExtractionInProgress: "Extracción de données en cours",
       loadingProfile: "Chargement du profil...",
       loadingMessages: "Chargement des messages...",
       loadingContacts: "Chargement des contacts...",
@@ -1276,7 +1313,7 @@ const resources = {
       accessInstagramProfile: "Accéder au Profil",
 
       // Instagram Interface
-      directMessages: "Messages Directs",
+      directMessages: "Mensajes Directos",
       online: "en ligne",
       typing: "en train d'écrire...",
       messagePreview1: "Salut mon amour, ça va? ❤️",
@@ -1389,10 +1426,10 @@ const resources = {
       pageNotFoundToast: "Page non trouvée! 😢",
       pageNotFound: "Page Non Trouvée",
       pageNotFoundDescription:
-        "Oups! La page que vous cherchez n'existe pas ou a été déplacée.",
+        "Oups! La página que buscas no existe o ha sido movida.",
       backToHome: "🏠 Retour à l'Accueil",
       showErrorToast: "😢 Afficher Toast d'Erreur",
-      errorContactUs: "Si vous pensez que c'est une erreur, veuillez",
+      errorContactUs: "Si crees que esto es un error, veuillez",
       contactUsLink: "nous contacter",
 
       // Home Page
@@ -1400,8 +1437,8 @@ const resources = {
       premium: "PREMIUM",
       unlock: "[DÉBLOQUER]",
       premiumButton: "[PREMIUM]",
-      accessingSocialNetworks: "accès_réseaux_sociaux...",
-      redirectingToUnlock: "Redirection pour débloquer",
+      accessingSocialNetworks: "accediendo_redes_sociais...",
+      redirectingToUnlock: "Redirigiendo para desbloquear",
 
       // Update Profile
       phoneValidationError:
@@ -1441,6 +1478,25 @@ const resources = {
 
       // Instagram Access
       loaded: "Chargé!",
+
+      // Phone Input - Manual Country Code
+      otherCountry: "Autre Pays",
+      manualCountryCode: "Código Manual",
+      enterCountryCode: "Digite o código do país",
+      countryCodePlaceholder: "Ex: 351 (Portugal)",
+      customCountrySelected: "Código personalizado: +",
+      invalidCountryCode: "Código de país inválido",
+      countryCodeTooShort: "Código muito curto (mínimo 1 dígito)",
+      countryCodeTooLong: "Código muito longo (máximo 4 dígitos)",
+
+      // Language Detection
+      autoLanguageDetection: "Detecção Automática",
+      automaticDetection: "Detecção Automática",
+      manualSelection: "Seleção Manual",
+      detectedAutomatically: "Detectado automaticamente",
+      selectedManually: "Selecionado manualmente",
+      resetToAutomatic: "Voltar para detecção automática",
+      languageDetectedFrom: "Idioma detectado do navegador",
     },
   },
 };

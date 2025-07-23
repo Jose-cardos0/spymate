@@ -3,7 +3,7 @@
 ═══════════════════════════════════════════════════════════════════════════════
 
 ✅ ARQUIVOS PRONTOS:
-   📦 spymate-hostinger-2025-06-30-1603.zip (ARQUIVO PRINCIPAL)
+   📦 spymate-hostinger-2025-07-22-2050.zip (ARQUIVO PRINCIPAL)
    📖 DEPLOY-HOSTINGER.md (GUIA COMPLETO)
    📝 INSTRUCOES-RAPIDAS-HOSTINGER.txt (ESTE ARQUIVO)
 
@@ -15,30 +15,40 @@
     • Acesse hPanel do Hostinger
     • Vá em "File Manager"
     • Navegue até public_html/
-    • Faça upload do arquivo spymate-hostinger-2025-06-30-1603.zip
+    • Faça upload do arquivo spymate-hostinger-2025-07-22-2050.zip
 
 2️⃣  EXTRAIR ARQUIVOS
-    • Clique com botão direito no arquivo .zip
+    • Clique com botão direito no arquivo zip
     • Selecione "Extract"
-    • Confirme a extração
-    • ⚠️ IMPORTANTE: Verifique se o .htaccess foi extraído!
+    • Confirme a extração na pasta public_html/
 
-3️⃣  CONFIGURAR FIREBASE
-    • Acesse console.firebase.google.com
-    • Vá em "Authentication" > "Settings" > "Authorized domains"
-    • Adicione: seudominio.com e www.seudominio.com
+3️⃣  VERIFICAR ARQUIVOS EXTRAÍDOS
+    ✅ index.html (página principal)
+    ✅ .htaccess (configuração SPA - ESSENCIAL)
+    ✅ faviconspy.png (favicon)
+    ✅ assets/ (pasta com CSS e JS)
 
-4️⃣  TESTAR FUNCIONALIDADES
-    • Acesse: seudominio.com
-    • Teste: seudominio.com/app
-    • Teste: seudominio.com/login
-    • Verifique: Login/Registro funcionam
-    • Verifique: WhatsApp Float aparece
+4️⃣  CONFIGURAR FIREBASE
+    • No Firebase Console
+    • Vá em Authentication > Settings
+    • Adicione seu domínio do Hostinger em "Authorized Domains"
 
-5️⃣  VERIFICAR PERFORMANCE
-    • Teste velocidade de carregamento
-    • Teste responsividade mobile
-    • Teste detecção automática de idioma
+5️⃣  TESTAR APLICAÇÃO
+    ✅ Site carrega
+    ✅ Login/Registro funcionam
+    ✅ Traduções funcionam (5 idiomas disponíveis)
+    ✅ WhatsApp Float aparece e está traduzido
+    ✅ Navegação SPA funciona
+
+═══════════════════════════════════════════════════════════════════════════════
+🆕 NOVIDADES DESTA BUILD (v2050):
+═══════════════════════════════════════════════════════════════════════════════
+• 🔧 WHATSAPP FLOAT TRADUZIDO! Agora responde ao idioma selecionado
+• 💬 Tooltip: "Fale conosco" → "Chat with us" / "Chatea" / "Discutez" / "Chatta"
+• 📱 Mensagem do WhatsApp traduzida em todos os 5 idiomas
+• ✨ ITALIANO completo (PT, EN, ES, FR, IT)
+• 🌍 Detecção automática de idioma pelo navegador
+• 🎯 Cards Home atualizados (Tinder + SMS)
 
 ═══════════════════════════════════════════════════════════════════════════════
 🔧 ARQUIVOS IMPORTANTES INCLUÍDOS:

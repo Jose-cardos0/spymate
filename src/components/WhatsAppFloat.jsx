@@ -1,12 +1,13 @@
 import { MessageCircle } from "lucide-react";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 function WhatsAppFloat() {
+  const { t } = useTranslation();
+
   const handleWhatsAppClick = () => {
-    const phoneNumber = "+5521989839509";
-    const message = encodeURIComponent(
-      "Olá! Vim através do SpyMate e gostaria de mais informações."
-    );
+    const phoneNumber = "+5588996854941";
+    const message = encodeURIComponent(t("whatsappFloatMessage"));
 
     // Detectar se é mobile ou desktop
     const isMobile =
@@ -75,7 +76,7 @@ function WhatsAppFloat() {
 
         {/* Hover tooltip */}
         <div className="absolute left-full ml-3 px-3 py-2 bg-gray-900 text-green-300 text-sm rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-300 whitespace-nowrap border border-green-400/20 backdrop-blur-sm">
-          <span className="font-medium">💬 Fale conosco no WhatsApp</span>
+          <span className="font-medium">{t("whatsappFloatTooltip")}</span>
           <div className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-1 w-2 h-2 bg-gray-900 rotate-45 border-l border-b border-green-400/20"></div>
         </div>
       </motion.button>

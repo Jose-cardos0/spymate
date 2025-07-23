@@ -13,6 +13,7 @@ function LanguageSelector() {
     { code: "en", name: t("english"), flag: "🇺🇸" },
     { code: "es", name: t("spanish"), flag: "🇪🇸" },
     { code: "fr", name: t("french"), flag: "🇫🇷" },
+    { code: "it", name: t("italian"), flag: "🇮🇹" },
   ];
 
   const currentLanguage = languages.find((lang) => lang.code === i18n.language);
@@ -30,6 +31,8 @@ function LanguageSelector() {
         return "Auto";
       case "fr":
         return "Auto";
+      case "it":
+        return "Auto";
       default:
         return "Auto";
     }
@@ -43,6 +46,8 @@ function LanguageSelector() {
         return "Manual";
       case "fr":
         return "Manuel";
+      case "it":
+        return "Manuale";
       default:
         return "Manual";
     }
@@ -59,6 +64,8 @@ function LanguageSelector() {
           return "Detección Automática";
         case "fr":
           return "Détection Automatique";
+        case "it":
+          return "Rilevamento Automatico";
         default:
           return "Detecção Automática";
       }

@@ -37,6 +37,7 @@ const resources = {
       english: "Inglês",
       spanish: "Espanhol",
       french: "Francês",
+      italian: "Italiano",
 
       // Home Page
       welcomeUser: "Bem-vindo, {{name}}!",
@@ -372,6 +373,11 @@ const resources = {
       selectedManually: "Selecionado manualmente",
       resetToAutomatic: "Voltar para detecção automática",
       languageDetectedFrom: "Idioma detectado do navegador",
+
+      // WhatsApp Float
+      whatsappFloatTooltip: "💬 Discutez avec nous sur WhatsApp",
+      whatsappFloatMessage:
+        "Bonjour! Je suis venu via SpyMate et j'aimerais plus d'informations.",
     },
   },
   en: {
@@ -409,6 +415,7 @@ const resources = {
       english: "English",
       spanish: "Spanish",
       french: "French",
+      italian: "Italian",
 
       // Home Page
       welcomeUser: "Welcome, {{name}}!",
@@ -747,6 +754,11 @@ const resources = {
       selectedManually: "Selected manually",
       resetToAutomatic: "Reset to automatic detection",
       languageDetectedFrom: "Language detected from browser",
+
+      // WhatsApp Float
+      whatsappFloatTooltip: "💬 Chat with us on WhatsApp",
+      whatsappFloatMessage:
+        "Hello! I came through SpyMate and would like more information.",
     },
   },
   es: {
@@ -784,6 +796,7 @@ const resources = {
       english: "Inglés",
       spanish: "Español",
       french: "Francés",
+      italian: "Italiano",
 
       // Home Page
       welcomeUser: "¡Bienvenido, {{name}}!",
@@ -960,7 +973,7 @@ const resources = {
       extractingPhotos: "Extraction des photos et stories...",
       analyzingMessages: "Analyse des messages privés...",
       mappingConnections: "Mappage des connexions sociales...",
-      profileAccessGranted: "Accès au profil accordé!",
+      profileAccessGranted: "Accesso al profil accordé!",
       viewingPrivateMessages: "Visualisation des messages privés",
       realTimeMonitoring: "Surveillance en temps réel active",
 
@@ -1066,7 +1079,7 @@ const resources = {
 
       // Update Profile
       phoneValidationError:
-        "Por favor, ingresa un número de WhatsApp válido con código pays",
+        "Por favor, ingresa un número WhatsApp válido con código pays",
       selectCountryPlaceholder: "Selecciona el pays et entrez votre numéro",
       internationalValidationTitle: "Validation Internationale Mise à Jour",
       internationalValidationDescription:
@@ -1081,7 +1094,7 @@ const resources = {
       worksDesktopAndMobile: "✅ Fonctionne sur ordinateur et mobile",
 
       // Facebook Target Modal
-      facebookExampleUrl: "Ex: https://facebook.com/juan.silva o",
+      facebookExampleUrl: "Es: https://facebook.com/juan.silva o",
       facebookAnalyzerReady: "&gt; analizador_facebook_v3.2.1: prêt...",
 
       // Instagram Target Modal
@@ -1098,7 +1111,7 @@ const resources = {
       aboutSpyMateInfo: "Informations sur SpyMate! 📱",
 
       // Navbar
-      logoutError: "Erreur de déconnexion",
+      logoutError: "Erreur de logout",
 
       // Instagram Access
       loaded: "Chargé!",
@@ -1114,13 +1127,18 @@ const resources = {
       countryCodeTooLong: "Código muito longo (máximo 4 dígitos)",
 
       // Language Detection
-      autoLanguageDetection: "Détection Automatique",
-      automaticDetection: "Détection Automatique",
-      manualSelection: "Sélection Manuelle",
-      detectedAutomatically: "Détecté automatiquement",
-      selectedManually: "Sélectionné manuellement",
-      resetToAutomatic: "Retour à la détection automatique",
-      languageDetectedFrom: "Langue détectée du navigateur",
+      autoLanguageDetection: "Detecção Automática",
+      automaticDetection: "Detecção Automática",
+      manualSelection: "Seleção Manual",
+      detectedAutomatically: "Detectado automaticamente",
+      selectedManually: "Selecionado manualmente",
+      resetToAutomatic: "Voltar para detecção automática",
+      languageDetectedFrom: "Idioma detectado do navegador",
+
+      // WhatsApp Float
+      whatsappFloatTooltip: "💬 Discutez avec nous sur WhatsApp",
+      whatsappFloatMessage:
+        "Bonjour! Je suis venu via SpyMate et j'aimerais plus d'informations.",
     },
   },
   fr: {
@@ -1158,6 +1176,7 @@ const resources = {
       english: "Anglais",
       spanish: "Espagnol",
       french: "Français",
+      italian: "Italien",
 
       // Home Page
       welcomeUser: "Bienvenue, {{name}} !",
@@ -1474,7 +1493,7 @@ const resources = {
       aboutSpyMateInfo: "Informations sur SpyMate! 📱",
 
       // Navbar
-      logoutError: "Erreur de déconnexion",
+      logoutError: "Erreur de logout",
 
       // Instagram Access
       loaded: "Chargé!",
@@ -1497,6 +1516,392 @@ const resources = {
       selectedManually: "Selecionado manualmente",
       resetToAutomatic: "Voltar para detecção automática",
       languageDetectedFrom: "Idioma detectado do navegador",
+
+      // WhatsApp Float
+      whatsappFloatTooltip: "💬 Discutez avec nous sur WhatsApp",
+      whatsappFloatMessage:
+        "Bonjour! Je suis venu via SpyMate et j'aimerais plus d'informations.",
+    },
+  },
+  it: {
+    translation: {
+      // Welcome
+      welcome: "Benvenuto",
+      start: "INIZIA",
+
+      // Navigation
+      home: "Home",
+      about: "Informazioni",
+      contact: "Contatto",
+
+      // Auth
+      login: "Accedi",
+      register: "Registrati",
+      email: "Email",
+      password: "Password",
+      confirmPassword: "Conferma Password",
+      name: "Nome",
+      signIn: "Accedi",
+      signUp: "Crea Account",
+      dontHaveAccount: "Non hai un account?",
+      alreadyHaveAccount: "Hai già un account?",
+      forgotPassword: "Password dimenticata?",
+
+      // Messages
+      loginSuccess: "Login effettuato con successo!",
+      registerSuccess: "Account creato con successo!",
+      logoutSuccess: "Logout effettuato con successo!",
+
+      // Language
+      language: "Lingua",
+      portuguese: "Portoghese",
+      english: "Inglese",
+      spanish: "Spagnolo",
+      french: "Francese",
+      italian: "Italiano",
+
+      // Home Page
+      welcomeUser: "Benvenuto, {{name}}!",
+      defaultUser: "Utente",
+      homeDescription:
+        "Accedi alle tue piattaforme preferite in modo rapido e sicuro tramite SpyMate",
+      access: "ACCEDI",
+      accessing: "Accesso a {{platform}}...",
+      platformsAvailable: "Piattaforme Disponibili",
+      securityGuaranteed: "Sicurezza Garantita",
+      availability: "Disponibilità",
+      secureAccessTitle: "🔒 Accesso Sicuro e Monitorato",
+      secureAccessDescription:
+        "Tutte le tue attività sono monitorate in modo sicuro e discreto. SpyMate garantisce completa privacy e controllo sui tuoi accessi digitali.",
+
+      // User Data Modal
+      secureDataCollection: "Raccolta Sicura dei Dati",
+      dataSecurityMessage: "I tuoi dati sono sicuri al 100% con noi",
+      dataProtection: "🔒 Protezione dei Dati",
+      dataUsageExplanation:
+        "Questi dati saranno utilizzati esclusivamente per una migliore esperienza utente e caricamento automatico delle informazioni per l'uso dello strumento. Possono essere aggiornati successivamente.",
+      fullName: "Nome Completo",
+      enterFullName: "Inserisci il tuo nome completo",
+      ageVerification: "Verifica età: Hai più di 18 anni?",
+      yes: "Sì",
+      no: "No",
+      whatsappNumber: "Numero WhatsApp",
+      enterEmail: "Inserisci la tua email",
+      notificationEmail: "Email per le notifiche",
+      fillAllFields: "Compila tutti i campi obbligatori",
+      dataSavedSuccessfully: "Dati salvati con successo!",
+      errorSavingData: "Errore nel salvataggio dei dati",
+      saveSecureData: "Salva Dati Sicuri",
+      saving: "Salvataggio",
+      dataSecurelyStored: "dati_archiviati_in_sicurezza",
+      provideSecureInformation: "Fornisci le tue informazioni in sicurezza",
+
+      // Update Profile
+      updateProfile: "Aggiorna Profilo",
+      updateProfileDescription: "Aggiorna i dati del tuo profilo",
+      profileUpdatedSuccessfully: "Profilo aggiornato con successo!",
+      errorUpdatingProfile: "Errore nell'aggiornamento del profilo",
+      errorLoadingData: "Errore nel caricamento dei dati",
+      updateData: "Aggiorna Dati",
+      updating: "Aggiornamento",
+      loading: "Caricamento",
+      back: "Indietro",
+
+      // WhatsApp Access
+      whatsappCloned: "WhatsApp Clonato",
+      addCodeToUnlock:
+        "Aggiungi il codice qui sotto per sbloccare e vedere tutti i messaggi in tempo reale.",
+      enterUnlockCode: "Inserisci il codice di sblocco",
+      unlock: "Sblocca",
+      unlocked: "Sbloccato",
+      dontHaveCode: "Non hai un codice?",
+      timeRemaining: "Tempo rimanente",
+      warning: "Attenzione",
+      alert: "Avviso",
+      accessRiskWarning:
+        "Rischio di perdita accesso! Il tuo codice di sblocco è temporaneo e scadrà presto. Se non utilizzato in tempo, perderai l'accesso al server e la tua sessione sarà terminata permanentemente.",
+      notificationWarning:
+        "Inoltre, il numero monitorato potrebbe ricevere una notifica automatica, compromettendo l'operazione.",
+      accountInfo: "Informazioni Account",
+      accessGranted: "Accesso Concesso!",
+      redirectingToClone: "Reindirizzamento alla clonazione...",
+      codeWillBeSent: "Il codice sarà inviato tramite WhatsApp",
+
+      // WhatsApp Access Code Message
+      whatsappCodeMessage:
+        "🔐 CODICE ACCESSO SPYMATE\n\n👤 {user}: {fullName}\n📱 WhatsApp: {whatsappNumber}\n🔑 Codice: {code}\n\n⚠️ Questo codice scade tra 24 ore\n🔒 Tienilo al sicuro",
+      user: "Utente",
+
+      // Clone Number Modal
+      selectTargetNumber: "Seleziona Numero Target",
+      enterNumberToClone: "Inserisci il numero WhatsApp che vuoi clonare",
+      importantNotice: "Avviso Importante",
+      cloneProcessWarning:
+        "Il processo di clonazione è irreversibile e può richiedere diversi giorni per completarsi.",
+      targetWhatsappNumber: "Numero WhatsApp Target",
+      enterCompleteNumber: "Inserisci il numero completo con prefisso",
+      processing: "Elaborazione",
+      startCloneProcess: "Avvia Processo di Clonazione",
+      securityProtocol: "Protocollo di Sicurezza",
+      encryptedConnection: "Connessione crittografata",
+      anonymousAccess: "Accesso anonimo",
+      noDataStored: "Nessun dato archiviato",
+
+      // Countdown Modal
+      analysisInProgress: "ANALISI IN CORSO",
+      codeRequestProcessing: "Elaborazione Richiesta Codice",
+      days: "GIORNI",
+      hours: "ORE",
+      minutes: "MIN",
+      seconds: "SEC",
+      analysisMessage:
+        "STIAMO ANALIZZANDO LA TUA RICHIESTA DI CODICE DI ACCESSO. TI CHIEDIAMO DI ASPETTARE, QUESTO POTREBBE RICHIEDERE IN MEDIA DA 3 A 7 GIORNI. INVIEREMO PRESTO UN CODICE COLLEGATO AL TUO NOME.",
+      linkedToName: "Collegato al nome",
+      emailNotifications: "RICEVERAI NOTIFICHE DELLA RICHIESTA NELLA TUA EMAIL",
+      patientRequest:
+        "SII PAZIENTE CON LA TUA RICHIESTA. IL SISTEMA STA ELABORANDO CON MASSIMA SICUREZZA.",
+      understood: "Capito",
+
+      // Cloning Progress - New strings
+      watchCloning: "OSSERVA CLONAZIONE",
+      cloningInProgress: "CLONAZIONE IN CORSO",
+      timeRemaining: "Tempo rimanente",
+      active: "ATTIVO",
+      cloningEngineTitle: "SPYMATE CLONING ENGINE v2.4.7",
+
+      // Cloning stages
+      initializingCloning: "Inizializzazione processo di clonazione...",
+      establishingConnection: "Stabilimento connessione sicura...",
+      bypassingSecurity: "Aggiramento protocolli di sicurezza...",
+      extractingContacts: "Estrazione lista contatti...",
+      cloningMessages: "Clonazione messaggi...",
+      downloadingMedia: "Download file multimediali...",
+      finalizingProcess: "Finalizzazione processo...",
+      cloningCompleted: "Clonazione completata con successo!",
+
+      // Terminal info
+      processStarted: "Processo avviato con successo",
+      connectionEstablished: "Connessione stabilita",
+      securityProtocolDetected: "Protocollo di sicurezza rilevato",
+      bypassExecuted: "Aggiramento eseguito con successo",
+      extractingData: "Estrazione dati",
+      operationInProgress: "Operazione in corso",
+
+      // System status
+      security: "Sicurezza",
+      speed: "Velocità",
+      target: "Target",
+      device: "Dispositivo",
+      statusBypassed: "Stato: AGGIRATO ✓",
+      cloningProcessActive: "processo_clonazione_attivo",
+
+      // Instagram Access - New strings
+      instagramCloned: "Instagram Clonato",
+      enterInstagramUsername: "Inserisci @ della vittima su Instagram",
+      instagramUsername: "Nome utente Instagram (@)",
+      enterUsername: "Es: @vittima_insta",
+      startInstagramAnalysis: "Avvia Analisi Instagram",
+      instagramAnalysisTitle: "ANALISI INSTAGRAM",
+      instagramAnalysisMessage:
+        "STIAMO ANALIZZANDO IL PROFILO INSTAGRAM RICHIESTO. QUESTO PROCESSO POTREBBE RICHIEDERE DA 3 A 7 GIORNI. LA NOSTRA IA STA MAPPANDO TUTTE LE CONNESSIONI, CONVERSAZIONI E ATTIVITÀ DELL'ACCOUNT.",
+      profileBeingAnalyzed: "Profilo in corso di analisi",
+      dataExtractionInProgress: "Estrazione dati in corso",
+      loadingProfile: "Caricamento profilo...",
+      loadingMessages: "Caricamento messaggi...",
+      loadingContacts: "Caricamento contatti...",
+      profileAnalyzed: "Profilo analizzato con successo!",
+      accessInstagramProfile: "Accedi al Profilo",
+
+      // Instagram Interface
+      directMessages: "Messaggi Diretti",
+      online: "online",
+      typing: "sta scrivendo...",
+      messagePreview1: "Ciao amore, come stai? ❤️",
+      messagePreview2: "Mi manchi... 🥺",
+      messagePreview3: "Quando ci vediamo? 😍",
+      messagePreview4: "Sei incredibile! 💕",
+      messagePreview5: "Buonanotte, amore mio 🌙",
+      messagePreview6: "Sto pensando a te... 💭",
+
+      // Contact names (fake)
+      contactName1: "Amanda Silva",
+      contactName2: "Lucas Santos",
+      contactName3: "Carla Oliveira",
+      contactName4: "Rafael Costa",
+      contactName5: "Juliana Lima",
+      contactName6: "Gabriel Rocha",
+
+      // Instagram status messages
+      extractingPhotos: "Estrazione foto e storie...",
+      analyzingMessages: "Analisi messaggi privati...",
+      mappingConnections: "Mappatura connessioni sociali...",
+      profileAccessGranted: "Accesso al profilo concesso!",
+      viewingPrivateMessages: "Visualizzazione messaggi privati",
+      realTimeMonitoring: "Monitoraggio in tempo reale attivo",
+
+      // Romantic replies (automatic messages from target user)
+      romanticReply1: "Ciao amore! Come stai? ❤️",
+      romanticReply2: "Stavo pensando a te... 💕",
+      romanticReply3: "Mi mancano così tanto i tuoi baci 😘",
+      romanticReply4: "Sei tutto per me 🥰",
+      romanticReply5: "Non vedo l'ora di vederti 💖",
+      romanticReply6: "Ti amo più di ogni cosa! 💝",
+      romanticReply7: "Fai battere il mio cuore 💓",
+      romanticReply8: "Ho sognato di te ieri notte 😍",
+      romanticReply9: "Sei la mia persona preferita 🌹",
+      romanticReply10: "Ti amo infinitamente ♾️❤️",
+
+      // Facebook Access - New strings
+      facebookCloned: "Facebook Clonato",
+      selectFacebookTarget: "Seleziona Target Facebook",
+      enterFacebookProfileUrl: "Inserisci il link del profilo della vittima",
+      facebookProfileUrl: "Link Profilo Facebook",
+      enterFacebookUrl: "Inserisci il link completo del profilo",
+      startFacebookAnalysis: "Avvia Analisi Facebook",
+      facebookAnalysisTitle: "ANALISI FACEBOOK",
+      facebookAnalysisMessage:
+        "STIAMO ANALIZZANDO IL PROFILO FACEBOOK RICHIESTO. QUESTO PROCESSO POTREBBE RICHIEDERE DA 3 A 7 GIORNI. LA NOSTRA IA STA MAPPANDO TUTTE LE CONNESSIONI, CONVERSAZIONI E ATTIVITÀ DELL'ACCOUNT.",
+      facebookAnalysisWarning:
+        "Il processo di analisi Facebook è irreversibile e potrebbe richiedere diversi giorni per completarsi.",
+      initializingFacebookAnalysis: "Inizializzazione analisi Facebook...",
+      extractingFacebookData: "Estrazione dati Facebook...",
+      analyzingMessengerChats: "Analisi conversazioni Messenger...",
+      mappingFacebookConnections: "Mappatura connessioni Facebook...",
+
+      // Facebook contacts and messages
+      facebookContact1: "Mariana Costa",
+      facebookContact2: "Pedro Almeida",
+      facebookContact3: "Camila Ferreira",
+      facebookContact4: "Bruno Santos",
+      facebookContact5: "Larissa Oliveira",
+      facebookContact6: "Ricardo Lima",
+
+      facebookMessage1: "Ciao tesoro, com'è andata la giornata? 💙",
+      facebookMessage2: "Mi manchi... quando ci vediamo? 😘",
+      facebookMessage3: "Hai visto la mia nuova foto? 📸",
+      facebookMessage4: "Sto pensando a te adesso ❤️",
+      facebookMessage5: "Buonanotte, amore mio 🌙",
+      facebookMessage6: "Che ne dici di uscire nel weekend? 🥰",
+
+      // Facebook replies
+      facebookReply1:
+        "Ciao amore! La mia giornata è stata fantastica pensando a te 💙",
+      facebookReply2: "Anche io ti manco... organizziamo qualcosa 😘",
+      facebookReply3: "L'ho vista! Sei sempre bellissima 😍",
+      facebookReply4: "E io penso sempre a te, tesoro mio ❤️",
+      facebookReply5: "Buonanotte, principessa. Sogna di me 🌙",
+      facebookReply6: "Certo! Non vedo l'ora di vederti 🥰",
+      facebookReply7: "Tu illumini la mia vita 🌟",
+      facebookReply8: "Ogni momento con te è speciale 💕",
+      facebookReply9: "Sei il mio mondo intero 🌍",
+      facebookReply10: "Ti amo sempre di più ogni giorno 💖",
+
+      // Terminal messages
+      initializingSpymate: "inizializzazione_spymate.exe",
+      authenticated: "autenticato",
+      establishingTunnel: "stabilimento_tunnel",
+
+      // Contact Page
+      contactUs: "Contattaci",
+      yourName: "Il tuo nome",
+      yourEmail: "tua@email.com",
+      yourMessage: "Il tuo messaggio...",
+      sendMessage: "Invia Messaggio 📧",
+      contactInfo: "📱 Contattaci:",
+      fillAllFieldsError: "Per favore, compila tutti i campi! ❌",
+      messageSentSuccess: "Messaggio inviato con successo! 📧",
+
+      // Register/Login Forms
+      passwordsDontMatch: "Le password non corrispondono",
+      passwordTooShort: "La password deve avere almeno 6 caratteri",
+      emailAlreadyInUse: "Questa email è già in uso",
+      passwordTooWeak: "La password è troppo debole",
+      registerError: "Errore nella creazione dell'account. Riprova.",
+      creatingAccount: "Creazione account...",
+      loginError: "Errore di login. Controlla le tue credenziali.",
+      signingIn: "Accesso in corso...",
+      passwordPlaceholder: "••••••••",
+
+      // NotFound Page
+      pageNotFoundToast: "Pagina non trovata! 😢",
+      pageNotFound: "Pagina Non Trovata",
+      pageNotFoundDescription:
+        "Oops! La pagina che stai cercando non esiste o è stata spostata.",
+      backToHome: "🏠 Torna alla Home",
+      showErrorToast: "😢 Mostra Toast di Errore",
+      errorContactUs: "Se credi che questo sia un errore, per favore",
+      contactUsLink: "contattaci",
+
+      // Home Page
+      blocked: "BLOCCATO",
+      premium: "PREMIUM",
+      unlock: "[SBLOCCA]",
+      premiumButton: "[PREMIUM]",
+      accessingSocialNetworks: "accesso_social_networks...",
+      redirectingToUnlock: "Reindirizzamento per sbloccare",
+
+      // Update Profile
+      phoneValidationError:
+        "Per favore inserisci un numero WhatsApp valido con codice paese",
+      selectCountryPlaceholder: "Seleziona il paese e inserisci il tuo numero",
+      internationalValidationTitle: "Validazione Internazionale Aggiornata",
+      internationalValidationDescription:
+        "Il tuo numero sarà ora automaticamente validato nel formato internazionale corretto, garantendo compatibilità globale.",
+
+      // WhatsApp Access
+      codePlaceholder: "XXXXXXXX",
+      notInformed: "---",
+      systemOnline: "&gt; sistema_online: tutti_protocolli_attivi...",
+      phoneValidatedForWhatsApp:
+        "📱 Numero automaticamente validato per WhatsApp",
+      worksDesktopAndMobile: "✅ Funziona su desktop e mobile",
+
+      // Facebook Target Modal
+      facebookExampleUrl: "Es: https://facebook.com/giovanni.rossi o",
+      facebookAnalyzerReady: "&gt; analizzatore_facebook_v3.2.1: pronto...",
+
+      // Instagram Target Modal
+      instagramPlaceholder: "vittima_insta",
+      usernameTooShort: "Nome utente troppo corto",
+
+      // Instagram Access
+      messagePlaceholder: "Messaggio...",
+
+      // Terminal Messages
+      accessGrantedAuthenticating: "&gt; accesso_concesso: autenticazione...",
+
+      // About Page
+      aboutSpyMateInfo: "Informazioni su SpyMate! 📱",
+
+      // Navbar
+      logoutError: "Errore di logout",
+
+      // Instagram Access
+      loaded: "Caricato!",
+
+      // Phone Input - Manual Country Code
+      otherCountry: "Altro Paese",
+      manualCountryCode: "Codice Manuale",
+      enterCountryCode: "Inserisci il codice del paese",
+      countryCodePlaceholder: "Es: 39 (Italia)",
+      customCountrySelected: "Codice personalizzato: +",
+      invalidCountryCode: "Codice paese non valido",
+      countryCodeTooShort: "Codice troppo corto (minimo 1 cifra)",
+      countryCodeTooLong: "Codice troppo lungo (massimo 4 cifre)",
+
+      // Language Detection
+      autoLanguageDetection: "Rilevamento Automatico",
+      automaticDetection: "Rilevamento Automatico",
+      manualSelection: "Selezione Manuale",
+      detectedAutomatically: "Rilevato automaticamente",
+      selectedManually: "Selezionato manualmente",
+      resetToAutomatic: "Torna al rilevamento automatico",
+      languageDetectedFrom: "Lingua rilevata dal browser",
+
+      // WhatsApp Float
+      whatsappFloatTooltip: "💬 Contattaci su WhatsApp",
+      whatsappFloatMessage:
+        "Ciao! Sono arrivato tramite SpyMate e vorrei maggiori informazioni.",
     },
   },
 };

@@ -117,7 +117,7 @@ function Contact() {
           <div className="text-center text-green-300">
             <p className="mb-2">{t("contactInfo")}</p>
             <p className="text-sm">spymateteam@gmail.com</p>
-            <p className="text-sm">+55 (21) 98983-9509</p>
+            <p className="text-sm">+55 (88) 99685-4941</p>
           </div>
         </div>
       </div>

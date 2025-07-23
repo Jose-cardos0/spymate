@@ -44,10 +44,17 @@ const LANGUAGE_MAPPING = {
   "fr-CA": "fr",
   "fr-BE": "fr",
   "fr-CH": "fr",
+
+  // Italiano
+  it: "it",
+  "it-IT": "it",
+  "it-CH": "it",
+  "it-SM": "it",
+  "it-VA": "it",
 };
 
 // Idiomas suportados pela aplicação
-const SUPPORTED_LANGUAGES = ["pt", "en", "es", "fr"];
+const SUPPORTED_LANGUAGES = ["pt", "en", "es", "fr", "it"];
 const DEFAULT_LANGUAGE = "pt";
 const STORAGE_KEY = "spymate_user_language_preference";
 

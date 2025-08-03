@@ -16,13 +16,29 @@ function InstagramCountdownModal({
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    if (isOpen && targetUsername) {
-      // Set 7 days countdown
-      const endTime = Date.now() + 7 * 24 * 60 * 60 * 1000;
-      const remaining = endTime - Date.now();
-      setTimeLeft(Math.floor(remaining / 1000));
+    if (isOpen) {
+      // Iniciar countdown de 10 segundos
+      const endTime = Date.now() + 10 * 1000;
+      const totalSeconds = 10;
+
+      setTimeLeft(totalSeconds);
+
+      const timer = setInterval(() => {
+        const now = Date.now();
+        const remaining = Math.max(0, endTime - now);
+        const secondsLeft = Math.floor(remaining / 1000);
+
+        setTimeLeft(secondsLeft);
+
+        if (secondsLeft <= 0) {
+          clearInterval(timer);
+          onClose();
+        }
+      }, 1000);
+
+      return () => clearInterval(timer);
     }
-  }, [isOpen, targetUsername]);
+  }, [isOpen, onClose]);
 
   useEffect(() => {
     if (timeLeft > 0) {

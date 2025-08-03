@@ -3,7 +3,7 @@
 ═══════════════════════════════════════════════════════════════════════════════
 
 ✅ ARQUIVOS PRONTOS:
-   📦 spymate-hostinger-2025-07-22-2050.zip (ARQUIVO PRINCIPAL)
+   📦 spymate-hostinger-2025-08-03-1332.zip (ARQUIVO PRINCIPAL)
    📖 DEPLOY-HOSTINGER.md (GUIA COMPLETO)
    📝 INSTRUCOES-RAPIDAS-HOSTINGER.txt (ESTE ARQUIVO)
 
@@ -15,7 +15,7 @@
     • Acesse hPanel do Hostinger
     • Vá em "File Manager"
     • Navegue até public_html/
-    • Faça upload do arquivo spymate-hostinger-2025-07-22-2050.zip
+    • Faça upload do arquivo spymate-hostinger-2025-08-03-1332.zip
 
 2️⃣  EXTRAIR ARQUIVOS
     • Clique com botão direito no arquivo zip
@@ -38,14 +38,26 @@
     ✅ Login/Registro funcionam
     ✅ Traduções funcionam (5 idiomas disponíveis)
     ✅ WhatsApp Float aparece e está traduzido
+    ✅ WhatsApp Clonado vai direto para seleção do número
+    ✅ Análises Instagram/Facebook em 10 segundos (corrigido)
+    ✅ Relatórios aparecem em tempo real (corrigido)
+    ✅ PDF real em vez de JSON (corrigido)
+    ✅ Design melhorado dos relatórios (corrigido)
+    ✅ Múltiplas barras de progresso simultâneas funcionam
     ✅ Navegação SPA funciona
 
 ═══════════════════════════════════════════════════════════════════════════════
-🆕 NOVIDADES DESTA BUILD (v2050):
+🆕 NOVIDADES DESTA BUILD (v1332) - CORREÇÕES DE UX:
 ═══════════════════════════════════════════════════════════════════════════════
-• 🔧 WHATSAPP FLOAT TRADUZIDO! Agora responde ao idioma selecionado
-• 💬 Tooltip: "Fale conosco" → "Chat with us" / "Chatea" / "Discutez" / "Chatta"
-• 📱 Mensagem do WhatsApp traduzida em todos os 5 idiomas
+• ⚡ ANÁLISES RÁPIDAS CORRIGIDAS! Instagram e Facebook em exatos 10 segundos
+• 🎯 RELATÓRIOS EM TEMPO REAL! Aparecem imediatamente após análise terminar
+• 📊 PDF REAL IMPLEMENTADO! Relatórios em HTML bonito em vez de JSON
+• 🎨 DESIGN MELHORADO! Relatórios com estatísticas visuais e botão de remoção
+• 🔄 ATUALIZAÇÃO AUTOMÁTICA! Relatórios aparecem sem precisar atualizar página
+• 📱 BOTÃO DE REMOÇÃO! Usuário pode remover relatórios antigos
+• 🎯 ESTATÍSTICAS VISUAIS! Cards com números e métricas por plataforma
+• 💬 Tooltip WhatsApp traduzido em todos os 5 idiomas
+• 📱 Mensagem do WhatsApp traduzida automaticamente
 • ✨ ITALIANO completo (PT, EN, ES, FR, IT)
 • 🌍 Detecção automática de idioma pelo navegador
 • 🎯 Cards Home atualizados (Tinder + SMS)

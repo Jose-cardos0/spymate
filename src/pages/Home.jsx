@@ -14,6 +14,7 @@ import FacebookTargetModal from "../components/FacebookTargetModal";
 import FacebookCountdownModal from "../components/FacebookCountdownModal";
 import FacebookCloningModal from "../components/FacebookCloningModal";
 import WhatsAppFloat from "../components/WhatsAppFloat";
+import ReportDownloadButton from "../components/ReportDownloadButton";
 import {
   MessageCircle,
   Camera,
@@ -27,6 +28,7 @@ import {
   Eye,
   Unlock,
 } from "lucide-react";
+import { motion } from "framer-motion";
 
 function Home() {
   const { currentUser } = useAuth();
@@ -36,6 +38,8 @@ function Home() {
   const [showCloningProgress, setShowCloningProgress] = useState(false);
   const [countdownActive, setCountdownActive] = useState(false);
   const [timeLeft, setTimeLeft] = useState(0);
+  const [userData, setUserData] = useState(null);
+  const [readyReports, setReadyReports] = useState({});
 
   // Instagram states
   const [showInstagramTargetModal, setShowInstagramTargetModal] =
@@ -56,12 +60,35 @@ function Home() {
   const [facebookCountdownActive, setFacebookCountdownActive] = useState(false);
   const [facebookTimeLeft, setFacebookTimeLeft] = useState(0);
 
+  // Progress states for real-time analysis
+  const [analysisProgress, setAnalysisProgress] = useState({
+    isActive: false,
+    platform: "",
+    progress: 0,
+    currentStep: "",
+    steps: [],
+  });
+
+  // Individual analysis progress for each platform
+  const [individualAnalyses, setIndividualAnalyses] = useState({
+    WhatsApp: { isActive: false, progress: 0, currentStep: "" },
+    Instagram: { isActive: false, progress: 0, currentStep: "" },
+    Facebook: { isActive: false, progress: 0, currentStep: "" },
+    Tinder: { isActive: false, progress: 0, currentStep: "" },
+    SMS: { isActive: false, progress: 0, currentStep: "" },
+    Localização: { isActive: false, progress: 0, currentStep: "" },
+    Ligações: { isActive: false, progress: 0, currentStep: "" },
+    "Conversas Apagadas": { isActive: false, progress: 0, currentStep: "" },
+  });
+
   // Verificar se precisa mostrar o modal de dados do usuário
   useEffect(() => {
     checkUserProfile();
     checkCountdownStatus();
     checkInstagramCountdownStatus();
     checkFacebookCountdownStatus();
+    checkActiveAnalysis(); // Verificar análises ativas
+    checkReadyReports(); // Verificar relatórios prontos
   }, [currentUser]);
 
   // Timer para countdown
@@ -71,6 +98,15 @@ function Home() {
         setTimeLeft((prev) => {
           if (prev <= 1) {
             setCountdownActive(false);
+            // Mostrar toast de conclusão
+            toast.success(`${t("analysisComplete")} WhatsApp`, {
+              duration: 5000,
+              style: {
+                background: "linear-gradient(135deg, #10b981 0%, #059669 100%)",
+                color: "#fff",
+                fontWeight: "600",
+              },
+            });
             return 0;
           }
           return prev - 1;
@@ -94,6 +130,34 @@ function Home() {
             localStorage.removeItem(
               `spymate_instagram_target_${currentUser.uid}`
             );
+            // Salvar relatório pronto
+            const reportData = {
+              target: instagramTarget,
+              completedAt: new Date().toISOString(),
+              type: "instagram",
+            };
+            localStorage.setItem(
+              `spymate_instagram_report_${currentUser.uid}`,
+              JSON.stringify(reportData)
+            );
+            // Atualizar relatórios em tempo real
+            setReadyReports((prev) => ({
+              ...prev,
+              Instagram: reportData,
+            }));
+            // Mostrar toast de conclusão
+            toast.success(
+              `${t("analysisComplete")} Instagram - ${t("reportReady")}`,
+              {
+                duration: 5000,
+                style: {
+                  background:
+                    "linear-gradient(135deg, #10b981 0%, #059669 100%)",
+                  color: "#fff",
+                  fontWeight: "600",
+                },
+              }
+            );
             return 0;
           }
           return prev - 1;
@@ -102,7 +166,13 @@ function Home() {
 
       return () => clearInterval(timer);
     }
-  }, [instagramCountdownActive, instagramTimeLeft]);
+  }, [
+    instagramCountdownActive,
+    instagramTimeLeft,
+    instagramTarget,
+    currentUser.uid,
+    t,
+  ]);
 
   // Timer para Facebook countdown
   useEffect(() => {
@@ -118,6 +188,35 @@ function Home() {
               `spymate_facebook_target_${currentUser.uid}`
             );
             localStorage.removeItem(`spymate_facebook_url_${currentUser.uid}`);
+            // Salvar relatório pronto
+            const reportData = {
+              target: facebookTarget,
+              profileUrl: facebookProfileUrl,
+              completedAt: new Date().toISOString(),
+              type: "facebook",
+            };
+            localStorage.setItem(
+              `spymate_facebook_report_${currentUser.uid}`,
+              JSON.stringify(reportData)
+            );
+            // Atualizar relatórios em tempo real
+            setReadyReports((prev) => ({
+              ...prev,
+              Facebook: reportData,
+            }));
+            // Mostrar toast de conclusão
+            toast.success(
+              `${t("analysisComplete")} Facebook - ${t("reportReady")}`,
+              {
+                duration: 5000,
+                style: {
+                  background:
+                    "linear-gradient(135deg, #10b981 0%, #059669 100%)",
+                  color: "#fff",
+                  fontWeight: "600",
+                },
+              }
+            );
             return 0;
           }
           return prev - 1;
@@ -126,7 +225,143 @@ function Home() {
 
       return () => clearInterval(timer);
     }
-  }, [facebookCountdownActive, facebookTimeLeft]);
+  }, [
+    facebookCountdownActive,
+    facebookTimeLeft,
+    facebookTarget,
+    facebookProfileUrl,
+    currentUser.uid,
+    t,
+  ]);
+
+  // Verificar análises ativas e iniciar progresso contínuo
+  useEffect(() => {
+    // Gerenciar análise do WhatsApp
+    if (countdownActive) {
+      startIndividualAnalysis("WhatsApp", timeLeft);
+    } else {
+      stopIndividualAnalysis("WhatsApp");
+    }
+
+    // Gerenciar análise do Instagram
+    if (instagramCountdownActive) {
+      startIndividualAnalysis("Instagram", instagramTimeLeft);
+    } else {
+      stopIndividualAnalysis("Instagram");
+    }
+
+    // Gerenciar análise do Facebook
+    if (facebookCountdownActive) {
+      startIndividualAnalysis("Facebook", facebookTimeLeft);
+    } else {
+      stopIndividualAnalysis("Facebook");
+    }
+  }, [
+    countdownActive,
+    instagramCountdownActive,
+    facebookCountdownActive,
+    timeLeft,
+    instagramTimeLeft,
+    facebookTimeLeft,
+  ]);
+
+  // Cleanup function para limpar todos os intervalos quando o componente for desmontado
+  useEffect(() => {
+    return () => {
+      if (window.analysisIntervals) {
+        Object.values(window.analysisIntervals).forEach((interval) => {
+          clearInterval(interval);
+        });
+        window.analysisIntervals = {};
+      }
+    };
+  }, []);
+
+  // Função para verificar análises ativas
+  const checkActiveAnalysis = () => {
+    // Esta função será chamada para verificar se há análises ativas
+    // O useEffect acima já cuida da lógica
+  };
+
+  // Função para iniciar análise individual
+  const startIndividualAnalysis = (platformName, timeLeft) => {
+    const totalTime = platformName === "WhatsApp" ? 7 * 24 * 60 * 60 : 10; // 7 dias para WhatsApp, 10 segundos para outros
+    const elapsedTime = totalTime - timeLeft;
+    const progress = Math.min((elapsedTime / totalTime) * 100, 99.9);
+
+    const steps = getAnalysisSteps(platformName);
+    const stepIndex = Math.floor((progress / 100) * (steps.length - 1));
+    const currentStep = steps[stepIndex] || steps[0];
+
+    setIndividualAnalyses((prev) => ({
+      ...prev,
+      [platformName]: {
+        isActive: true,
+        progress: progress,
+        currentStep: currentStep,
+      },
+    }));
+
+    // Atualizar progresso continuamente para esta plataforma específica
+    const progressInterval = setInterval(() => {
+      setIndividualAnalyses((prev) => {
+        if (!prev[platformName]?.isActive) {
+          clearInterval(progressInterval);
+          return prev;
+        }
+
+        // Calcular novo progresso baseado no tempo restante atual
+        let currentTimeLeft = 0;
+        if (platformName === "WhatsApp") {
+          currentTimeLeft = timeLeft;
+        } else if (platformName === "Instagram") {
+          currentTimeLeft = instagramTimeLeft;
+        } else if (platformName === "Facebook") {
+          currentTimeLeft = facebookTimeLeft;
+        }
+
+        const newElapsedTime = totalTime - currentTimeLeft;
+        const newProgress = Math.min((newElapsedTime / totalTime) * 100, 99.9);
+        const newStepIndex = Math.floor(
+          (newProgress / 100) * (steps.length - 1)
+        );
+        const newCurrentStep = steps[newStepIndex] || steps[0];
+
+        return {
+          ...prev,
+          [platformName]: {
+            isActive: true,
+            progress: newProgress,
+            currentStep: newCurrentStep,
+          },
+        };
+      });
+    }, 3000); // Atualizar a cada 3 segundos
+
+    // Armazenar o intervalo para limpeza posterior
+    if (!window.analysisIntervals) {
+      window.analysisIntervals = {};
+    }
+    window.analysisIntervals[platformName] = progressInterval;
+  };
+
+  // Função para parar análise individual
+  const stopIndividualAnalysis = (platformName) => {
+    // Limpar o intervalo se existir
+    if (window.analysisIntervals && window.analysisIntervals[platformName]) {
+      clearInterval(window.analysisIntervals[platformName]);
+      delete window.analysisIntervals[platformName];
+    }
+
+    setIndividualAnalyses((prev) => ({
+      ...prev,
+      [platformName]: {
+        isActive: false,
+        progress: 0,
+        currentStep: "",
+      },
+    }));
+  };
 
   const checkUserProfile = async () => {
     try {
@@ -134,6 +369,9 @@ function Home() {
       if (!userDoc.exists()) {
         // Se não existem dados do usuário, mostrar modal
         setShowUserDataModal(true);
+      } else {
+        // Salvar dados do usuário no estado
+        setUserData(userDoc.data());
       }
     } catch (error) {
       console.error("Error checking user profile:", error);
@@ -217,8 +455,8 @@ function Home() {
   const handleInstagramTargetConfirm = (username) => {
     setInstagramTarget(username);
 
-    // Start 7-day countdown
-    const endTime = Date.now() + 7 * 24 * 60 * 60 * 1000;
+    // Start 10-second countdown
+    const endTime = Date.now() + 10 * 1000;
     localStorage.setItem(
       `spymate_instagram_countdown_${currentUser.uid}`,
       endTime.toString()
@@ -229,7 +467,7 @@ function Home() {
     );
 
     setInstagramCountdownActive(true);
-    setInstagramTimeLeft(7 * 24 * 60 * 60);
+    setInstagramTimeLeft(10);
     setShowInstagramCountdown(true);
   };
 
@@ -237,8 +475,8 @@ function Home() {
     setFacebookTarget(profileName);
     setFacebookProfileUrl(profileUrl);
 
-    // Start 7-day countdown
-    const endTime = Date.now() + 7 * 24 * 60 * 60 * 1000;
+    // Start 10-second countdown
+    const endTime = Date.now() + 10 * 1000;
     localStorage.setItem(
       `spymate_facebook_countdown_${currentUser.uid}`,
       endTime.toString()
@@ -250,7 +488,7 @@ function Home() {
     localStorage.setItem(`spymate_facebook_url_${currentUser.uid}`, profileUrl);
 
     setFacebookCountdownActive(true);
-    setFacebookTimeLeft(7 * 24 * 60 * 60);
+    setFacebookTimeLeft(10);
     setShowFacebookCountdown(true);
   };
 
@@ -332,7 +570,20 @@ function Home() {
 
   const handleAccess = (platformName) => {
     if (platformName === "WhatsApp") {
-      navigate("/app/whatsapp");
+      // Se já há uma análise ativa, não iniciar nova
+      if (
+        !countdownActive &&
+        !instagramCountdownActive &&
+        !facebookCountdownActive
+      ) {
+        startAnalysis(platformName);
+        setTimeout(() => {
+          navigate("/app/whatsapp");
+        }, 2000); // Aguardar 2 segundos para mostrar o progresso
+      } else {
+        // Se há análise ativa, navegar direto
+        navigate("/app/whatsapp");
+      }
     } else if (platformName === "Instagram") {
       if (instagramCountdownActive) {
         navigate("/app/instagram", {
@@ -348,6 +599,15 @@ function Home() {
         setShowFacebookTargetModal(true);
       }
     } else {
+      // Para outros aplicativos, só iniciar análise se não houver análises contínuas
+      if (
+        !countdownActive &&
+        !instagramCountdownActive &&
+        !facebookCountdownActive
+      ) {
+        startAnalysis(platformName);
+      }
+
       toast.success(t("accessing", { platform: platformName }), {
         duration: 3000,
         style: {
@@ -372,6 +632,185 @@ function Home() {
         fontWeight: "600",
       },
     });
+  };
+
+  // Função para iniciar análise em tempo real (apenas para aplicativos sem countdown)
+  const startAnalysis = (platformName) => {
+    // Só iniciar análise se não houver análises contínuas ativas
+    if (
+      countdownActive ||
+      instagramCountdownActive ||
+      facebookCountdownActive
+    ) {
+      return; // Não iniciar análise temporária se há análise contínua
+    }
+
+    const steps = getAnalysisSteps(platformName);
+
+    // Iniciar análise individual
+    setIndividualAnalyses((prev) => ({
+      ...prev,
+      [platformName]: {
+        isActive: true,
+        progress: 0,
+        currentStep: steps[0],
+      },
+    }));
+
+    // Simular progresso em tempo real
+    let currentProgress = 0;
+    let stepIndex = 0;
+
+    const progressInterval = setInterval(() => {
+      currentProgress += Math.random() * 3 + 1; // Progresso aleatório entre 1-4%
+
+      if (currentProgress >= 100) {
+        currentProgress = 100;
+        clearInterval(progressInterval);
+
+        // Finalizar análise
+        setTimeout(() => {
+          setIndividualAnalyses((prev) => ({
+            ...prev,
+            [platformName]: {
+              isActive: false,
+              progress: 0,
+              currentStep: "",
+            },
+          }));
+
+          // Mostrar toast de sucesso
+          toast.success(`${t("analysisComplete")} ${platformName}`, {
+            duration: 3000,
+            style: {
+              background: "linear-gradient(135deg, #10b981 0%, #059669 100%)",
+              color: "#fff",
+              fontWeight: "600",
+            },
+          });
+        }, 1000);
+      }
+
+      // Atualizar step baseado no progresso
+      const newStepIndex = Math.floor((currentProgress / 100) * steps.length);
+      if (newStepIndex !== stepIndex && newStepIndex < steps.length) {
+        stepIndex = newStepIndex;
+      }
+
+      setIndividualAnalyses((prev) => ({
+        ...prev,
+        [platformName]: {
+          isActive: true,
+          progress: currentProgress,
+          currentStep: steps[stepIndex] || steps[steps.length - 1],
+        },
+      }));
+    }, 200); // Atualizar a cada 200ms para parecer real-time
+  };
+
+  // Função para obter os passos de análise baseado na plataforma
+  const getAnalysisSteps = (platformName) => {
+    const stepsMap = {
+      WhatsApp: [
+        t("analysisStepConnecting"),
+        t("analysisStepAuthenticating"),
+        t("analysisStepEstablishing"),
+        t("analysisStepAnalyzing"),
+        t("analysisStepProcessing"),
+        t("analysisStepSynchronizing"),
+        t("analysisStepCompleted"),
+      ],
+      Instagram: [
+        t("analysisStepConnecting"),
+        t("analysisStepAuthenticating"),
+        t("analysisStepEstablishing"),
+        t("analysisStepAnalyzing"),
+        t("analysisStepProcessing"),
+        t("analysisStepSynchronizing"),
+        t("analysisStepCompleted"),
+      ],
+      Facebook: [
+        t("analysisStepConnecting"),
+        t("analysisStepAuthenticating"),
+        t("analysisStepEstablishing"),
+        t("analysisStepAnalyzing"),
+        t("analysisStepProcessing"),
+        t("analysisStepSynchronizing"),
+        t("analysisStepCompleted"),
+      ],
+      Tinder: [
+        t("analysisStepConnecting"),
+        t("analysisStepAuthenticating"),
+        t("analysisStepEstablishing"),
+        t("analysisStepAnalyzing"),
+        t("analysisStepProcessing"),
+        t("analysisStepSynchronizing"),
+        t("analysisStepCompleted"),
+      ],
+      SMS: [
+        t("analysisStepConnecting"),
+        t("analysisStepAuthenticating"),
+        t("analysisStepEstablishing"),
+        t("analysisStepAnalyzing"),
+        t("analysisStepProcessing"),
+        t("analysisStepSynchronizing"),
+        t("analysisStepCompleted"),
+      ],
+      Localização: [
+        t("analysisStepConnecting"),
+        t("analysisStepAuthenticating"),
+        t("analysisStepEstablishing"),
+        t("analysisStepAnalyzing"),
+        t("analysisStepProcessing"),
+        t("analysisStepSynchronizing"),
+        t("analysisStepCompleted"),
+      ],
+      Ligações: [
+        t("analysisStepConnecting"),
+        t("analysisStepAuthenticating"),
+        t("analysisStepEstablishing"),
+        t("analysisStepAnalyzing"),
+        t("analysisStepProcessing"),
+        t("analysisStepSynchronizing"),
+        t("analysisStepCompleted"),
+      ],
+      "Conversas Apagadas": [
+        t("analysisStepConnecting"),
+        t("analysisStepAuthenticating"),
+        t("analysisStepEstablishing"),
+        t("analysisStepAnalyzing"),
+        t("analysisStepProcessing"),
+        t("analysisStepSynchronizing"),
+        t("analysisStepCompleted"),
+      ],
+    };
+
+    return stepsMap[platformName] || stepsMap["WhatsApp"];
+  };
+
+  // Função para verificar relatórios prontos
+  const checkReadyReports = () => {
+    if (!currentUser) return;
+
+    const reports = {};
+
+    // Verificar relatório do Instagram
+    const instagramReport = localStorage.getItem(
+      `spymate_instagram_report_${currentUser.uid}`
+    );
+    if (instagramReport) {
+      reports.Instagram = JSON.parse(instagramReport);
+    }
+
+    // Verificar relatório do Facebook
+    const facebookReport = localStorage.getItem(
+      `spymate_facebook_report_${currentUser.uid}`
+    );
+    if (facebookReport) {
+      reports.Facebook = JSON.parse(facebookReport);
+    }
+
+    setReadyReports(reports);
   };
 
   return (
@@ -439,6 +878,137 @@ function Home() {
           <div className="mt-4 md:mt-8 font-mono text-green-400 text-xs sm:text-sm opacity-60">
             <span className="animate-pulse">$</span>{" "}
             {t("accessingSocialNetworks")}
+          </div>
+
+          {/* Individual Analysis Progress Bars */}
+          <div className="mt-4 md:mt-6 max-w-4xl mx-auto space-y-3">
+            {Object.entries(individualAnalyses).map(
+              ([platformName, analysis]) => {
+                if (!analysis.isActive) return null;
+
+                return (
+                  <motion.div
+                    key={platformName}
+                    className="bg-black/30 backdrop-blur-lg rounded-lg p-4 border border-green-400/20"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                  >
+                    {/* Progress Header */}
+                    <div className="flex items-center justify-between mb-3">
+                      <div className="flex items-center gap-3">
+                        {/* Spinner */}
+                        <div className="w-4 h-4 border-2 border-green-400/30 border-t-green-400 rounded-full animate-spin"></div>
+                        <span className="text-green-400 font-mono text-sm font-bold">
+                          📱 {platformName}
+                        </span>
+                        <span className="text-green-300 font-mono text-xs animate-pulse">
+                          loading...
+                        </span>
+                      </div>
+                      <span className="text-green-300 font-mono text-sm">
+                        {Math.round(analysis.progress)}%
+                      </span>
+                    </div>
+
+                    {/* Progress Bar */}
+                    <div className="w-full bg-gray-800/50 rounded-full h-2 mb-3 overflow-hidden">
+                      <motion.div
+                        className="h-full bg-gradient-to-r from-green-500 via-emerald-500 to-lime-500 rounded-full relative"
+                        initial={{ width: 0 }}
+                        animate={{ width: `${analysis.progress}%` }}
+                        transition={{ duration: 0.3, ease: "easeOut" }}
+                      >
+                        {/* Shimmer effect */}
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-pulse"></div>
+                      </motion.div>
+                    </div>
+
+                    {/* Current Step */}
+                    <div className="text-center">
+                      <p className="text-green-300 font-mono text-xs sm:text-sm">
+                        {analysis.currentStep}
+                      </p>
+                    </div>
+                  </motion.div>
+                );
+              }
+            )}
+
+            {/* Relatórios Prontos */}
+            {Object.entries(readyReports).map(([platformName, report]) => (
+              <motion.div
+                key={`report-${platformName}`}
+                className="bg-gradient-to-r from-green-600/20 to-emerald-600/20 backdrop-blur-lg rounded-xl p-6 border border-green-400/40 shadow-2xl"
+                initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
+              >
+                {/* Report Header */}
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center gap-3">
+                    <div className="w-6 h-6 bg-green-400 rounded-full animate-pulse flex items-center justify-center">
+                      <span className="text-black text-xs font-bold">✓</span>
+                    </div>
+                    <div>
+                      <h3 className="text-green-400 font-mono text-lg font-bold">
+                        {platformName} - {t("analysisComplete")}
+                      </h3>
+                      <p className="text-green-300 font-mono text-sm">
+                        {t("targetAnalyzed")}:{" "}
+                        <span className="text-white font-bold">
+                          {report.target}
+                        </span>
+                      </p>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-green-300 font-mono text-xs">
+                      {new Date(report.completedAt).toLocaleString("pt-BR")}
+                    </div>
+                    <div className="text-green-400 font-mono text-xs font-bold">
+                      {t("reportReadyForDownload")}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Download Button */}
+                <div className="flex gap-3">
+                  <ReportDownloadButton
+                    platform={platformName}
+                    target={report.target}
+                    userData={userData}
+                  />
+                  <button
+                    onClick={() => {
+                      // Remover relatório
+                      localStorage.removeItem(
+                        `spymate_${platformName.toLowerCase()}_report_${
+                          currentUser.uid
+                        }`
+                      );
+                      setReadyReports((prev) => {
+                        const newReports = { ...prev };
+                        delete newReports[platformName];
+                        return newReports;
+                      });
+                      toast.success(`${t("reportRemoved")} ${platformName}`, {
+                        duration: 3000,
+                        style: {
+                          background:
+                            "linear-gradient(135deg, #ef4444 0%, #dc2626 100%)",
+                          color: "#fff",
+                          fontWeight: "600",
+                        },
+                      });
+                    }}
+                    className="px-4 py-3 bg-red-600/20 hover:bg-red-600/30 text-red-400 font-bold text-sm rounded-lg transition-all duration-300 border border-red-400/30 hover:border-red-400/50"
+                  >
+                    🗑️
+                  </button>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
 

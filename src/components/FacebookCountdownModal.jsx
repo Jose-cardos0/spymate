@@ -12,17 +12,32 @@ function FacebookCountdownModal({
   userName,
 }) {
   const { t } = useTranslation();
-  const [timeLeft, setTimeLeft] = useState(7 * 24 * 60 * 60); // 7 days in seconds
+  const [timeLeft, setTimeLeft] = useState(10); // 10 segundos
 
   useEffect(() => {
-    if (isOpen && timeLeft > 0) {
+    if (isOpen) {
+      // Iniciar countdown de 10 segundos
+      const endTime = Date.now() + 10 * 1000;
+      const totalSeconds = 10;
+
+      setTimeLeft(totalSeconds);
+
       const timer = setInterval(() => {
-        setTimeLeft((prev) => Math.max(0, prev - 1));
+        const now = Date.now();
+        const remaining = Math.max(0, endTime - now);
+        const secondsLeft = Math.floor(remaining / 1000);
+
+        setTimeLeft(secondsLeft);
+
+        if (secondsLeft <= 0) {
+          clearInterval(timer);
+          onClose();
+        }
       }, 1000);
 
       return () => clearInterval(timer);
     }
-  }, [isOpen, timeLeft]);
+  }, [isOpen, onClose]);
 
   const formatTime = (seconds) => {
     const days = Math.floor(seconds / (24 * 60 * 60));

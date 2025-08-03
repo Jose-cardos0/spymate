@@ -88,8 +88,11 @@ const resources = {
 
       // WhatsApp Access
       whatsappCloned: "WhatsApp Clonado",
-      addCodeToUnlock:
-        "Adicione o código abaixo para desbloquear e ver todas as mensagens em tempo real.",
+      addCodeToUnlock: "Adicione o código para desbloquear",
+      readyToClone: "Pronto para clonar",
+      initializingCloning: "Inicializando clonagem...",
+      preparingCloneInterface: "Preparando interface de clonagem",
+      startCloningProcess: "Iniciar Processo de Clonagem",
       enterUnlockCode: "Digite o código de desbloqueio",
       unlock: "Desbloquear",
       unlocked: "Desbloqueado",
@@ -378,6 +381,108 @@ const resources = {
       whatsappFloatTooltip: "💬 Discutez avec nous sur WhatsApp",
       whatsappFloatMessage:
         "Bonjour! Je suis venu via SpyMate et j'aimerais plus d'informations.",
+
+      // Analysis Progress
+      analysisInProgress: "ANÁLISE EM ANDAMENTO",
+      analysisComplete: "Análise concluída para",
+
+      // Novas traduções para relatórios
+      reportReady: "Relatório pronto!",
+      downloadReport: "Baixar Relatório",
+      generatingReport: "Gerando relatório...",
+      reportDownloaded: "Relatório baixado!",
+      targetAnalyzed: "Alvo analisado",
+      reportReadyForDownload: "Relatório pronto para download",
+      reportRemoved: "Relatório removido",
+      reportOpenedInNewTab: "Relatório aberto em nova aba",
+      postsLiked: "Posts Curtidos",
+      profileVisits: "Visitas a Perfis",
+
+      // Traduções do relatório
+      reportTitle: "Relatório de Análise",
+      generatedAt: "Gerado em",
+      user: "Usuário",
+      target: "Alvo",
+      analysisSummary: "Resumo da Análise",
+      activityChart: "Gráfico de Atividade (Últimos 7 Dias)",
+      mostVisitedProfiles: "Perfis Mais Visitados",
+      profileVisitsDescription:
+        "O alvo acessou e interagiu frequentemente com os seguintes perfis:",
+      visits: "Visitas",
+      lastVisit: "Última visita",
+      detectedAlerts: "Alertas Detectados",
+      highlightedConversations: "Conversas Destaque",
+      interactions: "Interações",
+      activities: "Atividades",
+      matches: "Matches",
+      locations: "Localizações",
+      calls: "Chamadas",
+      recoveredMessages: "Mensagens Recuperadas",
+      messagesPerDay: "Mensagens por dia",
+      postsPerDay: "Posts curtidos por dia",
+      dataGeneratedBy: "Dados gerados automaticamente pelo SpyMate",
+      reportGeneratedAt: "Relatório gerado em",
+      print: "Imprimir",
+      downloadPDF: "Baixar PDF",
+
+      // Traduções dos alertas
+      critical: "Crítica",
+      high: "Alta",
+      medium: "Media",
+      low: "Baja",
+      example: "Ejemplo",
+
+      // Traduções das interações
+      frequency: "Frecuencia",
+      lastActivity: "Última actividad",
+      preview: "Vista previa",
+      workingOnImages:
+        "estamos trabajando para enviar imágenes de la conversación en png para ti",
+      loading: "cargando...",
+
+      // Traduções dos labels dos cards
+      postsLiked: "Posts Curtidos",
+      storiesAnalyzed: "Stories Analisados",
+      profileVisits: "Visitas a Perfis",
+      following: "Seguindo",
+      peakActivity: "Atividade de Pico",
+      messagesAnalyzed: "Mensagens Analisadas",
+      deletedMessages: "Mensagens Apagadas",
+      uniqueContacts: "Contatos Únicos",
+      friends: "Amigos",
+      groups: "Grupos",
+      matches: "Matches",
+      conversations: "Conversas",
+      superLikes: "Super Likes",
+      locationsTracked: "Locais Rastreados",
+      frequentPlaces: "Lugares Frequentes",
+      unusualPlaces: "Lugares Suspeitos",
+      peakMovement: "Movimento de Pico",
+      callsAnalyzed: "Chamadas Analisadas",
+      incomingCalls: "Chamadas Recebidas",
+      outgoingCalls: "Chamadas Realizadas",
+      deletedConversations: "Conversas Apagadas",
+      recoveredMessages: "Mensagens Recuperadas",
+      peakDeletion: "Pico de Exclusão",
+
+      // Traduções dos exemplos de alertas
+      alertExampleParty: "Festa incredibile ieri!",
+      alertExampleBar: "Andiamo al bar?",
+      alertExampleTravel: "Preparando il viaggio",
+      alertExampleHotel: "Ok, ho prenotato l'hotel",
+      alertExampleHeart: "Buonanotte ❤️ a domani",
+      alertExampleMeeting: "Il nostro incontro è stato fantastico",
+      alertExampleDinner: "Cena romantica",
+      alertExampleCinema: "Andiamo al cinema?",
+
+      // Traduções dos passos de análise
+      analysisStepConnecting: "🔍 Connessione ai server...",
+      analysisStepAuthenticating: "📱 Autenticazione credenziali...",
+      analysisStepEstablishing: "🔐 Stabilimento connessione sicura...",
+      analysisStepAnalyzing: "📊 Analisi dati...",
+      analysisStepProcessing: "📈 Elaborazione informazioni...",
+      analysisStepSynchronizing: "🔄 Sincronizzazione dati...",
+      analysisStepCompleted: "✅ Analisi completata con successo!",
     },
   },
   en: {
@@ -468,6 +573,10 @@ const resources = {
       whatsappCloned: "WhatsApp Cloned",
       addCodeToUnlock:
         "Add the code below to unlock and see all messages in real time.",
+      readyToClone: "Ready to clone",
+      initializingCloning: "Initializing cloning...",
+      preparingCloneInterface: "Preparing clone interface",
+      startCloningProcess: "Start Cloning Process",
       enterUnlockCode: "Enter unlock code",
       unlock: "Unlock",
       unlocked: "Unlocked",
@@ -759,6 +868,108 @@ const resources = {
       whatsappFloatTooltip: "💬 Chat with us on WhatsApp",
       whatsappFloatMessage:
         "Hello! I came through SpyMate and would like more information.",
+
+      // Analysis Progress
+      analysisInProgress: "ANALYSIS IN PROGRESS",
+      analysisComplete: "Analysis complete for",
+
+      // Novas traduções para relatórios
+      reportReady: "Report ready!",
+      downloadReport: "Download Report",
+      generatingReport: "Generating report...",
+      reportDownloaded: "Report downloaded!",
+      targetAnalyzed: "Target analyzed",
+      reportReadyForDownload: "Report ready for download",
+      reportRemoved: "Report removed",
+      reportOpenedInNewTab: "Report opened in new tab",
+      postsLiked: "Posts Liked",
+      profileVisits: "Profile Visits",
+
+      // Traduções do relatório
+      reportTitle: "Analysis Report",
+      generatedAt: "Generated at",
+      user: "User",
+      target: "Target",
+      analysisSummary: "Analysis Summary",
+      activityChart: "Activity Chart (Last 7 Days)",
+      mostVisitedProfiles: "Most Visited Profiles",
+      profileVisitsDescription:
+        "The target accessed and frequently interacted with the following profiles:",
+      visits: "Visits",
+      lastVisit: "Last visit",
+      detectedAlerts: "Detected Alerts",
+      highlightedConversations: "Highlighted Conversations",
+      interactions: "Interactions",
+      activities: "Activities",
+      matches: "Matches",
+      locations: "Locations",
+      calls: "Calls",
+      recoveredMessages: "Recovered Messages",
+      messagesPerDay: "Messages per day",
+      postsPerDay: "Posts liked per day",
+      dataGeneratedBy: "Data automatically generated by SpyMate",
+      reportGeneratedAt: "Report generated at",
+      print: "Print",
+      downloadPDF: "Download PDF",
+
+      // Traduções dos alertas
+      critical: "Critical",
+      high: "High",
+      medium: "Medium",
+      low: "Low",
+      example: "Example",
+
+      // Traduções das interações
+      frequency: "Frequency",
+      lastActivity: "Last activity",
+      preview: "Preview",
+      workingOnImages:
+        "we are working to send conversation images in png for you",
+      loading: "loading...",
+
+      // Traduções dos labels dos cards
+      postsLiked: "Posts Liked",
+      storiesAnalyzed: "Stories Analyzed",
+      profileVisits: "Profile Visits",
+      following: "Following",
+      peakActivity: "Peak Activity",
+      messagesAnalyzed: "Messages Analyzed",
+      deletedMessages: "Deleted Messages",
+      uniqueContacts: "Unique Contacts",
+      friends: "Friends",
+      groups: "Groups",
+      matches: "Matches",
+      conversations: "Conversations",
+      superLikes: "Super Likes",
+      locationsTracked: "Locations Tracked",
+      frequentPlaces: "Frequent Places",
+      unusualPlaces: "Unusual Places",
+      peakMovement: "Peak Movement",
+      callsAnalyzed: "Calls Analyzed",
+      incomingCalls: "Incoming Calls",
+      outgoingCalls: "Outgoing Calls",
+      deletedConversations: "Deleted Conversations",
+      recoveredMessages: "Recovered Messages",
+      peakDeletion: "Peak Deletion",
+
+      // Traduções dos exemplos de alertas
+      alertExampleParty: "Amazing party yesterday!",
+      alertExampleBar: "Let's go to the bar?",
+      alertExampleTravel: "Preparing the trip",
+      alertExampleHotel: "Ok, I booked the hotel",
+      alertExampleHeart: "Good night ❤️ see you tomorrow",
+      alertExampleMeeting: "Our meeting was great",
+      alertExampleDinner: "Romantic dinner",
+      alertExampleCinema: "Let's go to the movies?",
+
+      // Traduções dos passos de análise
+      analysisStepConnecting: "🔍 Connecting to servers...",
+      analysisStepAuthenticating: "📱 Authenticating credentials...",
+      analysisStepEstablishing: "🔐 Establishing secure connection...",
+      analysisStepAnalyzing: "📊 Analyzing data...",
+      analysisStepProcessing: "📈 Processing information...",
+      analysisStepSynchronizing: "🔄 Synchronizing data...",
+      analysisStepCompleted: "✅ Analysis completed successfully!",
     },
   },
   es: {
@@ -849,6 +1060,10 @@ const resources = {
       whatsappCloned: "WhatsApp Clonado",
       addCodeToUnlock:
         "Agrega el código a continuación para desbloquear y ver todos los mensajes en tiempo real.",
+      readyToClone: "Listo para clonar",
+      initializingCloning: "Inicializando clonagem...",
+      preparingCloneInterface: "Preparando interface de clonagem",
+      startCloningProcess: "Iniciar Proceso de Clonación",
       enterUnlockCode: "Ingresa el código de desbloqueo",
       unlock: "Desbloquear",
       unlocked: "Desbloqueado",
@@ -1074,390 +1289,8 @@ const resources = {
       premium: "PREMIUM",
       unlock: "[DÉBLOQUER]",
       premiumButton: "[PREMIUM]",
-      accessingSocialNetworks: "accediendo_redes_sociais...",
-      redirectingToUnlock: "Redirigiendo para desbloquear",
-
-      // Update Profile
-      phoneValidationError:
-        "Por favor, ingresa un número WhatsApp válido con código pays",
-      selectCountryPlaceholder: "Selecciona el pays et entrez votre numéro",
-      internationalValidationTitle: "Validation Internationale Mise à Jour",
-      internationalValidationDescription:
-        "Votre numéro sera maintenant automatiquement validé au format international correct, garantissant une compatibilité globale.",
-
-      // WhatsApp Access
-      codePlaceholder: "XXXXXXXX",
-      notInformed: "---",
-      systemOnline: "&gt; système_en_ligne: tous_protocoles_actifs...",
-      phoneValidatedForWhatsApp:
-        "📱 Numéro validé automatiquement pour WhatsApp",
-      worksDesktopAndMobile: "✅ Fonctionne sur ordinateur et mobile",
-
-      // Facebook Target Modal
-      facebookExampleUrl: "Es: https://facebook.com/juan.silva o",
-      facebookAnalyzerReady: "&gt; analizador_facebook_v3.2.1: prêt...",
-
-      // Instagram Target Modal
-      instagramPlaceholder: "victima_insta",
-      usernameTooShort: "Nom d'utilisateur trop court",
-
-      // Instagram Access
-      messagePlaceholder: "Message...",
-
-      // Terminal Messages
-      accessGrantedAuthenticating: "&gt; accès_accordé: authentification...",
-
-      // About Page
-      aboutSpyMateInfo: "Informations sur SpyMate! 📱",
-
-      // Navbar
-      logoutError: "Erreur de logout",
-
-      // Instagram Access
-      loaded: "Chargé!",
-
-      // Phone Input - Manual Country Code
-      otherCountry: "Autre Pays",
-      manualCountryCode: "Código Manual",
-      enterCountryCode: "Digite o código do país",
-      countryCodePlaceholder: "Ex: 351 (Portugal)",
-      customCountrySelected: "Código personalizado: +",
-      invalidCountryCode: "Código de país inválido",
-      countryCodeTooShort: "Código muito curto (mínimo 1 dígito)",
-      countryCodeTooLong: "Código muito longo (máximo 4 dígitos)",
-
-      // Language Detection
-      autoLanguageDetection: "Detecção Automática",
-      automaticDetection: "Detecção Automática",
-      manualSelection: "Seleção Manual",
-      detectedAutomatically: "Detectado automaticamente",
-      selectedManually: "Selecionado manualmente",
-      resetToAutomatic: "Voltar para detecção automática",
-      languageDetectedFrom: "Idioma detectado do navegador",
-
-      // WhatsApp Float
-      whatsappFloatTooltip: "💬 Discutez avec nous sur WhatsApp",
-      whatsappFloatMessage:
-        "Bonjour! Je suis venu via SpyMate et j'aimerais plus d'informations.",
-    },
-  },
-  fr: {
-    translation: {
-      // Welcome
-      welcome: "Bienvenue",
-      start: "COMMENCER",
-
-      // Navigation
-      home: "Accueil",
-      about: "À propos",
-      contact: "Contact",
-
-      // Auth
-      login: "Connexion",
-      register: "S'inscrire",
-      email: "E-mail",
-      password: "Mot de passe",
-      confirmPassword: "Confirmer le mot de passe",
-      name: "Nom",
-      signIn: "Se connecter",
-      signUp: "Créer un compte",
-      dontHaveAccount: "Vous n'avez pas de compte?",
-      alreadyHaveAccount: "Vous avez déjà un compte?",
-      forgotPassword: "Mot de passe oublié?",
-
-      // Messages
-      loginSuccess: "Connexion réussie!",
-      registerSuccess: "Compte créé avec succès!",
-      logoutSuccess: "Déconnexion réussie!",
-
-      // Language
-      language: "Langue",
-      portuguese: "Portugais",
-      english: "Anglais",
-      spanish: "Espagnol",
-      french: "Français",
-      italian: "Italien",
-
-      // Home Page
-      welcomeUser: "Bienvenue, {{name}} !",
-      defaultUser: "Utilisateur",
-      homeDescription:
-        "Accédez à vos plateformes préférées rapidement et en toute sécurité via SpyMate",
-      access: "ACCÉDER",
-      accessing: "Accès à {{platform}}...",
-      platformsAvailable: "Plateformes Disponibles",
-      securityGuaranteed: "Sécurité Garantie",
-      availability: "Disponibilité",
-      secureAccessTitle: "🔒 Accès Sécurisé et Surveillé",
-      secureAccessDescription:
-        "Toutes vos activités sont surveillées de manière sécurisée et discrète. SpyMate garantit une confidentialité totale et un contrôle sur vos accès numériques.",
-
-      // User Data Modal
-      secureDataCollection: "Collecte Sécurisée de Données",
-      dataSecurityMessage: "Vos données sont 100% sécurisées avec nous",
-      dataProtection: "🔒 Protection des Données",
-      dataUsageExplanation:
-        "Ces données seront utilisés exclusivement pour une meilleure expérience utilisateur et le chargement automatique d'informations pour l'utilisation de l'outil. Peuvent être mises à jour ultérieurement.",
-      fullName: "Nom Complet",
-      enterFullName: "Entrez votre nom complet",
-      ageVerification: "Verification d'age: Êtes-vous majeur?",
-      yes: "Oui",
-      no: "Non",
-      whatsappNumber: "Numéro WhatsApp",
-      enterEmail: "Entrez votre email",
-      notificationEmail: "Email de Notification",
-      fillAllFields: "Remplissez tous les champs",
-      dataSavedSuccessfully: "Données sauvegardées avec succès!",
-      errorSavingData: "Erreur lors de la sauvegarde des données",
-      saveSecureData: "Sauvegarder Données Sécurisées",
-      saving: "Sauvegarde",
-      dataSecurelyStored: "données_stockées_en_sécurité",
-      provideSecureInformation: "Fournir des informations sécurisées",
-
-      // Update Profile
-      updateProfile: "Mettre à Jour le Profil",
-      updateProfileDescription: "Mettez à jour les données de votre profil",
-      profileUpdatedSuccessfully: "Profil mis à jour avec succès!",
-      errorUpdatingProfile: "Erreur lors de la mise à jour du profil",
-      errorLoadingData: "Erreur lors du chargement des données",
-      updateData: "Mettre à Jour les Données",
-      updating: "Mise à jour",
-      loading: "Chargement",
-      back: "Retour",
-
-      // WhatsApp Access
-      whatsappCloned: "WhatsApp Cloné",
-      addCodeToUnlock:
-        "Ajoutez le code ci-dessous pour débloquer et voir tous les messages en temps réel.",
-      enterUnlockCode: "Entrez le code de déverrouillage",
-      unlock: "Déverrouiller",
-      unlocked: "Déverrouillé",
-      dontHaveCode: "Vous n'avez pas de code?",
-      timeRemaining: "Temps restant",
-      warning: "Attention",
-      alert: "Alerte",
-      accessRiskWarning:
-        "Risque de perte d'accès! Votre code de déverrouillage est temporaire et expirera bientôt. S'il n'est pas utilisé à temps, vous perdrez l'accès au serveur et votre session sera terminée définitivement.",
-      notificationWarning:
-        "De plus, le numéro surveillé peut recevoir une notification automatique, compromettant l'opération.",
-      accountInfo: "Informations du Compte",
-      accessGranted: "Accès Accordé!",
-      redirectingToClone: "Redirection vers le clonage...",
-      codeWillBeSent: "Le code sera envoyé via WhatsApp",
-
-      // WhatsApp Access Code Message
-      whatsappCodeMessage:
-        "🔐 CODE D'ACCÈS SPYMATE\n\n👤 {user}: {fullName}\n📱 WhatsApp: {whatsappNumber}\n🔑 Código: {code}\n\n⚠️ Ce code expire dans 24 heures\n🔒 Gardez-le en sécurité",
-      user: "Utilisateur",
-
-      // Clone Number Modal
-      selectTargetNumber: "Sélectionnez le Numéro Cible",
-      enterNumberToClone: "Entrez le numéro WhatsApp que vous voulez cloner",
-      importantNotice: "Avis Important",
-      cloneProcessWarning:
-        "Le processus de clonage est irréversible et peut prendre plusieurs jours à compléter.",
-      targetWhatsappNumber: "Número WhatsApp Objetivo",
-      enterCompleteNumber: "Entrez le numéro completado avec le code régional",
-      processing: "Traitement",
-      startCloneProcess: "Démarrer le Processus de Clonage",
-      securityProtocol: "Protocole de Sécurité",
-      encryptedConnection: "Connexion chiffrée",
-      anonymousAccess: "Accès anonyme",
-      noDataStored: "Aucune donnée stockée",
-
-      // Countdown Modal
-      analysisInProgress: "ANALYSE EN COURS",
-      codeRequestProcessing: "Traitement de la Demande de Code",
-      days: "JOURS",
-      hours: "HEURES",
-      minutes: "MINS",
-      seconds: "SECS",
-      analysisMessage:
-        "NOUS ANALYSONS VOTRE DEMANDE DE CODE D'ACCÈS. NOUS VOUS DEMANDONS INSTAMMENT D'ATTENDRE, CELA PEUT PRENDRE EN MOYENNE DE 3 À 7 JOURS. NOUS ENVERRONS BIENTÔT UN CODE LIÉ À VOTRE NOM.",
-      linkedToName: "Lié au nom",
-      emailNotifications:
-        "VOUS RECEVREZ DES NOTIFICATIONS DE LA DEMANDE DANS VOTRE EMAIL",
-      patientRequest:
-        "SOYEZ PATIENT AVEC VOTRE DEMANDE. LE SYSTÈME TRAITE AVEC UNE SÉCURITÉ MAXIMALE.",
-      understood: "Compris",
-
-      // Cloning Progress - New strings
-      watchCloning: "SUIVRE CLONAGE",
-      cloningInProgress: "CLONAGE EN COURS",
-      timeRemaining: "Temps restant",
-      active: "ACTIF",
-      cloningEngineTitle: "SPYMATE CLONING ENGINE v2.4.7",
-
-      // Cloning stages
-      initializingCloning: "Initialisation du processus de clonage...",
-      establishingConnection: "Établissement d'une connexion sécurisée...",
-      bypassingSecurity: "Contournement des protocoles de sécurité...",
-      extractingContacts: "Extraction de la liste de contacts...",
-      cloningMessages: "Clonage des messages...",
-      downloadingMedia: "Téléchargement des fichiers multimédias...",
-      finalizingProcess: "Finalisation du processus...",
-      cloningCompleted: "Clonage terminé avec succès!",
-
-      // Terminal info
-      processStarted: "Processus démarré avec succès",
-      connectionEstablished: "Connexion établie",
-      securityProtocolDetected: "Protocole de sécurité détecté",
-      bypassExecuted: "Contournement exécuté avec succès",
-      extractingData: "Extraction des données",
-      operationInProgress: "Opération en cours",
-
-      // System status
-      security: "Sécurité",
-      speed: "Vitesse",
-      target: "Cible",
-      device: "Appareil",
-      statusBypassed: "Statut: CONTOURNÉ ✓",
-      cloningProcessActive: "processus_clonage_actif",
-
-      // Instagram Access - New strings
-      instagramCloned: "Instagram Cloné",
-      enterInstagramUsername: "Entrez le @ de la victime sur Instagram",
-      instagramUsername: "Nom d'utilisateur Instagram (@)",
-      enterUsername: "Ex: @victime_insta",
-      startInstagramAnalysis: "Iniciar Análisis de Instagram",
-      instagramAnalysisTitle: "ANÁLISIS DE INSTAGRAM",
-      instagramAnalysisMessage:
-        "ESTAMOS ANALIZANDO EL PERFIL DE INSTAGRAM DEMANDÉ. ESTE PROCESO PUEDE TOMAR DE 3 A 7 DÍAS. NOSSA IA MAPPE TODES LES CONNEXIONS, CONVERSACIONES Y ACTIVITÉS DEL COMPTE.",
-      profileBeingAnalyzed: "Perfil en cours d'analyse",
-      dataExtractionInProgress: "Extracción de données en cours",
-      loadingProfile: "Chargement du profil...",
-      loadingMessages: "Chargement des messages...",
-      loadingContacts: "Chargement des contacts...",
-      profileAnalyzed: "Profil analysé avec succès!",
-      accessInstagramProfile: "Accéder au Profil",
-
-      // Instagram Interface
-      directMessages: "Mensajes Directos",
-      online: "en ligne",
-      typing: "en train d'écrire...",
-      messagePreview1: "Salut mon amour, ça va? ❤️",
-      messagePreview2: "Tu me manques... 🥺",
-      messagePreview3: "Quand va-t-on se voir? 😍",
-      messagePreview4: "Tu es incroyable! 💕",
-      messagePreview5: "Bonne nuit, mon chéri 🌙",
-      messagePreview6: "Je pensais à toi... 💭",
-
-      // Contact names (fake)
-      contactName1: "Amanda Silva",
-      contactName2: "Lucas Santos",
-      contactName3: "Carla Oliveira",
-      contactName4: "Rafael Costa",
-      contactName5: "Juliana Lima",
-      contactName6: "Gabriel Rocha",
-
-      // Instagram status messages
-      extractingPhotos: "Extraction des photos et stories...",
-      analyzingMessages: "Analyse des messages privés...",
-      mappingConnections: "Mappage des connexions sociales...",
-      profileAccessGranted: "Accès au profil accordé!",
-      viewingPrivateMessages: "Visualisation des messages privés",
-      realTimeMonitoring: "Surveillance en temps réel active",
-
-      // Romantic replies (automatic messages from target user)
-      romanticReply1: "Salut mon amour! Comment ça va? ❤️",
-      romanticReply2: "Je pensais à toi... 💕",
-      romanticReply3: "Tes baisers me manquent tant 😘",
-      romanticReply4: "Tu es tout pour moi 🥰",
-      romanticReply5: "J'ai hâte de te voir 💖",
-      romanticReply6: "Je t'aime plus que tout! 💝",
-      romanticReply7: "Tu fais battre mon cœur 💓",
-      romanticReply8: "J'ai rêvé de toi hier soir 😍",
-      romanticReply9: "Tu es ma personne préférée 🌹",
-      romanticReply10: "Je t'aime infiniment ♾️❤️",
-
-      // Facebook Access - New strings
-      facebookCloned: "Facebook Cloned",
-      selectFacebookTarget: "Select Facebook Target",
-      enterFacebookProfileUrl: "Enter the victim's profile link",
-      facebookProfileUrl: "Facebook Profile Link",
-      enterFacebookUrl: "Enter the complete profile link",
-      startFacebookAnalysis: "Start Facebook Analysis",
-      facebookAnalysisTitle: "FACEBOOK ANALYSIS",
-      facebookAnalysisMessage:
-        "WE ARE ANALYZING THE REQUESTED FACEBOOK PROFILE. THIS PROCESS MAY TAKE 3 TO 7 DAYS. OUR AI IS MAPPING ALL CONNECTIONS, CONVERSATIONS AND ACCOUNT ACTIVITIES.",
-      facebookAnalysisWarning:
-        "The Facebook analysis process is irreversible and may take several days to complete.",
-      initializingFacebookAnalysis: "Initializing Facebook analysis...",
-      extractingFacebookData: "Extracting Facebook data...",
-      analyzingMessengerChats: "Analyzing Messenger conversations...",
-      mappingFacebookConnections: "Mapping Facebook connections...",
-
-      // Facebook contacts and messages
-      facebookContact1: "Mariana Costa",
-      facebookContact2: "Pedro Almeida",
-      facebookContact3: "Camila Ferreira",
-      facebookContact4: "Bruno Santos",
-      facebookContact5: "Larissa Oliveira",
-      facebookContact6: "Ricardo Lima",
-
-      facebookMessage1: "Hi darling, how was your day? 💙",
-      facebookMessage2: "I miss you... when are we going to meet? 😘",
-      facebookMessage3: "Did you see my new photo? 📸",
-      facebookMessage4: "I'm thinking about you now ❤️",
-      facebookMessage5: "Good night, my love 🌙",
-      facebookMessage6: "What about going out at the end of the weekend? 🥰",
-
-      // Facebook replies
-      facebookReply1: "Hi love! My day was great thinking about you 💙",
-      facebookReply2: "I'm also missing you... let's meet up 😘",
-      facebookReply3: "I saw it! You're still as beautiful as always 😍",
-      facebookReply4: "And I've always been thinking about you, my love ❤️",
-      facebookReply5: "Good night, princess. Dream with me 🌙",
-      facebookReply6: "Of course! I can't wait to see you 🥰",
-      facebookReply7: "You light up my life 🌟",
-      facebookReply8: "Every moment with you is special 💕",
-      facebookReply9: "You're my whole world 🌍",
-      facebookReply10: "I love you more every day 💖",
-
-      // Terminal messages
-      initializingSpymate: "initializing_spymate.exe",
-      authenticated: "authenticated",
-      establishingTunnel: "establishing_tunnel",
-
-      // Contact Page
-      contactUs: "Contactez-nous",
-      yourName: "Votre nom",
-      yourEmail: "votre@email.com",
-      yourMessage: "Votre message...",
-      sendMessage: "Envoyer Message 📧",
-      contactInfo: "📱 Contactez-nous:",
-      fillAllFieldsError: "Veuillez remplir tous les champs! ❌",
-      messageSentSuccess: "Message envoyé avec succès! 📧",
-
-      // Register/Login Forms
-      passwordsDontMatch: "Les mots de passe ne correspondent pas",
-      passwordTooShort: "Le mot de passe doit contenir au moins 6 caractères",
-      emailAlreadyInUse: "Cet email est déjà utilisé",
-      passwordTooWeak: "Le mot de passe est trop faible",
-      registerError:
-        "Erreur lors de la création du compte. Veuillez réessayer.",
-      creatingAccount: "Création du compte...",
-      loginError: "Erreur de connexion. Vérifiez vos identifiants.",
-      signingIn: "Connexion...",
-      passwordPlaceholder: "••••••••",
-
-      // NotFound Page
-      pageNotFoundToast: "Page non trouvée! 😢",
-      pageNotFound: "Page Non Trouvée",
-      pageNotFoundDescription:
-        "Oups! La página que buscas no existe o ha sido movida.",
-      backToHome: "🏠 Retour à l'Accueil",
-      showErrorToast: "😢 Afficher Toast d'Erreur",
-      errorContactUs: "Si crees que esto es un error, veuillez",
-      contactUsLink: "nous contacter",
-
-      // Home Page
-      blocked: "BLOQUÉ",
-      premium: "PREMIUM",
-      unlock: "[DÉBLOQUER]",
-      premiumButton: "[PREMIUM]",
-      accessingSocialNetworks: "accediendo_redes_sociais...",
-      redirectingToUnlock: "Redirigiendo para desbloquear",
+      accessingSocialNetworks: "accesso_social_networks...",
+      redirectingToUnlock: "Reindirizzamento per sbloccare",
 
       // Update Profile
       phoneValidationError:
@@ -1521,6 +1354,108 @@ const resources = {
       whatsappFloatTooltip: "💬 Discutez avec nous sur WhatsApp",
       whatsappFloatMessage:
         "Bonjour! Je suis venu via SpyMate et j'aimerais plus d'informations.",
+
+      // Analysis Progress
+      analysisInProgress: "ANÁLISE EM ANDAMENTO",
+      analysisComplete: "Análise concluída para",
+
+      // Novas traduções para relatórios
+      reportReady: "Rapporto pronto!",
+      downloadReport: "Scarica Rapporto",
+      generatingReport: "Generazione rapporto...",
+      reportDownloaded: "Rapporto scaricato!",
+      targetAnalyzed: "Obiettivo analizzato",
+      reportReadyForDownload: "Rapporto pronto per il download",
+      reportRemoved: "Rapporto rimosso",
+      reportOpenedInNewTab: "Rapporto aperto in nuova scheda",
+      postsLiked: "Post Piaciuti",
+      profileVisits: "Visite ai Profili",
+
+      // Traduções do relatório em italiano
+      reportTitle: "Rapporto di Analisi",
+      generatedAt: "Generato il",
+      user: "Utente",
+      target: "Obiettivo",
+      analysisSummary: "Riepilogo dell'Analisi",
+      activityChart: "Grafico delle Attività (Ultimi 7 Giorni)",
+      mostVisitedProfiles: "Profili Più Visitati",
+      profileVisitsDescription:
+        "L'obiettivo ha accesso e interagito frequentemente con i seguenti profili:",
+      visits: "Visite",
+      lastVisit: "Ultima visita",
+      detectedAlerts: "Allerte Rilevate",
+      highlightedConversations: "Conversazioni Evidenziate",
+      interactions: "Interazioni",
+      activities: "Attività",
+      matches: "Match",
+      locations: "Posizioni",
+      calls: "Chiamate",
+      recoveredMessages: "Messaggi Recuperati",
+      messagesPerDay: "Messaggi per giorno",
+      postsPerDay: "Post piaciuti per giorno",
+      dataGeneratedBy: "Dati generati automaticamente da SpyMate",
+      reportGeneratedAt: "Rapporto generato il",
+      print: "Stampa",
+      downloadPDF: "Scarica PDF",
+
+      // Traduções dos alertas
+      critical: "Crítica",
+      high: "Alta",
+      medium: "Média",
+      low: "Baixa",
+      example: "Exemplo",
+
+      // Traduções das interações
+      frequency: "Frequência",
+      lastActivity: "Última atividade",
+      preview: "Preview",
+      workingOnImages:
+        "estamos trabalhando para enviar imagens da conversa em png para voce",
+      loading: "loading...",
+
+      // Traduções dos labels dos cards
+      postsLiked: "Posts Curtidos",
+      storiesAnalyzed: "Stories Analisados",
+      profileVisits: "Visitas a Perfis",
+      following: "Seguindo",
+      peakActivity: "Atividade de Pico",
+      messagesAnalyzed: "Mensagens Analisadas",
+      deletedMessages: "Mensagens Apagadas",
+      uniqueContacts: "Contatos Únicos",
+      friends: "Amigos",
+      groups: "Grupos",
+      matches: "Matches",
+      conversations: "Conversas",
+      superLikes: "Super Likes",
+      locationsTracked: "Locais Rastreados",
+      frequentPlaces: "Lugares Frequentes",
+      unusualPlaces: "Lugares Suspeitos",
+      peakMovement: "Movimento de Pico",
+      callsAnalyzed: "Chamadas Analisadas",
+      incomingCalls: "Chamadas Recebidas",
+      outgoingCalls: "Chamadas Realizadas",
+      deletedConversations: "Conversas Apagadas",
+      recoveredMessages: "Mensagens Recuperadas",
+      peakDeletion: "Pico de Exclusão",
+
+      // Traduções dos exemplos de alertas
+      alertExampleParty: "¡Fiesta increíble ayer!",
+      alertExampleBar: "¿Vamos al bar?",
+      alertExampleTravel: "Preparando el viaje",
+      alertExampleHotel: "Ok, reservé el hotel",
+      alertExampleHeart: "Buenas noches ❤️ hasta mañana",
+      alertExampleMeeting: "Nuestro encuentro fue genial",
+      alertExampleDinner: "Cena romántica",
+      alertExampleCinema: "¿Vamos al cine?",
+
+      // Traduções dos passos de análise
+      analysisStepConnecting: "🔍 Conectando a servidores...",
+      analysisStepAuthenticating: "📱 Autenticando credenciales...",
+      analysisStepEstablishing: "🔐 Estableciendo conexión segura...",
+      analysisStepAnalyzing: "📊 Analizando datos...",
+      analysisStepProcessing: "📈 Procesando información...",
+      analysisStepSynchronizing: "🔄 Sincronizando datos...",
+      analysisStepCompleted: "✅ Análisis completado con éxito!",
     },
   },
   it: {
@@ -1611,6 +1546,10 @@ const resources = {
       whatsappCloned: "WhatsApp Clonato",
       addCodeToUnlock:
         "Aggiungi il codice qui sotto per sbloccare e vedere tutti i messaggi in tempo reale.",
+      readyToClone: "Pronto per clonare",
+      initializingCloning: "Inizializzazione processo di clonazione...",
+      preparingCloneInterface: "Preparazione interfaccia di clonazione",
+      startCloningProcess: "Avvia Processo di Clonazione",
       enterUnlockCode: "Inserisci il codice di sblocco",
       unlock: "Sblocca",
       unlocked: "Sbloccato",
@@ -1902,6 +1841,258 @@ const resources = {
       whatsappFloatTooltip: "💬 Contattaci su WhatsApp",
       whatsappFloatMessage:
         "Ciao! Sono arrivato tramite SpyMate e vorrei maggiori informazioni.",
+
+      // Analysis Progress
+      analysisInProgress: "ANALISI IN CORSO",
+      analysisComplete: "Analisi completata per",
+
+      // Novas traduções para relatórios
+      reportReady: "Rapporto pronto!",
+      downloadReport: "Scarica Rapporto",
+      generatingReport: "Generazione rapporto...",
+      reportDownloaded: "Rapporto scaricato!",
+      targetAnalyzed: "Obiettivo analizzato",
+      reportReadyForDownload: "Rapporto pronto per il download",
+      reportRemoved: "Rapporto rimosso",
+      reportOpenedInNewTab: "Rapporto aperto in nuova scheda",
+      postsLiked: "Post Piaciuti",
+      profileVisits: "Visite ai Profili",
+
+      // Traduções do relatório em italiano
+      reportTitle: "Rapporto di Analisi",
+      generatedAt: "Generato il",
+      user: "Utente",
+      target: "Obiettivo",
+      analysisSummary: "Riepilogo dell'Analisi",
+      activityChart: "Grafico delle Attività (Ultimi 7 Giorni)",
+      mostVisitedProfiles: "Profili Più Visitati",
+      profileVisitsDescription:
+        "L'obiettivo ha accesso e interagito frequentemente con i seguenti profili:",
+      visits: "Visite",
+      lastVisit: "Ultima visita",
+      detectedAlerts: "Allerte Rilevate",
+      highlightedConversations: "Conversazioni Evidenziate",
+      interactions: "Interazioni",
+      activities: "Attività",
+      matches: "Match",
+      locations: "Posizioni",
+      calls: "Chiamate",
+      recoveredMessages: "Messaggi Recuperati",
+      messagesPerDay: "Messaggi per giorno",
+      postsPerDay: "Post piaciuti per giorno",
+      dataGeneratedBy: "Dati generati automaticamente da SpyMate",
+      reportGeneratedAt: "Rapporto generato il",
+      print: "Stampa",
+      downloadPDF: "Scarica PDF",
+
+      // Traduções dos alertas
+      critical: "Crítica",
+      high: "Alta",
+      medium: "Média",
+      low: "Baixa",
+      example: "Exemplo",
+
+      // Traduções das interações
+      frequency: "Frequência",
+      lastActivity: "Última atividade",
+      preview: "Preview",
+      workingOnImages:
+        "estamos trabalhando para enviar imagens da conversa em png para voce",
+      loading: "loading...",
+
+      // Traduções dos labels dos cards
+      postsLiked: "Posts Curtidos",
+      storiesAnalyzed: "Stories Analisados",
+      profileVisits: "Visitas a Perfis",
+      following: "Seguindo",
+      peakActivity: "Atividade de Pico",
+      messagesAnalyzed: "Mensagens Analisadas",
+      deletedMessages: "Mensagens Apagadas",
+      uniqueContacts: "Contatos Únicos",
+      friends: "Amigos",
+      groups: "Grupos",
+      matches: "Matches",
+      conversations: "Conversas",
+      superLikes: "Super Likes",
+      locationsTracked: "Locais Rastreados",
+      frequentPlaces: "Lugares Frequentes",
+      unusualPlaces: "Lugares Suspeitos",
+      peakMovement: "Movimento de Pico",
+      callsAnalyzed: "Chamadas Analisadas",
+      incomingCalls: "Chamadas Recebidas",
+      outgoingCalls: "Chamadas Realizadas",
+      deletedConversations: "Conversas Apagadas",
+      recoveredMessages: "Mensagens Recuperadas",
+      peakDeletion: "Pico de Exclusão",
+
+      // Traduções dos exemplos de alertas
+      alertExampleParty: "¡Fiesta increíble ayer!",
+      alertExampleBar: "¿Vamos al bar?",
+      alertExampleTravel: "Preparando el viaje",
+      alertExampleHotel: "Ok, reservé el hotel",
+      alertExampleHeart: "Buenas noches ❤️ hasta mañana",
+      alertExampleMeeting: "Nuestro encuentro fue genial",
+      alertExampleDinner: "Cena romántica",
+      alertExampleCinema: "¿Vamos al cine?",
+
+      // Traduções dos passos de análise
+      analysisStepConnecting: "🔍 Conectando a servidores...",
+      analysisStepAuthenticating: "📱 Autenticando credenciales...",
+      analysisStepEstablishing: "🔐 Estableciendo conexión segura...",
+      analysisStepAnalyzing: "📊 Analizando datos...",
+      analysisStepProcessing: "📈 Procesando información...",
+      analysisStepSynchronizing: "🔄 Sincronizando datos...",
+      analysisStepCompleted: "✅ Análisis completado con éxito!",
+    },
+  },
+  fr: {
+    translation: {
+      // Welcome
+      welcome: "Bienvenue",
+      start: "COMMENCER",
+
+      // Navigation
+      home: "Accueil",
+      about: "À propos",
+      contact: "Contact",
+
+      // Auth
+      login: "Connexion",
+      register: "S'inscrire",
+      email: "E-mail",
+      password: "Mot de passe",
+      confirmPassword: "Confirmer le mot de passe",
+      name: "Nom",
+      signIn: "Se connecter",
+      signUp: "Créer un compte",
+      dontHaveAccount: "Vous n'avez pas de compte?",
+      alreadyHaveAccount: "Vous avez déjà un compte?",
+      forgotPassword: "Mot de passe oublié?",
+
+      // Messages
+      loginSuccess: "Connexion réussie!",
+      registerSuccess: "Compte créé avec succès!",
+      logoutSuccess: "Déconnexion réussie!",
+
+      // Language
+      language: "Langue",
+      portuguese: "Portugais",
+      english: "Anglais",
+      spanish: "Espagnol",
+      french: "Français",
+      italian: "Italien",
+
+      // Home Page
+      welcomeUser: "Bienvenue, {{name}}!",
+      defaultUser: "Utilisateur",
+      homeDescription:
+        "Accédez à vos plateformes préférées rapidement et en toute sécurité via SpyMate",
+      access: "ACCÉDER",
+      accessing: "Accès à {{platform}}...",
+      platformsAvailable: "Plateformes Disponibles",
+      securityGuaranteed: "Sécurité Garantie",
+      availability: "Disponibilité",
+      secureAccessTitle: "🔒 Accès Sécurisé et Surveillé",
+      secureAccessDescription:
+        "Toutes vos activités sont surveillées de manière sécurisée et discrète. SpyMate garantit une confidentialité totale et un contrôle sur vos accès numériques.",
+
+      // Novas traduções para relatórios em francês
+      reportReady: "Rapport prêt!",
+      downloadReport: "Télécharger Rapport",
+      generatingReport: "Génération du rapport...",
+      reportDownloaded: "Rapport téléchargé!",
+      targetAnalyzed: "Cible analysée",
+      reportReadyForDownload: "Rapport prêt pour téléchargement",
+      reportRemoved: "Rapport supprimé",
+      reportOpenedInNewTab: "Rapport ouvert dans un nouvel onglet",
+      postsLiked: "Posts Aimés",
+      profileVisits: "Visites de Profils",
+
+      // Traduções do relatório em francês
+      reportTitle: "Rapport d'Analyse",
+      generatedAt: "Généré le",
+      user: "Utilisateur",
+      target: "Cible",
+      analysisSummary: "Résumé de l'Analyse",
+      activityChart: "Graphique d'Activité (7 Derniers Jours)",
+      mostVisitedProfiles: "Profils les Plus Visités",
+      profileVisitsDescription:
+        "La cible a accédé et interagi fréquemment avec les profils suivants:",
+      visits: "Visites",
+      lastVisit: "Dernière visite",
+      detectedAlerts: "Alertes Détectées",
+      highlightedConversations: "Conversations Mises en Évidence",
+      interactions: "Interactions",
+      activities: "Activités",
+      matches: "Matches",
+      locations: "Emplacements",
+      calls: "Appels",
+      recoveredMessages: "Messages Récupérés",
+      messagesPerDay: "Messages par jour",
+      postsPerDay: "Posts aimés par jour",
+      dataGeneratedBy: "Données générées automatiquement par SpyMate",
+      reportGeneratedAt: "Rapport généré le",
+      print: "Imprimer",
+      downloadPDF: "Télécharger PDF",
+
+      // Traduções dos alertas
+      critical: "Critique",
+      high: "Élevée",
+      medium: "Moyenne",
+      low: "Faible",
+      example: "Exemple",
+
+      // Traduções das interações
+      frequency: "Fréquence",
+      lastActivity: "Dernière activité",
+      preview: "Aperçu",
+      workingOnImages:
+        "nous travaillons pour envoyer les images de conversation en png pour vous",
+      loading: "chargement...",
+
+      // Traduções dos labels dos cards
+      postsLiked: "Posts Aimés",
+      storiesAnalyzed: "Stories Analysées",
+      profileVisits: "Visites de Profils",
+      following: "Abonnements",
+      peakActivity: "Activité de Pointe",
+      messagesAnalyzed: "Messages Analysés",
+      deletedMessages: "Messages Supprimés",
+      uniqueContacts: "Contacts Uniques",
+      friends: "Amis",
+      groups: "Groupes",
+      matches: "Matches",
+      conversations: "Conversations",
+      superLikes: "Super Likes",
+      locationsTracked: "Emplacements Suivis",
+      frequentPlaces: "Lieux Fréquents",
+      unusualPlaces: "Lieux Suspects",
+      peakMovement: "Mouvement de Pointe",
+      callsAnalyzed: "Appels Analysés",
+      incomingCalls: "Appels Entrants",
+      outgoingCalls: "Appels Sortants",
+      deletedConversations: "Conversations Supprimées",
+      recoveredMessages: "Messages Récupérés",
+      peakDeletion: "Pointe de Suppression",
+
+      // Traduções dos exemplos de alertas
+      alertExampleParty: "Fête incroyable hier !",
+      alertExampleBar: "On va au bar ?",
+      alertExampleTravel: "Préparation du voyage",
+      alertExampleHotel: "Ok, j'ai réservé l'hôtel",
+      alertExampleHeart: "Bonne nuit ❤️ à demain",
+      alertExampleMeeting: "Notre rencontre était super",
+      alertExampleDinner: "Dîner romantique",
+      alertExampleCinema: "On va au cinéma ?",
+
+      // Traduções dos passos de análise
+      analysisStepConnecting: "🔍 Connexion aux serveurs...",
+      analysisStepAuthenticating: "📱 Authentification des identifiants...",
+      analysisStepEstablishing: "🔐 Établissement de la connexion sécurisée...",
+      analysisStepAnalyzing: "📊 Analyse des données...",
+      analysisStepProcessing: "📈 Traitement des informations...",
+      analysisStepSynchronizing: "🔄 Synchronisation des données...",
+      analysisStepCompleted: "✅ Analyse terminée avec succès !",
     },
   },
 };

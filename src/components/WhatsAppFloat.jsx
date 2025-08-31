@@ -6,7 +6,7 @@ function WhatsAppFloat() {
   const { t } = useTranslation();
 
   const handleWhatsAppClick = () => {
-    const phoneNumber = "+5588996854941";
+    const phoneNumber = "+5521988089448";
     const message = encodeURIComponent(t("whatsappFloatMessage"));
 
     // Detectar se é mobile ou desktop

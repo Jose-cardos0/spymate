@@ -1,9 +1,11 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
+import { smsTranslations } from "./smsTranslations";
 
 const resources = {
   pt: {
     translation: {
+      ...smsTranslations.pt,
       // Welcome
       welcome: "Bem-vindo",
       start: "INICIAR",
@@ -487,6 +489,7 @@ const resources = {
   },
   en: {
     translation: {
+      ...smsTranslations.en,
       // Welcome
       welcome: "Welcome",
       start: "START",
@@ -974,6 +977,7 @@ const resources = {
   },
   es: {
     translation: {
+      ...smsTranslations.es,
       // Welcome
       welcome: "Bienvenido",
       start: "EMPEZAR",
@@ -1460,6 +1464,7 @@ const resources = {
   },
   it: {
     translation: {
+      ...smsTranslations.it,
       // Welcome
       welcome: "Benvenuto",
       start: "INIZIA",
@@ -1947,6 +1952,7 @@ const resources = {
   },
   fr: {
     translation: {
+      ...smsTranslations.fr,
       // Welcome
       welcome: "Bienvenue",
       start: "COMMENCER",

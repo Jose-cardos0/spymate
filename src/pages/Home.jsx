@@ -13,6 +13,9 @@ import InstagramCloningModal from "../components/InstagramCloningModal";
 import FacebookTargetModal from "../components/FacebookTargetModal";
 import FacebookCountdownModal from "../components/FacebookCountdownModal";
 import FacebookCloningModal from "../components/FacebookCloningModal";
+import SMSModal from "../components/SMSModal";
+import DeletedConversationsModal from "../components/DeletedConversationsModal";
+import CallsModal from "../components/CallsModal";
 import WhatsAppFloat from "../components/WhatsAppFloat";
 import ReportDownloadButton from "../components/ReportDownloadButton";
 import {
@@ -59,6 +62,12 @@ function Home() {
   const [facebookProfileUrl, setFacebookProfileUrl] = useState("");
   const [facebookCountdownActive, setFacebookCountdownActive] = useState(false);
   const [facebookTimeLeft, setFacebookTimeLeft] = useState(0);
+
+  // Estados para os novos modais
+  const [showSMSModal, setShowSMSModal] = useState(false);
+  const [showDeletedConversationsModal, setShowDeletedConversationsModal] =
+    useState(false);
+  const [showCallsModal, setShowCallsModal] = useState(false);
 
   // Progress states for real-time analysis
   const [analysisProgress, setAnalysisProgress] = useState({
@@ -536,7 +545,7 @@ function Home() {
       glowColor: "shadow-blue-500/50",
       borderColor: "border-blue-400/20",
       bgPattern: "bg-gradient-to-br from-gray-900/80 to-black/90",
-      isPaid: true,
+      isSMS: true,
     },
     {
       name: "Localização",
@@ -554,7 +563,7 @@ function Home() {
       glowColor: "shadow-red-600/50",
       borderColor: "border-red-500/20",
       bgPattern: "bg-gradient-to-br from-gray-900/80 to-black/90",
-      isPaid: true,
+      isCalls: true,
     },
     {
       name: "Conversas Apagadas",
@@ -563,8 +572,7 @@ function Home() {
       glowColor: "shadow-blue-600/50",
       borderColor: "border-blue-500/20",
       bgPattern: "bg-gradient-to-br from-gray-900/80 to-black/90",
-      isPaid: true,
-      isBlocked: true,
+      isDeletedConversations: true,
     },
   ];
 
@@ -598,6 +606,12 @@ function Home() {
       } else {
         setShowFacebookTargetModal(true);
       }
+    } else if (platformName === "SMS") {
+      setShowSMSModal(true);
+    } else if (platformName === "Ligações") {
+      setShowCallsModal(true);
+    } else if (platformName === "Conversas Apagadas") {
+      setShowDeletedConversationsModal(true);
     } else {
       // Para outros aplicativos, só iniciar análise se não houver análises contínuas
       if (
@@ -1535,6 +1549,21 @@ function Home() {
         isOpen={showFacebookCloning}
         onClose={() => setShowFacebookCloning(false)}
         targetProfile={facebookTarget}
+      />
+
+      {/* SMS Modal */}
+      <SMSModal isOpen={showSMSModal} onClose={() => setShowSMSModal(false)} />
+
+      {/* Deleted Conversations Modal */}
+      <DeletedConversationsModal
+        isOpen={showDeletedConversationsModal}
+        onClose={() => setShowDeletedConversationsModal(false)}
+      />
+
+      {/* Calls Modal */}
+      <CallsModal
+        isOpen={showCallsModal}
+        onClose={() => setShowCallsModal(false)}
       />
 
       {/* WhatsApp Float */}

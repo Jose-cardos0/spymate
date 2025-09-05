@@ -1396,7 +1396,7 @@ function Home() {
 
                       {/* Button Text */}
                       <span className="relative z-10 tracking-wider">
-                        [ACESSO]
+                        [{t("access")}]
                       </span>
 
                       {/* Animated Underline */}
